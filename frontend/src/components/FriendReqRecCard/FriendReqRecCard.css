@@ -1,0 +1,42 @@
+#requestReceivedCard {
+    /* border: 1px solid red; */
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em;
+    width: 50vh;
+}
+
+#profileImage {
+    margin: 0.5em;
+}
+
+.text {
+    font-size: 0.6em;
+}
+
+#acceptFriendRequest {
+    background: green;
+    color: white;
+    border-radius: 0.5em;
+    font-size: 0.6em;
+    padding: 0.5em;
+}
+
+#declineFriendRequest {
+    background: crimson;
+    color: white;
+    border-radius: 0.5em;
+    font-size: 0.6em;
+    padding: 0.5em;
+}
+
+.marginOne {
+    margin: 1.0em;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

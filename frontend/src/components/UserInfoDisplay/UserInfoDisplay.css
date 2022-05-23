@@ -1,0 +1,17 @@
+#userInfoDiv{
+    /* border: 1px solid orange; */
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+#userInfo{
+    border: 1px solid gray;
+    padding: 2em;
+}
+
+.profile_pic{
+    height: 25rem;
+    width: 25rem;
+
+}
