@@ -116,23 +116,23 @@ router.delete("/:userId/recipes/:recipeId", async (req, res) => {
 
 //  Only for images PUT request
 router.put(
-  "/:userID/recipeId/updateUserImage",
+  "/:userId/recipes/:recipeId/updateRecipeImage",
   [auth, fileUpload.single("image")],
   async (req, res) => {
     try {
       // find a user by their id
-      let user = await User.findById(req.params.userID);
+      let user = await User.findById(req.params.userId);
       if (!user)
         return res
           .status(400)
-          .send(`User with ObjectId ${req.params.userID} does not exist.`);
-      // user.image = req.file.path;
-      // await user.save();
+          .send(`User with ObjectId ${req.params.userId} does not exist.`);
+
       // find the recipe ID
-      let recipe = user.recipes.id(req.params.recipeId);
+        
 
       //  Update the photo of the recipe ID
-
+      user.recipes.findById(recipe)= req.file.path;
+      await user.save();
       const token = user.generateAuthToken();
 
       return res
