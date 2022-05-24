@@ -127,11 +127,30 @@ router.put(
           .status(400)
           .send(`User with ObjectId ${req.params.userId} does not exist.`);
 
+      // console.log(user.recipes);
       // find the recipe ID
-        
+      // const recipe = user.recipes.find((foundRecipe) => {
+      //   console.log(foundRecipe["_id"]);
+      //   console.log(req.params.recipeId);
+      //   console.log(foundRecipe["_id"] == req.params.recipeId);
+      //   foundRecipe["_id"] == req.params.recipeId;
+      // });
+      let recipe;
+      user.recipes.forEach((foundRecipe) => {
+        if (foundRecipe["_id"] == req.params.recipeId) {
+          recipe = foundRecipe;
+        }
+      });
+      console.log(req.params.recipeId);
 
+      // console.log(" the recipe value on line 135 is", recipe);
+      // check if there was no recipe ID
+      if (!recipe)
+        return res
+          .status(400)
+          .send(`User with ObjectId ${req.params.recipeId} does not exist.`);
       //  Update the photo of the recipe ID
-      user.recipes.findById(recipe)= req.file.path;
+      recipe.image = req.file.path;
       await user.save();
       const token = user.generateAuthToken();
 
