@@ -54,7 +54,7 @@ const ImageUpload = (props) => {
     try {
       await axios
         .put(
-          `http://localhost:3011/api/users/${user._id}/updateUserImage`,
+          `http://localhost:5000/api/users/${user._id}/updateUserImage`,
           form,
           {
             headers: { "x-auth-token": localStorage.getItem("token") },

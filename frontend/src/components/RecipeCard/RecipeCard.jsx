@@ -1,25 +1,17 @@
+// import statements
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
-import "./FriendCard.css";
 
-const FriendCard = (props) => {
+const RecipeCard = (props) => {
   const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
   const baseUrl = "http://localhost:5000/api/";
 
-  let imagePath = `http://localhost:5000/${props.friend.image}`;
+  //   TODO:
+  // Connect API to display all the recipes as a console log.
 
-  const handleDeleteFriend = async () => {
-    let friendToDelete = await axios.put(
-      `${baseUrl}friends/${user._id}/friendToDelete/${props.friend._id}`,
-      user._id,
-      { headers: { "x-auth-token": decodedUser } }
-    );
-
-    props.setFriends(friendToDelete.data.friends);
-  };
-
+  //   let imagePath = `http://localhost:5000/${props.friend.image}`;
   return (
     <div id="userCard">
       <img
@@ -42,4 +34,4 @@ const FriendCard = (props) => {
   );
 };
 
-export default FriendCard;
+export default RecipeCard;

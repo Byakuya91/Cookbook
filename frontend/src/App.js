@@ -1,6 +1,6 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import "./App.css";
 
@@ -18,12 +18,10 @@ import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
-//   state variables 
-// setting the user's photo
- const [user,setUser] = useState({});
- const [file,setFile] = useState();
-
-
+  //   state variables
+  // setting the user's photo
+  const [user, setUser] = useState({});
+  const [file, setFile] = useState();
 
   return (
     <div>
