@@ -9,26 +9,28 @@ const RecipeCard = (props) => {
   const baseUrl = "http://localhost:5000/api/";
 
   //   TODO:
-  // Connect API to display all the recipes as a console log.
+  // Connect API to display all the recipes from a user.
+  //   Figure out a way to map it.
 
-  //   let imagePath = `http://localhost:5000/${props.friend.image}`;
+  //   let recipePath = `http://localhost:5000/${props.user.recipes}`;
+
   return (
     <div id="userCard">
-      <img
-        id="profileImage"
-        src={imagePath}
-        alt="Profile"
-        height={100}
-        width={100}
-      />
       <div>
-        <p className="text">Name:</p>
-        <p className="text">{props.friend.name}</p>
-        <p className="text">Email:</p>
-        <p className="text">{props.friend.email}</p>
-        <label id="deleteFriend" onClick={handleDeleteFriend}>
-          Delete Friend
-        </label>
+        <label className="text">Name:</label>
+        <p className="text">Chicken Tikka</p>
+        <label className="text">Author:</label>
+        <p className="text">Arnold Patel</p>
+        <label className="text">ingredients:</label>
+        <p className="text"> 1.skinned chicken, Spices </p>
+        <label className="text">Prep_Time:</label>
+        <p className="text">20 minutes</p>
+        <label className="text">Cook_Time:</label>
+        <p className="text"> 1 hhour </p>
+        <label className="text">serving_size:</label>
+        <p className="text"> 3</p>
+        <label className="text">Yield:</label>
+        <p className="text">2</p>
       </div>
     </div>
   );

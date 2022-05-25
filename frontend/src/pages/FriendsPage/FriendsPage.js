@@ -7,6 +7,8 @@ import UserMapper from "../../components/UserMapper/UserMapper";
 import FriendMapper from "../../components/FriendMapper/FriendMapper";
 import FriendReqRecMapper from "../../components/FriendReqRecMapper/FriendReqRecMapper";
 import FriendReqSentMapper from "../../components/FriendReqSentMapper/FriendReqSentMapper";
+import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import RecipeMapper from "../../components/RecipeMapper/RecipeMapper";
 
 const FriendsPage = () => {
   const { user } = useContext(AuthContext);
@@ -76,6 +78,8 @@ const FriendsPage = () => {
       <div className="friendsCardContainer">
         <h2>Friend Requests Sent</h2>
         <FriendReqSentMapper friendReqSent={friendReqSent} />
+        {/* <RecipeCard /> */}
+        <RecipeMapper />
       </div>
     </div>
   );
