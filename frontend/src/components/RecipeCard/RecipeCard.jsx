@@ -16,22 +16,29 @@ const RecipeCard = (props) => {
 
   return (
     <div id="userCard">
-      <div>
-        <label className="text">Name:</label>
-        <p className="text">Chicken Tikka</p>
-        <label className="text">Author:</label>
-        <p className="text">Arnold Patel</p>
-        <label className="text">ingredients:</label>
-        <p className="text"> 1.skinned chicken, Spices </p>
-        <label className="text">Prep_Time:</label>
-        <p className="text">20 minutes</p>
-        <label className="text">Cook_Time:</label>
-        <p className="text"> 1 hhour </p>
-        <label className="text">serving_size:</label>
-        <p className="text"> 3</p>
-        <label className="text">Yield:</label>
-        <p className="text">2</p>
-      </div>
+      {console.log(props.userRecipes)};
+      {props.userRecipes &&
+        props.userRecipes.map((userRecipe, index) => (
+          <div key={index}>
+            {/* STEP TWO: map over recipes array */}
+            {userRecipe.map((recipe, index) => (
+              <div key={index}>
+                <label> Name:</label>
+                <p>{recipe.name}</p>
+                <label> Author:</label>
+                <p>{recipe.author}</p>
+                <label> Ingredients:</label>
+                <p>{recipe.ingredients}</p>
+                <label> Cook_Time:</label>
+                <p>{recipe.cook_time}</p>
+                <label> Preparation_Time:</label>
+                <p>{recipe.preparation_time}</p>
+                <label> Yield:</label>
+                <p>{recipe.yield}</p>
+              </div>
+            ))}
+          </div>
+        ))}
     </div>
   );
 };
