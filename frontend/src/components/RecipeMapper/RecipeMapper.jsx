@@ -50,7 +50,7 @@ const RecipeMapper = (props) => {
         setSearchRecipe={setSearchRecipe}
         searchRecipe={searchRecipe}
       />
-      <RecipeCard recipes={userRecipes} />
+      <RecipeCard recipes={userRecipes} searchRecipe={searchRecipe} />
     </>
   );
 };
