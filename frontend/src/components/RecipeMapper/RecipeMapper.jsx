@@ -13,7 +13,7 @@ const RecipeMapper = (props) => {
   const [userRecipes, setUserRecipes] = useState([]);
   //   check if we have the recipe data
 
-  console.log(userRecipes);
+  //console.log(userRecipes);
 
   // New approach: Create a context for recipes
   const RecipeContext = createContext();
@@ -33,6 +33,7 @@ const RecipeMapper = (props) => {
         },
       });
       // setting the data equal to state variables
+      console.log("Recipe response data: ", recipeResponse.data);
       setUserRecipes(recipeResponse.data);
       // console.log(recipeResponse);
     } catch (error) {
@@ -44,7 +45,7 @@ const RecipeMapper = (props) => {
   return (
     <RecipeContext.Provider value={userRecipes}>
       <h2>Recipe List</h2>
-      <RecipeCard />
+      <RecipeCard recipes={userRecipes} />
     </RecipeContext.Provider>
   );
 };

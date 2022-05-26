@@ -4,7 +4,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 
 const RecipeCard = (props) => {
-  const { user } = useContext(AuthContext);
+  //const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
   const baseUrl = "http://localhost:5000/api/";
 
@@ -16,29 +16,28 @@ const RecipeCard = (props) => {
 
   return (
     <div id="userCard">
-      {console.log(props.userRecipes)};
-      {props.userRecipes &&
-        props.userRecipes.map((userRecipe, index) => (
-          <div key={index}>
-            {/* STEP TWO: map over recipes array */}
-            {userRecipe.map((recipe, index) => (
+      {/* STEP TWO: map over recipes array */}
+      {props.recipes &&
+        props.recipes.map((element, index) =>
+          element.recipes.map((recipe, index) => {
+            return (
               <div key={index}>
-                <label> Name:</label>
+                <h2> Name:</h2>
                 <p>{recipe.name}</p>
-                <label> Author:</label>
+                <h2> Author:</h2>
                 <p>{recipe.author}</p>
-                <label> Ingredients:</label>
+                <h2> Ingredients:</h2>
                 <p>{recipe.ingredients}</p>
-                <label> Cook_Time:</label>
+                <h2> Cook_Time:</h2>
                 <p>{recipe.cook_time}</p>
-                <label> Preparation_Time:</label>
+                <h2> Preparation_Time:</h2>
                 <p>{recipe.preparation_time}</p>
-                <label> Yield:</label>
+                <h2> Yield:</h2>
                 <p>{recipe.yield}</p>
               </div>
-            ))}
-          </div>
-        ))}
+            );
+          })
+        )}
     </div>
   );
 };
