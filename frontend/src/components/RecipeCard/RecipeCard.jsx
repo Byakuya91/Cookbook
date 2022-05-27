@@ -15,7 +15,7 @@ const RecipeCard = (props) => {
 
   return (
     <div id="userCard">
-      {/* STEP TWO: map over recipes array */}
+      {/* STEP ONE: map over recipes array */}
       {props.recipes &&
         props.recipes.map((element, index) =>
           element.recipes
@@ -40,8 +40,10 @@ const RecipeCard = (props) => {
                   recipe.serving_size === parseInt(props.searchRecipe)) ||
                 (recipe.yield && recipe.yield === parseInt(props.searchRecipe))
             )
+            // STEP TWO: MAP OVER RECIPES
             .map((recipe, index) => {
               return (
+                // Abstract this in a new component: UserRecipeCard/ change this to AllRecipesMapper.
                 <div key={index}>
                   <h2> Name:</h2>
                   <p>{recipe.name}</p>

@@ -15,7 +15,7 @@ const RecipeMapper = (props) => {
   // Create a state variable to hold the search term
   const [searchRecipe, setSearchRecipe] = useState("");
 
-  console.log(searchRecipe);
+  console.log(userRecipes);
 
   // New approach: Create a context for recipes
 
