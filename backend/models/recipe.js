@@ -14,7 +14,7 @@ const recipeSchema = new mongoose.Schema({
   serving_size: { type: Number, required: true },
   cook_time: { type: String, required: true, minlength: 2, maxlength: 100 },
   yield: { type: Number, required: true },
-  directions: { type: String, required: true },
+  directions: { type: String },
   image: { type: String, default: "../uploads/images/recipe_placeholder.jpg" },
 });
 
