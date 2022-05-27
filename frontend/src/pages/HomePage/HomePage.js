@@ -48,13 +48,15 @@ const HomePage = () => {
   };
 
   // Get user's friend's posts.
-  const handleGetFriendsPosts = async () => {
-    let response = await axios.get(
-      `http://localhost:3011/api/posts/${user._id}/friendsPosts`,
-      { headers: { "x-auth-token": decodedUser } }
-    );
-    setFriendsPosts(response.data);
-  };
+  // const handleGetFriendsPosts = async () => {
+  //   let response = await axios.get(
+  //     `http://localhost:3011/api/posts/${user._id}/friendsPosts`,
+  //     { headers: { "x-auth-token": decodedUser } }
+  //   );
+  //   setFriendsPosts(response.data);
+  // };
+
+  // TODO: Add functions to handle RecipeAdd and Delete
 
   useEffect(() => {
     // handleGetPosts();

@@ -46,6 +46,7 @@ const ProfileRecipeCardMapper = (props) => {
                 <p>{profileRecipe.serving_size}</p>
                 <h2> Yield:</h2>
                 <p>{profileRecipe.yield}</p>
+                <button>Delete</button>
               </div>
             );
           })}

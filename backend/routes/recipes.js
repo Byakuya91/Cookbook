@@ -31,7 +31,7 @@ router.post("/:userId/recipes", async (req, res) => {
       serving_size: req.body.serving_size,
       cook_time: req.body.cook_time,
       yield: req.body.yield,
-      image: req.body.image,
+      image: "../uploads/images/recipe_placeholder.jpg",
     });
     //add recipe body data to the user
     user.recipes.push(recipe);
@@ -151,6 +151,11 @@ router.put(
           .send(`User with ObjectId ${req.params.recipeId} does not exist.`);
       //  Update the photo of the recipe ID
       recipe.image = req.file.path;
+      console.log(req.file.path);
+      // recipe.image.push(req.file.path);
+
+      // console.log("the recipe image path is", recipe.image);
+
       await user.save();
       const token = user.generateAuthToken();
 
