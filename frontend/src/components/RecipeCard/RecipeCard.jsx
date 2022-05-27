@@ -53,6 +53,8 @@ const RecipeCard = (props) => {
                   <p>{recipe.ingredients}</p>
                   <h2> Cook_Time:</h2>
                   <p>{recipe.cook_time}</p>
+                  <h2> Directions:</h2>
+                  <p>{recipe.directions}</p>
                   <h2> Preparation_Time:</h2>
                   <p>{recipe.preparation_time}</p>
                   <h2> Serving_Size:</h2>

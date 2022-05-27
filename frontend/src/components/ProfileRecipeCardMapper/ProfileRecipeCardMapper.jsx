@@ -40,6 +40,8 @@ const ProfileRecipeCardMapper = (props) => {
                 <p>{profileRecipe.ingredients}</p>
                 <h2> Cook_Time:</h2>
                 <p>{profileRecipe.cook_time}</p>
+                <h2> Directions:</h2>
+                <p>{profileRecipe.directions}</p>
                 <h2> Preparation_Time:</h2>
                 <p>{profileRecipe.preparation_time}</p>
                 <h2> Serving_Size:</h2>

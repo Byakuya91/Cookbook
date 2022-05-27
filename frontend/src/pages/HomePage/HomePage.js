@@ -12,12 +12,12 @@ import AddRecipe from "../../components/AddRecipe/AddRecipe";
 
 const HomePage = () => {
   // TODOs
-  // 1) Strip away all the friends code here
+  // 1) Strip away all the friends code here (IN PROGRESS)
   // 2) repurpose the  the UseEffects and requests for the following:
-  // 3)  grab the single user's information.
-  // 4)  map that user's recipes in a table/ component(referencing work you've done before)
-  // 5) Add your ability to submit a recipe to the user.
-  // 6) Edit and delete a recipe functionality needs to be implemented in this area.
+  // 3)  grab the single user's information(DONE)
+  // 4)  map that user's recipes in a table/ component(referencing work you've done before) (DONE)
+  // 5) Add your ability to submit a recipe to the user.(DONE)
+  // 6) Edit and delete a recipe functionality needs to be implemented in this area.(IN PROGRESS)
 
   //  state variables for comments
   const [posts, setPosts] = useState(null);
@@ -28,6 +28,9 @@ const HomePage = () => {
   const decodedUser = localStorage.getItem("token");
 
   console.log(homeRecipeSearch);
+
+  // Function take in a recipeID as a parameter
+  //   When you map and create button OnClick
 
   // Get user's posts.
   // const handleGetPosts = async () => {
@@ -46,6 +49,12 @@ const HomePage = () => {
     );
     setHomeRecipes(userRecipeResponse.data.recipes);
   };
+
+  //   Create a function to submit the recipes
+  // function AddNewRecipe(recipe) {
+  //   // Using state setter to set the recipes
+  //   setHomeRecipes(recipe);
+  // }
 
   // Get user's friend's posts.
   // const handleGetFriendsPosts = async () => {
@@ -71,7 +80,7 @@ const HomePage = () => {
 
       <div>
         {/* <PostForm setPosts={setPosts} /> */}
-        <AddRecipe />
+        <AddRecipe AddNewRecipe={setHomeRecipes} />
         <SearchUserRecipes
           RecipeSearch={homeRecipeSearch}
           SetRecipeSearch={setHomeRecipeSearch}
