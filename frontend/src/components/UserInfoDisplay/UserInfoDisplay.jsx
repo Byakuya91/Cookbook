@@ -7,7 +7,7 @@ const UserInfoDisplay = (props) => {
     <div id="userInfoDiv">
       <img
         className="profile_pic"
-        src={`http://localhost:3011/${props.user.image}`}
+        src={`http://localhost:5000/${props.user.image}`}
       />
       <div id="userInfo">
         <h2>

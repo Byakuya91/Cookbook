@@ -7,6 +7,8 @@ const RecipeCard = (props) => {
   const decodedUser = localStorage.getItem("token");
   const baseUrl = "http://localhost:5000/api/";
 
+  // const recipeImagePath = `http://localhost:5000/api/`
+
   //   TODO:
   // Connect API to display all the recipes from a user.
   //   Figure out a way to map it.
@@ -47,6 +49,12 @@ const RecipeCard = (props) => {
                 <div key={index}>
                   <h2> Name:</h2>
                   <p>{recipe.name}</p>
+                  <h2> Image:</h2>
+                  <div>
+                    {recipe.image !== undefined && (
+                      <img src={`http://localhost:5000/${recipe.image}`}></img>
+                    )}
+                  </div>
                   <h2> Author:</h2>
                   <p>{recipe.author}</p>
                   <h2> Ingredients:</h2>

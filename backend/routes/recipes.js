@@ -116,6 +116,7 @@ router.delete("/:userId/recipes/:recipeId", async (req, res) => {
 // Create a Route to upload the image to the recipe user.
 
 //  Only for images PUT request
+// http://localhost:5000/api/recipes/:userId/recipes/:recipeId/updateRecipeImage
 router.put(
   "/:userId/recipes/:recipeId/updateRecipeImage",
   [auth, fileUpload.single("image")],

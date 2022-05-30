@@ -34,6 +34,14 @@ const ProfileRecipeCardMapper = (props) => {
               <div key={index}>
                 <h2> Name:</h2>
                 <p>{profileRecipe.name}</p>
+                <h2> Image:</h2>
+                <div>
+                  {profileRecipe.image !== undefined && (
+                    <img
+                      src={`http://localhost:5000/${profileRecipe.image}`}
+                    ></img>
+                  )}
+                </div>
                 <h2> Author:</h2>
                 <p>{profileRecipe.author}</p>
                 <h2> Ingredients:</h2>
@@ -48,7 +56,9 @@ const ProfileRecipeCardMapper = (props) => {
                 <p>{profileRecipe.serving_size}</p>
                 <h2> Yield:</h2>
                 <p>{profileRecipe.yield}</p>
-                <button>Delete</button>
+                <button onClick={() => props.recipeDelete(props.recipe)}>
+                  Delete
+                </button>
               </div>
             );
           })}

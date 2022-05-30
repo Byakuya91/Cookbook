@@ -22,15 +22,33 @@ const HomePage = () => {
   //  state variables for comments
   const [posts, setPosts] = useState(null);
   const [friendsPosts, setFriendsPosts] = useState(null);
+  // recipes for the person logged in.
   const [homeRecipes, setHomeRecipes] = useState([]);
+  // recipe search state for the home page
   const [homeRecipeSearch, setHomeRecipeSearch] = useState("");
   const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
 
-  console.log(homeRecipeSearch);
+  console.log("the user's recipes are:", homeRecipes);
+
+  // getting the _ids from recipes.
+
+  // establish base URL
+  const BASE = "http://localhost:5000/api";
 
   // Function take in a recipeID as a parameter
-  //   When you map and create button OnClick
+  //   When you map and create button OnClick to take in function
+
+  //  NOT WORKING!!
+  function handleHomeRecipeDelete(recipe) {
+    // TODOs
+    // 1) Figure out a way to grab the recipe Id
+    // 2) Use Axios to remove the Id
+    // 3) figure out a way to display removed recipe
+    // 4) hook it up to the delete button.
+
+    setHomeRecipeSearch();
+  }
 
   // Get user's posts.
   // const handleGetPosts = async () => {
@@ -44,7 +62,7 @@ const HomePage = () => {
   // Get user's recipes by id
   const handleGetUserRecipes = async () => {
     let userRecipeResponse = await axios.get(
-      `http://localhost:5000/api/users/${user._id}/getOneUser`,
+      `${BASE}/users/${user._id}/getOneUser`,
       { headers: { "x-auth-token": decodedUser } }
     );
     setHomeRecipes(userRecipeResponse.data.recipes);
@@ -76,11 +94,15 @@ const HomePage = () => {
   return (
     <div>
       <h1 className="container">Home Page for {user.name}!</h1>
-      {/* <UserInfoDisplay user={user} /> */}
+      <UserInfoDisplay user={user} />
 
       <div>
+        <h1>
+          {" "}
+          There are {homeRecipes.length} recipes for the {user.name}
+        </h1>
         {/* <PostForm setPosts={setPosts} /> */}
-        <AddRecipe AddNewRecipe={setHomeRecipes} />
+        <AddRecipe AddNewRecipe={setHomeRecipes} homeRecipes={homeRecipes} />
         <SearchUserRecipes
           RecipeSearch={homeRecipeSearch}
           SetRecipeSearch={setHomeRecipeSearch}
@@ -91,6 +113,7 @@ const HomePage = () => {
             <ProfileRecipeCardMapper
               profileRecipes={homeRecipes}
               searchRecipe={homeRecipeSearch}
+              recipeDelete={handleHomeRecipeDelete}
             />
           </div>
           <div className="width50">
