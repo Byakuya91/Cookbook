@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
+import jwtDecode from "jwt-decode";
 
 // TO DO:
 //   1) Establish a form to submit the data (DONE)
@@ -13,7 +14,7 @@ import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 
 const AddRecipe = (props) => {
   const { user } = useContext(AuthContext);
-  // State variables to be affected
+  // State variables to create a new recipe
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [cook_Time, setCook_Time] = useState("");
@@ -21,6 +22,19 @@ const AddRecipe = (props) => {
   const [serving_Size, setServing_Size] = useState();
   const [recipe_Yield, setRecipe_Yield] = useState();
   const [recipe_Directions, setRecipe_Directions] = useState();
+  const [calories, setCalories] = useState();
+
+  // State variables for photo upload
+  const [previewUrl, setPreviewUrl] = useState();
+  // checking if the image is a valid fileType
+  const [isValid, setisValid] = useState(false);
+  // setting a file.
+  const [file, setFile] = useState();
+  //  setting the user
+  const [setUser] = useState();
+
+  // referencing the URL
+  const filePickerRef = useRef();
 
   // Create a BASE URL
   const BASE = "http://localhost:5000/api";
@@ -41,6 +55,7 @@ const AddRecipe = (props) => {
       directions: recipe_Directions,
       serving_size: serving_Size,
       yield: recipe_Yield,
+      calories: calories,
     };
 
     // STEP THREE: Axios request
@@ -49,6 +64,68 @@ const AddRecipe = (props) => {
       .then((res) => props.AddNewRecipe(res.data));
     alert("Recipe Added");
   }
+
+  // UseEffect for photos
+
+  useEffect(() => {
+    //   if there is no file put through the selector.
+    if (!file) {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file);
+  }, [file]);
+
+  // Checking the file is the right size and even a file.
+  const pickedHandler = (event) => {
+    let pickedFile;
+    if (event.target.files && event.target.files.length == 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+      setisValid(true);
+    } else {
+      setisValid(false);
+    }
+  };
+
+  //   submitting the recipe photo function.
+
+  const handleRecipePhotoSubmit = async (event) => {
+    // prevents page from loading when submit button is clicked.
+    event.preventDefault();
+    // new form object created to submit the file
+    const form = new FormData();
+    form.append("name", name);
+    form.append("ingredients", ingredients);
+    form.append("cook_time", cook_Time);
+    form.append("preparation_time", preparation_Time);
+    form.append("directions", recipe_Directions);
+    form.append("serving_size", serving_Size);
+    form.append("yield", recipe_Yield);
+    form.append("calories", calories);
+    console.log(name);
+
+    try {
+      await axios
+        .put(
+          `${BASE}/recipes/${user._id}/recipes/${props.RecipeImage._id}/updateRecipeImage`,
+          form,
+          {
+            headers: { "x-auth-token": localStorage.getItem("token") },
+          }
+        )
+        .then((res) => {
+          localStorage.setItem("token", res.headers["x-auth-token"]);
+          setUser(jwtDecode(localStorage.getItem("token")));
+          console.log(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     //   Form template and data that will need to be sent.
@@ -102,13 +179,33 @@ const AddRecipe = (props) => {
           value={recipe_Yield}
           onChange={(event) => setRecipe_Yield(event.target.value)}
         />
+        <br />
+        <span>Calories:</span> <br></br>
+        <input
+          type="number"
+          value={calories}
+          min={100}
+          onChange={(event) => setCalories(event.target.value)}
+        />
       </div>
       <span>
         {" "}
         <button type="submit"> Submit Recipe</button>
       </span>
-      {/* Add AddRecipePhoto component */}
-      <RecipePhotoUpload RecipeImage={props.homeRecipes} />
+      {/* <RecipePhotoUpload RecipeImage={props.homeRecipes} /> */}
+      {/* Combine the photo upload with the recipe Component. */}
+      <div id="imageUploadComponent">
+        <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
+          <label>Photo</label>
+          <input
+            ref={filePickerRef}
+            type="file"
+            accept=".jpg,.png,.jpeg"
+            onChange={(event) => pickedHandler(event)}
+          />
+          <button type="submit">Submit button</button>
+        </form>
+      </div>
     </form>
   );
 };

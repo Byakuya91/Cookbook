@@ -33,6 +33,7 @@ router.post("/:userId/recipes", async (req, res) => {
       yield: req.body.yield,
       image: "../uploads/images/recipe_placeholder.jpg",
       directions: req.body.directions,
+      calories: req.body.calories,
     });
     //add recipe body data to the user
     user.recipes.push(recipe);

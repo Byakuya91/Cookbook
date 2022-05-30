@@ -40,7 +40,10 @@ const RecipeCard = (props) => {
                     .includes(props.searchRecipe.toLowerCase())) ||
                 (recipe.serving_size &&
                   recipe.serving_size === parseInt(props.searchRecipe)) ||
-                (recipe.yield && recipe.yield === parseInt(props.searchRecipe))
+                (recipe.yield &&
+                  recipe.yield === parseInt(props.searchRecipe)) ||
+                (recipe.calories &&
+                  recipe.calories === parseInt(props.searchRecipe))
             )
             // STEP TWO: MAP OVER RECIPES
             .map((recipe, index) => {
@@ -59,6 +62,8 @@ const RecipeCard = (props) => {
                   <p>{recipe.author}</p>
                   <h2> Ingredients:</h2>
                   <p>{recipe.ingredients}</p>
+                  <h2> Calories:</h2>
+                  <p>{recipe.calories}</p>
                   <h2> Cook_Time:</h2>
                   <p>{recipe.cook_time}</p>
                   <h2> Directions:</h2>

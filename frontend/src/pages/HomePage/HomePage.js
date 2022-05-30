@@ -28,6 +28,8 @@ const HomePage = () => {
   const [homeRecipeSearch, setHomeRecipeSearch] = useState("");
   const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
+  // a way to select recipeId.
+  const [selectedRecipeId, setSelectedRecipeId] = useState();
 
   console.log("the user's recipes are:", homeRecipes);
 
@@ -48,6 +50,10 @@ const HomePage = () => {
     // 4) hook it up to the delete button.
 
     setHomeRecipeSearch();
+  }
+
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id);
   }
 
   // Get user's posts.

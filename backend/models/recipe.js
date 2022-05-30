@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
   serving_size: { type: Number, required: true },
   cook_time: { type: String, required: true, minlength: 2, maxlength: 100 },
   yield: { type: Number, required: true },
+  calories: { type: Number },
   directions: { type: String },
   image: { type: String, default: "../uploads/images/recipe_placeholder.jpg" },
 });
@@ -28,6 +29,7 @@ function validateRecipe(post) {
     cook_time: Joi.string().min(2).max(100).required(),
     yield: Joi.number().required(),
     image: Joi.string(),
+    calories: Joi.number().required(),
   });
   return schema.validate(post);
 }

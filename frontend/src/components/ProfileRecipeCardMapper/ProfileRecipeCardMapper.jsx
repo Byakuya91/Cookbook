@@ -26,7 +26,9 @@ const ProfileRecipeCardMapper = (props) => {
               (profileRecipe.serving_size &&
                 profileRecipe.serving_size === parseInt(props.searchRecipe)) ||
               (profileRecipe.yield &&
-                profileRecipe.yield === parseInt(props.searchRecipe))
+                profileRecipe.yield === parseInt(props.searchRecipe)) ||
+              (profileRecipe.calories &&
+                profileRecipe.calories === parseInt(props.searchRecipe))
           )
 
           .map((profileRecipe, index) => {
@@ -59,6 +61,7 @@ const ProfileRecipeCardMapper = (props) => {
                 <button onClick={() => props.recipeDelete(props.recipe)}>
                   Delete
                 </button>
+                <button>Edit</button>
               </div>
             );
           })}
