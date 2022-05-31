@@ -37,6 +37,7 @@ router.post(
         image: req.file.path,
         directions: req.body.directions,
         calories: req.body.calories,
+        favorite: req.body.favorite,
       });
       //add recipe body data to the user
       user.recipes.push(recipe);
@@ -82,6 +83,7 @@ router.put("/:userId/recipes/:recipeId", async (req, res) => {
     recipe.serving_size = req.body.serving_size;
     recipe.cook_time = req.body.cook_time;
     recipe.yield = req.body.yield;
+    recipe.directions = req.body.directions;
     // save the changes
     await user.save();
     // sends back updated recipe
@@ -179,5 +181,40 @@ router.put(
     }
   }
 );
+// PATCH request, toggle between favorites being "true" or "false"
+// http://localhost:5000/api/recipes/:userId/recipes/:recipeId
+router.patch("/:userId/recipes/:recipeId", async (req, res) => {
+  try {
+    // validate for the recipe
+    let { error } = validateRecipe(req.body);
+    // if there is no recipe id
+    if (error) {
+      return res.status(400).send(`Recipe body is not valid ${error}`);
+    }
+    //  find a user's id
+    const user = await User.findById(req.params.userId);
+    // check if there is no user id
+    if (!user)
+      return res
+        .status(400)
+        .send(`User with id ${req.params.userId} does not exist!`);
+    // check if recipe exists inside a user's subdocument
+    const recipe = user.recipes.id(req.params.recipeId);
+    if (!recipe) {
+      return res
+        .status(400)
+        .send(`The recipe does not exist inside the recipes!`);
+    }
+    // Update the recipe fields
+    recipe.favorite = !recipe.favorite;
+    console.log("the favorites is:", recipe.favorite);
+    // save the changes
+    await user.save();
+    // sends back updated recipe
+    return res.send(user);
+  } catch (error) {
+    return res.status(500).send(`Internal Server Error: ${error}`);
+  }
+});
 
 module.exports = router;

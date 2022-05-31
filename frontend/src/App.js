@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import FavoriteRecipesPage from "./pages/FavoriteRecipesPage/FavoriteRecipesPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -38,6 +39,7 @@ function App() {
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/favoriteRecipes" element={<FavoriteRecipesPage />} />
       </Routes>
       <Footer />
     </div>

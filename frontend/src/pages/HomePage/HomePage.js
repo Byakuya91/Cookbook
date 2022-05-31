@@ -31,12 +31,7 @@ const HomePage = () => {
   // a way to select recipeId.
   const [selectedRecipeId, setSelectedRecipeId] = useState();
 
-  // // getting the _ids from recipes.
-  // let recipe_id = homeRecipes.filter(
-  //   (homeRecipe) => homeRecipe._id !== undefined
-  // );
-
-  // console.log("the user's recipe ids are:", recipe_id);
+  console.log("the user's recipe ids are:", homeRecipes);
 
   // establish base URL
   const BASE = "http://localhost:5000/api";
@@ -44,21 +39,11 @@ const HomePage = () => {
   // Function take in a recipeID as a parameter
   //   When you map and create button OnClick to take in function
 
-  //  NOT WORKING!!
+  //  COMPLETE
   const handleHomeRecipeDelete = async (id) => {
-    // TODOs
-    // 1) Figure out a way to grab the recipe Id
-    // 2) Use Axios to remove the Id
-    // 3) figure out a way to display removed recipe
-    // 4) hook it up to the delete button.
-
     let recipe = homeRecipes.map((homeRecipe) => homeRecipe._id);
 
     console.log(" the ids of recipe are:", recipe);
-
-    // const deleteEndPoint = `${user._id}/recipes/${
-    // )}`;
-    // console.log(deleteEndPoint);
 
     try {
       //  Step one and step two
@@ -79,15 +64,6 @@ const HomePage = () => {
       console.log(`Error: ${error.message}`);
     }
   };
-
-  function removeRecipe(e) {
-    // mutate the state variable
-    let recipes = [...homeRecipes];
-    //  grab the index
-    let index = recipes.indexOf(e.target.recipes);
-
-    //
-  }
 
   //  a function designed to select a recipe Id.
   function handleRecipeSelect(id) {

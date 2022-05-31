@@ -15,7 +15,8 @@ const RecipeMapper = (props) => {
   // Create a state variable to hold the search term
   const [searchRecipe, setSearchRecipe] = useState("");
 
-  console.log(userRecipes);
+  // Create a state variable to hold favorite recipes.
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   // New approach: Create a context for recipes
 
@@ -50,7 +51,13 @@ const RecipeMapper = (props) => {
         setSearchRecipe={setSearchRecipe}
         searchRecipe={searchRecipe}
       />
-      <RecipeCard recipes={userRecipes} searchRecipe={searchRecipe} />
+      <RecipeCard
+        recipes={userRecipes}
+        searchRecipe={searchRecipe}
+        favoriteRecipes={favoriteRecipes}
+        setFavoriteRecipes={setFavoriteRecipes}
+        userRecipes={userRecipes}
+      />
     </>
   );
 };

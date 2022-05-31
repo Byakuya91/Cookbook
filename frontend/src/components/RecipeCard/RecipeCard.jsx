@@ -1,11 +1,15 @@
 // import statements
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import FavoritesButton from "../FavoritesButton/FavoritesButton";
+import React, { useState, useEffect } from "react";
 
 const RecipeCard = (props) => {
   //const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
   const baseUrl = "http://localhost:5000/api/";
+
+  const [favoriteRecipe, setFavoriteRecipe] = useState();
 
   // const recipeImagePath = `http://localhost:5000/api/`
 
@@ -74,6 +78,9 @@ const RecipeCard = (props) => {
                   <p>{recipe.serving_size}</p>
                   <h2> Yield:</h2>
                   <p>{recipe.yield}</p>
+                  <h2> favorite:</h2>
+                  <p>{recipe.favorite ? "True" : "False"}</p>
+                  <FavoritesButton recipeID={recipe._id} />
                 </div>
               );
             })

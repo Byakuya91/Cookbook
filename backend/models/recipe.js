@@ -16,6 +16,7 @@ const recipeSchema = new mongoose.Schema({
   yield: { type: Number, required: true },
   calories: { type: Number },
   directions: { type: String },
+  favorite: { type: Boolean, default: false },
   image: {
     type: String,
     default: "http://localhost:5000/uploads/images/recipe_placeholder.jpg",
@@ -24,15 +25,16 @@ const recipeSchema = new mongoose.Schema({
 
 function validateRecipe(post) {
   const schema = Joi.object({
-    name: Joi.string().min(2).max(100).required(),
-    ingredients: Joi.string().min(2).max(100).required(),
-    directions: Joi.string().min(10).max(100).required(),
-    serving_size: Joi.number().required(),
-    preparation_time: Joi.string().min(2).max(50).required(),
-    cook_time: Joi.string().min(2).max(100).required(),
-    yield: Joi.number().required(),
+    name: Joi.string().min(2).max(100),
+    ingredients: Joi.string().min(2).max(100),
+    directions: Joi.string().min(10).max(100),
+    serving_size: Joi.number(),
+    preparation_time: Joi.string().min(2).max(50),
+    cook_time: Joi.string().min(2).max(100),
+    yield: Joi.number(),
     image: Joi.string(),
-    calories: Joi.number().required(),
+    calories: Joi.number(),
+    favorite: Joi.boolean(),
   });
   return schema.validate(post);
 }
