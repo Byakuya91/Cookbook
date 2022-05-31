@@ -16,7 +16,10 @@ const recipeSchema = new mongoose.Schema({
   yield: { type: Number, required: true },
   calories: { type: Number },
   directions: { type: String },
-  image: { type: String, default: "../uploads/images/recipe_placeholder.jpg" },
+  image: {
+    type: String,
+    default: "http://localhost:5000/uploads/images/recipe_placeholder.jpg",
+  },
 });
 
 function validateRecipe(post) {

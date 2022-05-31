@@ -31,9 +31,12 @@ const HomePage = () => {
   // a way to select recipeId.
   const [selectedRecipeId, setSelectedRecipeId] = useState();
 
-  console.log("the user's recipes are:", homeRecipes);
+  // // getting the _ids from recipes.
+  // let recipe_id = homeRecipes.filter(
+  //   (homeRecipe) => homeRecipe._id !== undefined
+  // );
 
-  // getting the _ids from recipes.
+  // console.log("the user's recipe ids are:", recipe_id);
 
   // establish base URL
   const BASE = "http://localhost:5000/api";
@@ -42,16 +45,51 @@ const HomePage = () => {
   //   When you map and create button OnClick to take in function
 
   //  NOT WORKING!!
-  function handleHomeRecipeDelete(recipe) {
+  const handleHomeRecipeDelete = async (id) => {
     // TODOs
     // 1) Figure out a way to grab the recipe Id
     // 2) Use Axios to remove the Id
     // 3) figure out a way to display removed recipe
     // 4) hook it up to the delete button.
 
-    setHomeRecipeSearch();
+    let recipe = homeRecipes.map((homeRecipe) => homeRecipe._id);
+
+    console.log(" the ids of recipe are:", recipe);
+
+    // const deleteEndPoint = `${user._id}/recipes/${
+    // )}`;
+    // console.log(deleteEndPoint);
+
+    try {
+      //  Step one and step two
+      await axios
+        .delete(`${BASE}/recipes/${user._id}/recipes/${id}`)
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+        });
+      //  Step three: removing the user recipe
+      const userRecipes = homeRecipes.filter((homeRecipe) => {
+        return homeRecipe._id !== id;
+      });
+
+      // step four: update the state
+      setHomeRecipes(userRecipes);
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
+    }
+  };
+
+  function removeRecipe(e) {
+    // mutate the state variable
+    let recipes = [...homeRecipes];
+    //  grab the index
+    let index = recipes.indexOf(e.target.recipes);
+
+    //
   }
 
+  //  a function designed to select a recipe Id.
   function handleRecipeSelect(id) {
     setSelectedRecipeId(id);
   }

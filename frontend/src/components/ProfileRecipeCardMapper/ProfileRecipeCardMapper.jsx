@@ -33,7 +33,7 @@ const ProfileRecipeCardMapper = (props) => {
 
           .map((profileRecipe, index) => {
             return (
-              <div key={index}>
+              <div key={profileRecipe._id}>
                 <h2> Name:</h2>
                 <p>{profileRecipe.name}</p>
                 <h2> Image:</h2>
@@ -58,7 +58,7 @@ const ProfileRecipeCardMapper = (props) => {
                 <p>{profileRecipe.serving_size}</p>
                 <h2> Yield:</h2>
                 <p>{profileRecipe.yield}</p>
-                <button onClick={() => props.recipeDelete(props.recipe)}>
+                <button onClick={() => props.recipeDelete(profileRecipe._id)}>
                   Delete
                 </button>
                 <button>Edit</button>

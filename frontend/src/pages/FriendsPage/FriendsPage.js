@@ -22,7 +22,7 @@ const FriendsPage = () => {
   useEffect(() => {
     handleGetAllUsers();
     // console.log(friends);
-  }, [friends]);
+  }, []);
 
   const handleGetAllUsers = async () => {
     let allUsers = await axios.get(

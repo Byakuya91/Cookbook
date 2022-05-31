@@ -97,7 +97,7 @@ const AddRecipe = (props) => {
     // prevents page from loading when submit button is clicked.
     event.preventDefault();
     // new form object created to submit the file
-    const form = new FormData();
+    let form = new FormData();
     form.append("name", name);
     form.append("ingredients", ingredients);
     form.append("cook_time", cook_Time);
@@ -106,17 +106,15 @@ const AddRecipe = (props) => {
     form.append("serving_size", serving_Size);
     form.append("yield", recipe_Yield);
     form.append("calories", calories);
-    console.log(name);
+    form.append("image", file);
+
+    console.log(form.getAll("name"));
 
     try {
       await axios
-        .put(
-          `${BASE}/recipes/${user._id}/recipes/${props.RecipeImage._id}/updateRecipeImage`,
-          form,
-          {
-            headers: { "x-auth-token": localStorage.getItem("token") },
-          }
-        )
+        .post(`${BASE}/recipes/${user._id}/recipes`, form, {
+          headers: { "x-auth-token": localStorage.getItem("token") },
+        })
         .then((res) => {
           localStorage.setItem("token", res.headers["x-auth-token"]);
           setUser(jwtDecode(localStorage.getItem("token")));
@@ -129,7 +127,7 @@ const AddRecipe = (props) => {
 
   return (
     //   Form template and data that will need to be sent.
-    <form onSubmit={handleNewRecipeSubmit}>
+    <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
       <div>
         <span>Recipe Name:</span> <br></br>
         <input
@@ -187,6 +185,14 @@ const AddRecipe = (props) => {
           min={100}
           onChange={(event) => setCalories(event.target.value)}
         />
+        <label>Photo</label>
+        <input
+          name="file"
+          ref={filePickerRef}
+          type="file"
+          accept=".jpg,.png,.jpeg"
+          onChange={(event) => pickedHandler(event.target.files[0])}
+        />
       </div>
       <span>
         {" "}
@@ -194,18 +200,11 @@ const AddRecipe = (props) => {
       </span>
       {/* <RecipePhotoUpload RecipeImage={props.homeRecipes} /> */}
       {/* Combine the photo upload with the recipe Component. */}
-      <div id="imageUploadComponent">
+      {/* <div id="imageUploadComponent">
         <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
-          <label>Photo</label>
-          <input
-            ref={filePickerRef}
-            type="file"
-            accept=".jpg,.png,.jpeg"
-            onChange={(event) => pickedHandler(event)}
-          />
           <button type="submit">Submit button</button>
         </form>
-      </div>
+      </div> */}
     </form>
   );
 };
