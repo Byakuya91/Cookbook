@@ -56,7 +56,8 @@ const RecipeMapper = (props) => {
         searchRecipe={searchRecipe}
         favoriteRecipes={favoriteRecipes}
         setFavoriteRecipes={setFavoriteRecipes}
-        userRecipes={userRecipes}
+        setRecipes={setUserRecipes}
+        makeRecipeGetRequest={makeRecipeGetRequest}
       />
     </>
   );

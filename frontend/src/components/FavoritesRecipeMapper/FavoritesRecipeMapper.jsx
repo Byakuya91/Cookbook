@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
+import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
 
 const FavoriteRecipeMapper = (props) => {
   // State variables for the Favorites
+
+  useEffect(() => {
+    props.getFavoriteRecipes();
+  }, [props.favoriteRecipes]);
 
   return (
     <div>
@@ -46,7 +51,7 @@ const FavoriteRecipeMapper = (props) => {
                   <p>{recipe.yield}</p>
                   <h2> favorite:</h2>
                   <p>{recipe.favorite ? "True" : "False"}</p>
-                  <FavoritesButton recipeID={recipe._id} />
+                  <RemoveFavoriteRecipeButton recipeID={recipe._id} />
                 </div>
               );
             });

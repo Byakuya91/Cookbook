@@ -36,7 +36,10 @@ export default function FavoriteRecipesPage() {
   return (
     <>
       <h2>Favorite Recipes List</h2>;
-      <FavoriteRecipeMapper favoriteRecipes={userFavoriteRecipes} />
+      <FavoriteRecipeMapper
+        favoriteRecipes={userFavoriteRecipes}
+        getFavoriteRecipes={getFavoriteRecipes}
+      />
     </>
   );
 }

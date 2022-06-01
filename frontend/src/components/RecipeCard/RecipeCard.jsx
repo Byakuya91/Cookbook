@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import React, { useState, useEffect } from "react";
+import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
 
 const RecipeCard = (props) => {
   //const { user } = useContext(AuthContext);
@@ -11,13 +12,11 @@ const RecipeCard = (props) => {
 
   const [favoriteRecipe, setFavoriteRecipe] = useState();
 
-  // const recipeImagePath = `http://localhost:5000/api/`
+  // TODO: Figure out a way to re-render the page whenever the favorites is changed.
 
-  //   TODO:
-  // Connect API to display all the recipes from a user.
-  //   Figure out a way to map it.
-
-  //   let recipePath = `http://localhost:5000/${props.user.recipes}`;
+  useEffect(() => {
+    props.makeRecipeGetRequest();
+  }, [props.recipes]);
 
   return (
     <div id="userCard">
@@ -78,9 +77,14 @@ const RecipeCard = (props) => {
                   <p>{recipe.serving_size}</p>
                   <h2> Yield:</h2>
                   <p>{recipe.yield}</p>
-                  <h2> favorite:</h2>
-                  <p>{recipe.favorite ? "True" : "False"}</p>
-                  <FavoritesButton recipeID={recipe._id} />
+                  <span>
+                    {" "}
+                    {recipe.favorite ? (
+                      <RemoveFavoriteRecipeButton recipeID={recipe._id} />
+                    ) : (
+                      <FavoritesButton recipeID={recipe._id} />
+                    )}
+                  </span>
                 </div>
               );
             })

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 
-const FavoritesButton = (props) => {
+const RemoveFavoriteRecipeButton = (props) => {
   // BASE URL
   const BASE = "http://localhost:5000/api";
   // Contextfor the user
@@ -16,7 +16,7 @@ const FavoritesButton = (props) => {
 
   // function to add a recipe
 
-  const handleAddFavoriteRecipe = async (id) => {
+  const handleRemoveFavoriteRecipe = async (id) => {
     // Step One: create a field for the recipe
 
     // let favoriteRecipeValue = {
@@ -41,7 +41,7 @@ const FavoritesButton = (props) => {
           console.log(props.recipeID);
         });
 
-      alert("Favorite Recipe added");
+      alert("Recipe removed from favorites");
     } catch (error) {
       console.log(`Error: ${error.message}`);
       console.log(`Error: ${error.request}`);
@@ -55,12 +55,12 @@ const FavoritesButton = (props) => {
 
   return (
     <div>
-      <button onClick={() => handleAddFavoriteRecipe(props.recipeID)}>
+      <button onClick={() => handleRemoveFavoriteRecipe(props.recipeID)}>
         {" "}
-        Add to Favorites
+        Remove from Favorites
       </button>
     </div>
   );
 };
 
-export default FavoritesButton;
+export default RemoveFavoriteRecipeButton;
