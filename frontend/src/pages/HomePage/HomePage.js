@@ -22,7 +22,7 @@ const HomePage = () => {
   //  state variables for comments
   const [posts, setPosts] = useState(null);
   const [friendsPosts, setFriendsPosts] = useState(null);
-  // recipes for the person logged in.
+  // recipes for the profile user logged in.
   const [homeRecipes, setHomeRecipes] = useState([]);
   // recipe search state for the home page
   const [homeRecipeSearch, setHomeRecipeSearch] = useState("");

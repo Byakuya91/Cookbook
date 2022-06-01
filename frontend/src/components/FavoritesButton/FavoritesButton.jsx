@@ -19,13 +19,22 @@ const FavoritesButton = (props) => {
   const handleAddFavoriteRecipe = async (id) => {
     // Step One: create a field for the recipe
 
-    let favoriteRecipeValue = {};
+    // let favoriteRecipeValue = {
+    //    "favorite": true
+
+    // };
 
     //   Step two: AXIOS request
+    console.log("the RecipeID is:", props.recipeID);
 
     try {
       await axios
-        .patch(`${BASE}/recipes/${user._id}/recipes/${id}`)
+        .patch(
+          `http://localhost:5000/api/recipes/${user._id}/favoriteRecipes/${id}`,
+          {
+            favorite: true,
+          }
+        )
         .then((res) => {
           console.log(res);
           console.log(res.data);
@@ -40,10 +49,9 @@ const FavoritesButton = (props) => {
     }
   };
 
-  // useEffect( () => {
-  //   handleAddFavoriteRecipe()
-
-  // }, [])
+  // useEffect(() => {
+  //   handleAddFavoriteRecipe();
+  // }, []);
 
   return (
     <div>

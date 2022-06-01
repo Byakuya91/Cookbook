@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import EditRecipe from "../EditRecipe/EditRecipe";
 
 const ProfileRecipeCardMapper = (props) => {
   return (
@@ -62,6 +63,7 @@ const ProfileRecipeCardMapper = (props) => {
                   Delete
                 </button>
                 <button>Edit</button>
+                <EditRecipe />
               </div>
             );
           })}

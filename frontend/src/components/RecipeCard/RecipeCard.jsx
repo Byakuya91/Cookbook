@@ -53,7 +53,7 @@ const RecipeCard = (props) => {
             .map((recipe, index) => {
               return (
                 // Abstract this in a new component: UserRecipeCard/ change this to AllRecipesMapper.
-                <div key={index}>
+                <div key={recipe._id}>
                   <h2> Name:</h2>
                   <p>{recipe.name}</p>
                   <h2> Image:</h2>

@@ -6,6 +6,7 @@ const { Recipe, validateRecipe } = require("../models/recipe");
 const fileUpload = require("../middleware/file_upload");
 
 const auth = require("../middleware/auth");
+const { Mongoose } = require("mongoose");
 
 //  TODO: CRUD functionality for Recipes
 
@@ -18,6 +19,7 @@ router.post(
     try {
       //  find a user's id
       const user = await User.findById(req.params.userId);
+
       // check if there is no user id
       if (!user)
         return res
@@ -183,7 +185,7 @@ router.put(
 );
 // PATCH request, toggle between favorites being "true" or "false"
 // http://localhost:5000/api/recipes/:userId/recipes/:recipeId
-router.patch("/:userId/recipes/:recipeId", async (req, res) => {
+router.patch("/:userId/favoriteRecipes/:recipeId", async (req, res) => {
   try {
     // validate for the recipe
     let { error } = validateRecipe(req.body);
@@ -193,21 +195,28 @@ router.patch("/:userId/recipes/:recipeId", async (req, res) => {
     }
     //  find a user's id
     const user = await User.findById(req.params.userId);
+
+    console.log(" the user id is: ", req.params.userId);
     // check if there is no user id
     if (!user)
       return res
         .status(400)
         .send(`User with id ${req.params.userId} does not exist!`);
     // check if recipe exists inside a user's subdocument
-    const recipe = user.recipes.id(req.params.recipeId);
+    let recipe = user.recipes.id(req.params.recipeId);
+    // recipe = Mongoose.Types.ObjectId(recipe);
+
+    console.log(" the recipe id is: ", req.params.recipeId);
     if (!recipe) {
       return res
         .status(400)
-        .send(`The recipe does not exist inside the recipes!`);
+        .send(
+          `The recipe id ${req.params.recipeId} does not exist inside the recipes!`
+        );
     }
     // Update the recipe fields
     recipe.favorite = !recipe.favorite;
-    console.log("the favorites is:", recipe.favorite);
+    // console.log("the favorites is:", recipe.favorite);
     // save the changes
     await user.save();
     // sends back updated recipe
