@@ -76,6 +76,8 @@ const AddRecipe = (props) => {
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
     };
+
+    console.log(fileReader.result);
     fileReader.readAsDataURL(file);
   }, [file]);
 
@@ -131,6 +133,8 @@ const AddRecipe = (props) => {
     //   Form template and data that will need to be sent.
     <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
       <div>
+        <label>Add a new Recipe</label>
+        <br></br>
         <span>Recipe Name:</span> <br></br>
         <input
           type="text"
@@ -188,6 +192,7 @@ const AddRecipe = (props) => {
           onChange={(event) => setCalories(event.target.value)}
         />
         <label>Photo</label>
+        <br />
         <input
           name="file"
           ref={filePickerRef}

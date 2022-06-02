@@ -25,6 +25,8 @@ const EditRecipe = (props) => {
   const [isValid, setisValid] = useState(false);
   // setting a file.
   const [file, setFile] = useState();
+
+  console.log(file);
   //  setting the user
   const [setUser] = useState();
 
@@ -77,14 +79,14 @@ const EditRecipe = (props) => {
         <input
           type="text"
           value={editCook_Time}
-          onChange={(event) => setEditName(event.target.value)}
+          onChange={(event) => setEditCook_Time(event.target.value)}
         />
         <br />
         <span>Preparation_Time:</span> <br></br>
         <input
           type="text"
-          value={editCook_Time}
-          onChange={(event) => setEditCook_Time(event.target.value)}
+          value={editPreparation_Time}
+          onChange={(event) => setEditPreparation_Time(event.target.value)}
         />
         <br />
         <span>Directions:</span> <br></br>
@@ -109,13 +111,18 @@ const EditRecipe = (props) => {
         />
         <br />
         <span>Calories:</span> <br></br>
-        <input type="number" min={100} />
+        <input
+          type="number"
+          min={100}
+          value={editCalories}
+          onChange={(event) => setEditCalories(event.target.value)}
+        />
         <label>Photo</label>
         <input
           type="file"
           ref={filePickerRef}
           accept=".jpg,.png,.jpeg"
-          onChange={(event) => pickedHandler(event.target.files[0])}
+          onChange={(event) => setFile(event.target.files[0])}
         />
       </div>
       <span>
