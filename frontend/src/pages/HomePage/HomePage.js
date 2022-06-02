@@ -28,10 +28,18 @@ const HomePage = () => {
   const [homeRecipeSearch, setHomeRecipeSearch] = useState("");
   const { user } = useContext(AuthContext);
   const decodedUser = localStorage.getItem("token");
-  // a way to select recipeId.
+  // a way to hold selectedRecipeId
   const [selectedRecipeId, setSelectedRecipeId] = useState();
 
-  console.log("the user's recipe ids are:", homeRecipes);
+  // a way to find the selectedRecipeID (WORKING)
+  const selectedRecipe = homeRecipes.find(
+    (homeRecipe) => homeRecipe._id === selectedRecipeId
+  );
+
+  // checking selected recipe Id(WORKING)
+  console.log(selectedRecipeId);
+
+  // console.log("the user's recipe ids are:", homeRecipes);
 
   // establish base URL
   const BASE = "http://localhost:5000/api";
@@ -111,6 +119,10 @@ const HomePage = () => {
     handleGetUserRecipes();
   }, []);
 
+  // useEffect(() => {
+  //   handleGetUserRecipes();
+  // }, [homeRecipes]);
+
   return (
     <div>
       <h1 className="container">Home Page for {user.name}!</h1>
@@ -122,7 +134,11 @@ const HomePage = () => {
           There are {homeRecipes.length} recipes for the {user.name}
         </h1>
         {/* <PostForm setPosts={setPosts} /> */}
-        <AddRecipe AddNewRecipe={setHomeRecipes} homeRecipes={homeRecipes} />
+        <AddRecipe
+          AddNewRecipe={setHomeRecipes}
+          homeRecipes={homeRecipes}
+          handleGetUserRecipes={handleGetUserRecipes}
+        />
         <SearchUserRecipes
           RecipeSearch={homeRecipeSearch}
           SetRecipeSearch={setHomeRecipeSearch}
@@ -134,6 +150,11 @@ const HomePage = () => {
               profileRecipes={homeRecipes}
               searchRecipe={homeRecipeSearch}
               recipeDelete={handleHomeRecipeDelete}
+              handleGetUserRecipes={handleGetUserRecipes}
+              userRecipes={homeRecipes}
+              handleRecipeSelect={handleRecipeSelect}
+              selectedRecipe={selectedRecipe}
+              selectedRecipeId={selectedRecipeId}
             />
           </div>
           <div className="width50">

@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EditRecipe from "../EditRecipe/EditRecipe";
 
 const ProfileRecipeCardMapper = (props) => {
+  // use effect triggered whenever the recipe changes
+
+  // useEffect(() => {
+  //   props.handleGetUserRecipes();
+  // }, [props.userRecipe]);
+
+  const [profileRecipeId, setProfileRecipeId] = useState();
+
   return (
-    // <h3>This is a mapper Test</h3>
+    // Container for the Map
     <div classname="profile-Recipe-Card">
+      {/* Filtering properties for the recipe Card itself */}
       {props.profileRecipes &&
         props.profileRecipes
           .filter(
@@ -31,7 +40,7 @@ const ProfileRecipeCardMapper = (props) => {
               (profileRecipe.calories &&
                 profileRecipe.calories === parseInt(props.searchRecipe))
           )
-
+          // Map for RecipeCard and properties.
           .map((profileRecipe, index) => {
             return (
               <div key={profileRecipe._id}>
@@ -62,11 +71,25 @@ const ProfileRecipeCardMapper = (props) => {
                 <button onClick={() => props.recipeDelete(profileRecipe._id)}>
                   Delete
                 </button>
-                <button>Edit</button>
-                <EditRecipe />
+
+                <button
+                  onClick={() => props.handleRecipeSelect(profileRecipe._id)}
+                >
+                  Edit
+                </button>
+                {/* {props.selectedRecipe && (
+                  <EditRecipe
+                    recipeID={profileRecipe._id}
+                    handleGetUserRecipes={props.handleGetUserRecipes}
+                  />
+                )} */}
               </div>
             );
           })}
+
+      {props.selectedRecipe && (
+        <EditRecipe recipeId={props.setProfileRecipeId} />
+      )}
     </div>
   );
 };

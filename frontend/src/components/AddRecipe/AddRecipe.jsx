@@ -13,7 +13,7 @@ import jwtDecode from "jwt-decode";
 //   C)  add the obj as a second parameter in the Post request(DONE)
 
 const AddRecipe = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   // State variables to create a new recipe
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -31,7 +31,7 @@ const AddRecipe = (props) => {
   // setting a file.
   const [file, setFile] = useState();
   //  setting the user
-  const [setUser] = useState();
+  // const [setUser] = useState();
 
   // referencing the URL
   const filePickerRef = useRef();
@@ -122,8 +122,10 @@ const AddRecipe = (props) => {
           localStorage.setItem("token", res.headers["x-auth-token"]);
           setUser(jwtDecode(localStorage.getItem("token")));
           console.log(res.data);
-          alert("Recipe Posted!");
         });
+
+      alert("Recipe was added!");
+      props.handleGetUserRecipes();
     } catch (error) {
       console.log(error);
     }
