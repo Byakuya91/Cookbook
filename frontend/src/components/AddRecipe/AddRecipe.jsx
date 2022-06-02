@@ -108,9 +108,10 @@ const AddRecipe = (props) => {
     form.append("calories", calories);
     form.append("image", file);
 
-    console.log(form.getAll("name"));
+    console.log(form.getAll("image"));
 
     try {
+      console.log(form);
       await axios
         .post(`${BASE}/recipes/${user._id}/recipes`, form, {
           headers: { "x-auth-token": localStorage.getItem("token") },
@@ -119,6 +120,7 @@ const AddRecipe = (props) => {
           localStorage.setItem("token", res.headers["x-auth-token"]);
           setUser(jwtDecode(localStorage.getItem("token")));
           console.log(res.data);
+          alert("Recipe Posted!");
         });
     } catch (error) {
       console.log(error);
@@ -191,7 +193,7 @@ const AddRecipe = (props) => {
           ref={filePickerRef}
           type="file"
           accept=".jpg,.png,.jpeg"
-          onChange={(event) => pickedHandler(event.target.files[0])}
+          onChange={(event) => setFile(event.target.files[0])}
         />
       </div>
       <span>

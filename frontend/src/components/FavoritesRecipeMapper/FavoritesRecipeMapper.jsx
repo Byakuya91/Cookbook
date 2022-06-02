@@ -22,7 +22,6 @@ const FavoriteRecipeMapper = (props) => {
 
             .map((recipe, index) => {
               // console.log(recipe.name);
-              console.log(recipe.directions);
               return (
                 <div key={index}>
                   <h2> Name:</h2>

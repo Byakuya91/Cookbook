@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
-
+const multer = require("multer");
 const { User } = require("../models/user");
 const { Recipe, validateRecipe } = require("../models/recipe");
 const fileUpload = require("../middleware/file_upload");
 
 const auth = require("../middleware/auth");
 const { Mongoose } = require("mongoose");
+const e = require("express");
 
 //  TODO: CRUD functionality for Recipes
 
@@ -19,6 +20,7 @@ router.post(
     try {
       //  find a user's id
       const user = await User.findById(req.params.userId);
+      // console.log("the user is", user);
 
       // check if there is no user id
       if (!user)
@@ -41,14 +43,20 @@ router.post(
         calories: req.body.calories,
         favorite: req.body.favorite,
       });
+
+      console.log(recipe);
+
       //add recipe body data to the user
       user.recipes.push(recipe);
+      const token = user.generateAuthToken();
       await user.save();
+      console.log(user.recipes);
       return res
         .header("x-auth-token", token)
         .header("access-control-expose-headers", "x-auth-token")
         .send(user.recipes);
     } catch (error) {
+      console.log(error);
       return res.status(500).send(`Internal Server Error: ${error}`);
     }
   }
@@ -203,7 +211,8 @@ router.patch("/:userId/favoriteRecipes/:recipeId", async (req, res) => {
         .status(400)
         .send(`User with id ${req.params.userId} does not exist!`);
     // check if recipe exists inside a user's subdocument
-    let recipe = user.recipes.id(req.params.recipeId);
+    let recipe = user.recipes.find((el) => el._id == req.params.recipeId);
+
     // recipe = Mongoose.Types.ObjectId(recipe);
 
     console.log(" the recipe id is: ", req.params.recipeId);
