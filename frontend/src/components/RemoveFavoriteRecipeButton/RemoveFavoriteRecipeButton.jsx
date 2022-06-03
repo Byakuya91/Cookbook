@@ -42,6 +42,7 @@ const RemoveFavoriteRecipeButton = (props) => {
         });
 
       alert("Recipe removed from favorites");
+      props.getFavoriteRecipes();
     } catch (error) {
       console.log(`Error: ${error.message}`);
       console.log(`Error: ${error.request}`);

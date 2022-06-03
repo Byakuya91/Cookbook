@@ -13,6 +13,13 @@ const ProfileRecipeCardMapper = (props) => {
   return (
     // Container for the Map
     <div classname="profile-Recipe-Card">
+      {props.selectedRecipe && (
+        <EditRecipe
+          classname="Edit_Recipe_Container"
+          recipeID={props.selectedRecipeId}
+          handleGetUserRecipes={props.handleGetUserRecipes}
+        />
+      )}
       {/* Filtering properties for the recipe Card itself */}
       {props.profileRecipes &&
         props.profileRecipes
@@ -86,10 +93,6 @@ const ProfileRecipeCardMapper = (props) => {
               </div>
             );
           })}
-
-      {props.selectedRecipe && (
-        <EditRecipe recipeId={props.setProfileRecipeId} />
-      )}
     </div>
   );
 };

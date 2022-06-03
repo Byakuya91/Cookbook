@@ -3,12 +3,15 @@ import { useEffect, useState, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import FavoriteRecipeMapper from "../../components/FavoritesRecipeMapper/FavoritesRecipeMapper";
+import FavoriteRecipeSearch from "../../components/FavoriteRecipeSearch/FavoriteRecipeSearch";
 
 export default function FavoriteRecipesPage() {
   // State variables to hold the API data for all the users
   const [userFavoriteRecipes, setUserFavoriteRecipes] = useState([]);
+  const [searchFavoriteRecipe, setSearchFavoriteRecipe] = useState();
+  console.log(searchFavoriteRecipe);
   //  checking the data
-  console.log("This is all the user's data: ", userFavoriteRecipes);
+  // console.log("This is all the user's data: ", userFavoriteRecipes);
 
   //   UseEffect to grab the usersFavoriteRecipes
   useEffect(() => {
@@ -36,9 +39,14 @@ export default function FavoriteRecipesPage() {
   return (
     <>
       <h2>Favorite Recipes List</h2>;
+      <FavoriteRecipeSearch
+        searchFavoriteRecipe={searchFavoriteRecipe}
+        setSearchFavoriteRecipe={setSearchFavoriteRecipe}
+      />
       <FavoriteRecipeMapper
         favoriteRecipes={userFavoriteRecipes}
         getFavoriteRecipes={getFavoriteRecipes}
+        searchFavorite={searchFavoriteRecipe}
       />
     </>
   );

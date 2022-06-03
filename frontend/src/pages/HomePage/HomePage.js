@@ -37,7 +37,7 @@ const HomePage = () => {
   );
 
   // checking selected recipe Id(WORKING)
-  console.log(selectedRecipeId);
+  console.log(selectedRecipe);
 
   // console.log("the user's recipe ids are:", homeRecipes);
 
@@ -153,8 +153,8 @@ const HomePage = () => {
               handleGetUserRecipes={handleGetUserRecipes}
               userRecipes={homeRecipes}
               handleRecipeSelect={handleRecipeSelect}
-              selectedRecipe={selectedRecipe}
               selectedRecipeId={selectedRecipeId}
+              selectedRecipe={selectedRecipe}
             />
           </div>
           <div className="width50">

@@ -2,23 +2,33 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
+import FavoriteRecipeSearch from "../FavoriteRecipeSearch/FavoriteRecipeSearch";
 
 const FavoriteRecipeMapper = (props) => {
-  // State variables for the Favorites
+  // test searchFavoriteRecipe
+
+  // TODOS: Redo this entire MAPPER AS FOLLOWS:
+  // 1)  Map through favoriteRecipes where favorite is equal to true
+  // 2)  Filter through the recipes where favorite is equal to False(We have a toggle button)
+  // 3) Map through the filteredArray to include the cards themselves
+  // 4) Add the search critera to the mapper in the filter portion.
 
   useEffect(() => {
     props.getFavoriteRecipes();
-  }, [props.favoriteRecipes]);
+  }, []);
+
+  // console.log(" the favorite recipes are:", props.favoriteRecipes);
 
   return (
     <div>
       {props.favoriteRecipes &&
         props.favoriteRecipes.map((element, index) => {
           return element.recipes
-            .filter((recipe) => {
-              // console.log(recipe.favorite);
-              return recipe.favorite === true;
-            })
+            .filter(
+              (recipe) =>
+                // console.log(recipe.favorite);
+                recipe.favorite === true || console.log(recipe.ingredients)
+            )
 
             .map((recipe, index) => {
               // console.log(recipe.name);
@@ -50,7 +60,10 @@ const FavoriteRecipeMapper = (props) => {
                   <p>{recipe.yield}</p>
                   <h2> favorite:</h2>
                   <p>{recipe.favorite ? "True" : "False"}</p>
-                  <RemoveFavoriteRecipeButton recipeID={recipe._id} />
+                  <RemoveFavoriteRecipeButton
+                    recipeID={recipe._id}
+                    getFavoriteRecipes={props.getFavoriteRecipes}
+                  />
                 </div>
               );
             });
