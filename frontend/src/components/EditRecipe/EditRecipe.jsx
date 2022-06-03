@@ -75,15 +75,33 @@ const EditRecipe = (props) => {
     recipeEditForm.append("calories", editCalories);
     recipeEditForm.append("image", file);
 
-    //  STEP THREE AXIOS call:
+    //  STEP THREE AXIOS call: PUT request
     try {
-      await axios.put(`${BASE}`);
-    } catch (error) {}
+      let updatedRecipe;
+
+      updatedRecipe = await axios
+        .put(
+          `${BASE}/recipes/${user._id}/recipes/${props.recipeID}`,
+          recipeEditForm
+        )
+        .then((res) => {
+          console.log(res.data);
+        });
+      // Update the state
+      // props.setNewRecipe(...props.newRecipe, updatedRecipe);
+    } catch (error) {
+      console.log(`Error: ${error.message}`);
+      console.log(`Error: ${error.request}`);
+      console.log(`Error: ${error.res.data}`);
+    }
+    // Update the data through an API call
+    alert("Recipe has been updated!");
+    props.handleGetUserRecipes();
   };
 
   return (
     //   Form template and data that will need to be sent.
-    <form>
+    <form onSubmit={(e) => handleRecipeEdit(e)}>
       <div>
         <button>&times;</button>
         <h2>Edit Recipe </h2>

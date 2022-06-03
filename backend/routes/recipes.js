@@ -95,6 +95,7 @@ router.put(
       recipe.preparation_time = req.body.preparation_time;
       recipe.serving_size = req.body.serving_size;
       recipe.cook_time = req.body.cook_time;
+      recipe.calories = req.body.calories;
       recipe.yield = req.body.yield;
       recipe.directions = req.body.directions;
       recipe.images = req.file.path;

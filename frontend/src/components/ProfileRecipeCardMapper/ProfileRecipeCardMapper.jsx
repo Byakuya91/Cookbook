@@ -17,6 +17,8 @@ const ProfileRecipeCardMapper = (props) => {
         <EditRecipe
           classname="Edit_Recipe_Container"
           recipeID={props.selectedRecipeId}
+          setNewRecipe={props.setUserRecipes}
+          newRecipe={props.userRecipes}
           handleGetUserRecipes={props.handleGetUserRecipes}
         />
       )}

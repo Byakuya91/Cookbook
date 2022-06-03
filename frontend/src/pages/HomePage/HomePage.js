@@ -32,6 +32,7 @@ const HomePage = () => {
   const [selectedRecipeId, setSelectedRecipeId] = useState();
 
   // a way to find the selectedRecipeID (WORKING)
+
   const selectedRecipe = homeRecipes.find(
     (homeRecipe) => homeRecipe._id === selectedRecipeId
   );
@@ -120,7 +121,13 @@ const HomePage = () => {
   }, []);
 
   // useEffect(() => {
-  //   handleGetUserRecipes();
+  //   if(homeRecipes.length > 0){
+  //     let selectedRecipe = homeRecipes.find(
+  //       (homeRecipe) => homeRecipe._id === selectedRecipeId
+  //     );
+
+  //   }
+
   // }, [homeRecipes]);
 
   return (
@@ -152,6 +159,7 @@ const HomePage = () => {
               recipeDelete={handleHomeRecipeDelete}
               handleGetUserRecipes={handleGetUserRecipes}
               userRecipes={homeRecipes}
+              setUserRecipes={setHomeRecipes}
               handleRecipeSelect={handleRecipeSelect}
               selectedRecipeId={selectedRecipeId}
               selectedRecipe={selectedRecipe}
