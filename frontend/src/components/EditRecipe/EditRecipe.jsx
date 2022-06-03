@@ -106,7 +106,9 @@ const EditRecipe = (props) => {
     <>
       <form onSubmit={(e) => handleRecipeEdit(e)}>
         <div>
-          <button>&times;</button>
+          <button onClick={() => props.handleRecipeSelect(undefined)}>
+            &times;
+          </button>
           <h2>Edit Recipe </h2>
           <span>Recipe Name:</span> <br></br>
           <input

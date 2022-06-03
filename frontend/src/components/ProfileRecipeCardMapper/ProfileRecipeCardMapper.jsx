@@ -20,6 +20,7 @@ const ProfileRecipeCardMapper = (props) => {
           setNewRecipe={props.setUserRecipes}
           newRecipe={props.userRecipes}
           handleGetUserRecipes={props.handleGetUserRecipes}
+          handleRecipeSelect={props.handleRecipeSelect}
         />
       )}
       {/* Filtering properties for the recipe Card itself */}
