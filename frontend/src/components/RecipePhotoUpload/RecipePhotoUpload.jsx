@@ -25,10 +25,15 @@ const RecipePhotoUpload = (props) => {
     }
     const fileReader = new FileReader();
     fileReader.onload = () => {
+      // console.log(fileReader.result);
       setPreviewUrl(fileReader.result);
     };
     fileReader.readAsDataURL(file);
   }, [file]);
+
+  // useEffect(() => {
+  //   props.handleGetUserRecipes();
+  // }, [props.profileRecipes]);
 
   // Checking the file is the right size and even a file.
   const pickedHandler = (event) => {
@@ -54,7 +59,7 @@ const RecipePhotoUpload = (props) => {
     try {
       await axios
         .put(
-          `${BASE}/recipes/${user._id}/recipes/${props.RecipeImage._id}/updateRecipeImage`,
+          `${BASE}/recipes/${user._id}/recipes/${props.recipeID}/updateRecipeImage`,
           form,
           {
             headers: { "x-auth-token": localStorage.getItem("token") },
@@ -68,19 +73,22 @@ const RecipePhotoUpload = (props) => {
     } catch (error) {
       console.log(error);
     }
+    // UPDATE the recipe profile and prompt the user photo has been changed.
+    alert("Recipe photo has been updated!");
+    props.handleGetUserRecipes();
   };
 
   return (
     <div id="imageUploadComponent">
       <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
-        <label>Photo</label>
+        <h2>Edit Photo</h2>
         <input
           ref={filePickerRef}
           type="file"
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <button type="submit">Submit button</button>
+        <button type="submit">Submit Photo button</button>
       </form>
     </div>
   );

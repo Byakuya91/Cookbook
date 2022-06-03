@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import jwtDecode from "jwt-decode";
+import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 
 const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
@@ -101,79 +102,87 @@ const EditRecipe = (props) => {
 
   return (
     //   Form template and data that will need to be sent.
-    <form onSubmit={(e) => handleRecipeEdit(e)}>
-      <div>
-        <button>&times;</button>
-        <h2>Edit Recipe </h2>
-        <span>Recipe Name:</span> <br></br>
-        <input
-          type="text"
-          value={editName}
-          onChange={(event) => setEditName(event.target.value)}
-        />
-        <br></br>
-        <span> Ingredients:</span> <br></br>
-        <input
-          type="text"
-          value={editIngredients}
-          onChange={(event) => setEditIngredients(event.target.value)}
-        />
-        <br></br>
-        <span>Cook_Time:</span> <br></br>
-        <input
-          type="text"
-          value={editCook_Time}
-          onChange={(event) => setEditCook_Time(event.target.value)}
-        />
-        <br />
-        <span>Preparation_Time:</span> <br></br>
-        <input
-          type="text"
-          value={editPreparation_Time}
-          onChange={(event) => setEditPreparation_Time(event.target.value)}
-        />
-        <br />
-        <span>Directions:</span> <br></br>
-        <input
-          type="text"
-          value={editRecipe_Directions}
-          onChange={(event) => setEditRecipe_Directions(event.target.value)}
-        />
-        <br />
-        <span>Serving_Size:</span> <br></br>
-        <input
-          type="number"
-          value={editServing_Size}
-          onChange={(event) => setEditServing_Size(event.target.value)}
-        />
-        <br />
-        <span>Yield:</span> <br></br>
-        <input
-          type="number"
-          value={editRecipe_Yield}
-          onChange={(event) => setEditRecipe_Yield(event.target.value)}
-        />
-        <br />
-        <span>Calories:</span> <br></br>
-        <input
-          type="number"
-          min={100}
-          value={editCalories}
-          onChange={(event) => setEditCalories(event.target.value)}
-        />
-        <label>Photo</label>
+
+    <>
+      <form onSubmit={(e) => handleRecipeEdit(e)}>
+        <div>
+          <button>&times;</button>
+          <h2>Edit Recipe </h2>
+          <span>Recipe Name:</span> <br></br>
+          <input
+            type="text"
+            value={editName}
+            onChange={(event) => setEditName(event.target.value)}
+          />
+          <br></br>
+          <span> Ingredients:</span> <br></br>
+          <input
+            type="text"
+            value={editIngredients}
+            onChange={(event) => setEditIngredients(event.target.value)}
+          />
+          <br></br>
+          <span>Cook_Time:</span> <br></br>
+          <input
+            type="text"
+            value={editCook_Time}
+            onChange={(event) => setEditCook_Time(event.target.value)}
+          />
+          <br />
+          <span>Preparation_Time:</span> <br></br>
+          <input
+            type="text"
+            value={editPreparation_Time}
+            onChange={(event) => setEditPreparation_Time(event.target.value)}
+          />
+          <br />
+          <span>Directions:</span> <br></br>
+          <input
+            type="text"
+            value={editRecipe_Directions}
+            onChange={(event) => setEditRecipe_Directions(event.target.value)}
+          />
+          <br />
+          <span>Serving_Size:</span> <br></br>
+          <input
+            type="number"
+            value={editServing_Size}
+            onChange={(event) => setEditServing_Size(event.target.value)}
+          />
+          <br />
+          <span>Yield:</span> <br></br>
+          <input
+            type="number"
+            value={editRecipe_Yield}
+            onChange={(event) => setEditRecipe_Yield(event.target.value)}
+          />
+          <br />
+          <span>Calories:</span> <br></br>
+          <input
+            type="number"
+            min={100}
+            value={editCalories}
+            onChange={(event) => setEditCalories(event.target.value)}
+          />
+          {/* <label>Photo</label>
         <input
           type="file"
           ref={filePickerRef}
           accept=".jpg,.png,.jpeg"
           onChange={(event) => setFile(event.target.files[0])}
-        />
-      </div>
-      <span>
-        {" "}
-        <button type="submit"> Submit Recipe</button>
-      </span>
-    </form>
+        /> */}
+        </div>
+        <span>
+          {" "}
+          <button type="submit"> Submit Recipe</button>
+        </span>
+      </form>
+      <RecipePhotoUpload
+        recipeID={props.recipeID}
+        handleGetUserRecipes={props.handleGetUserRecipes}
+        profileRecipes={props.newRecipe}
+      />
+    </>
   );
 };
 

@@ -38,7 +38,7 @@ const HomePage = () => {
   );
 
   // checking selected recipe Id(WORKING)
-  console.log(selectedRecipe);
+  // console.log(selectedRecipe);
 
   // console.log("the user's recipe ids are:", homeRecipes);
 
