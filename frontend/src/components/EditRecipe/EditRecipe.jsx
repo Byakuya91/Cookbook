@@ -125,7 +125,7 @@ const EditRecipe = (props) => {
     <>
       <form onSubmit={(e) => handleRecipeEdit(e)}>
         <div>
-          <h2>Edit Recipe </h2>
+          <h2 htmlfor="name">Edit Recipe </h2>
           <span>Recipe Name:</span> <br></br>
           <input
             type="text"

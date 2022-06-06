@@ -4,6 +4,8 @@ import EditRecipe from "../components/EditRecipe/EditRecipe";
 const FavoriteSection = (props) => {
   const [isEdit, setIsEdit] = useState(false);
 
+  //   console.log("This props is".props.recipeDelete);
+
   return (
     <div key={props.profileRecipe._id}>
       <h2> Name:</h2>
@@ -46,6 +48,7 @@ const FavoriteSection = (props) => {
           handleGetUserRecipes={props.handleGetUserRecipes}
           handleRecipeSelect={props.handleRecipeSelect}
           rerender={props.rerender}
+          recipeDelete={props.recipeDelete}
         />
       ) : null}
     </div>
