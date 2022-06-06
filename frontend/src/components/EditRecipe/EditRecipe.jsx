@@ -32,6 +32,11 @@ const EditRecipe = (props) => {
 
   // console.log(editName);
 
+  // console.log(
+  //   "The recipe ID inside Edit Recipe component is: ",
+  //   props.recipeID
+  // );
+
   // State variables for photo upload
   const [previewUrl, setPreviewUrl] = useState();
   // checking if the image is a valid fileType
@@ -192,13 +197,14 @@ const EditRecipe = (props) => {
         </div>
         <span>
           {" "}
-          <button type="submit"> Submit Recipe</button>
+          <button type="submit"> Edit Recipe</button>
         </span>
       </form>
       <RecipePhotoUpload
         recipeID={props.recipeID}
         handleGetUserRecipes={props.handleGetUserRecipes}
         profileRecipes={props.newRecipe}
+        recipeImage={props.recipeImage}
       />
     </>
   );

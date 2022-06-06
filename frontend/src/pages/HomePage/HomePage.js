@@ -39,6 +39,8 @@ const HomePage = () => {
     (homeRecipe) => homeRecipe._id === selectedRecipeId
   );
 
+  console.log("this is the selected Recipe ID: ", selectedRecipe);
+
   // checking selected recipe Id(WORKING)
   // console.log(selectedRecipe);
 

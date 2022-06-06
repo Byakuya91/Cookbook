@@ -48,6 +48,7 @@ const ProfileRecipeCardMapper = (props) => {
                 profileRecipe={profileRecipe}
                 handleRecipeSelect={props.handleRecipeSelect}
                 recipeDelete={props.recipeDelete}
+                handleGetUserRecipes={props.handleGetUserRecipes}
               />
             );
           })}

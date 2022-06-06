@@ -8,7 +8,7 @@ const RecipePhotoUpload = (props) => {
 
   //   State variables
   // preview the URL
-  const [previewUrl, setPreviewUrl] = useState();
+  const [previewUrl, setPreviewUrl] = useState(props.recipeImage);
   // checking if the image is a valid fileType
   const [isValid, setisValid] = useState(false);
   const [file, setFile] = useState();
@@ -17,6 +17,11 @@ const RecipePhotoUpload = (props) => {
   const filePickerRef = useRef();
 
   const { user, setUser } = useContext(AuthContext);
+
+  // console.log(
+  //   "The recipe ID inside the RecipePhotoUpload component is: ",
+  //   props.recipeID
+  // );
 
   useEffect(() => {
     //   if there is no file put through the selector.
@@ -88,7 +93,7 @@ const RecipePhotoUpload = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <button type="submit">Submit Photo button</button>
+        <button type="submit">Edit Photo button</button>
       </form>
     </div>
   );
