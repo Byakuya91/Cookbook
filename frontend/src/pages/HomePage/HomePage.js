@@ -30,8 +30,10 @@ const HomePage = () => {
   const decodedUser = localStorage.getItem("token");
   // a way to hold selectedRecipeId
   const [selectedRecipeId, setSelectedRecipeId] = useState();
+  const [rerender, setRerender] = useState(false);
 
   // a way to find the selectedRecipeID (WORKING)
+  // console.log("the Search term is: ", homeRecipeSearch);
 
   const selectedRecipe = homeRecipes.find(
     (homeRecipe) => homeRecipe._id === selectedRecipeId
@@ -39,6 +41,8 @@ const HomePage = () => {
 
   // checking selected recipe Id(WORKING)
   // console.log(selectedRecipe);
+
+  // console.log("The search term is:", homeRecipeSearch);
 
   // console.log("the user's recipe ids are:", homeRecipes);
 
@@ -113,12 +117,14 @@ const HomePage = () => {
   // };
 
   // TODO: Add functions to handle RecipeAdd and Delete
-
+  const rerenderFunction = () => {
+    setRerender(!rerender);
+  };
   useEffect(() => {
     // handleGetPosts();
     // handleGetFriendsPosts();
     handleGetUserRecipes();
-  }, []);
+  }, [rerender]);
 
   // useEffect(() => {
   //   if(homeRecipes.length > 0){
@@ -154,6 +160,7 @@ const HomePage = () => {
           <div className="width50">
             {/* <PostList posts={friendsPosts} friendsList={true} /> */}
             <ProfileRecipeCardMapper
+              rerender={rerenderFunction}
               profileRecipes={homeRecipes}
               searchRecipe={homeRecipeSearch}
               recipeDelete={handleHomeRecipeDelete}

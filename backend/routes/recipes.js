@@ -28,6 +28,7 @@ router.post(
           .status(400)
           .send(`User with id ${req.params.userId} does not exist!`);
       // create a recipe to be added.
+      console.log(req.body.name);
       let recipe = new Recipe({
         // recipe fields
         author: user,
@@ -66,7 +67,7 @@ router.post(
 // http://localhost:5000/api/recipes/:userId/recipes/:recipeId
 router.put(
   "/:userId/recipes/:recipeId",
-  [fileUpload.single("image")],
+  [auth, fileUpload.single("image")],
   async (req, res) => {
     try {
       // validate for the recipe
@@ -89,6 +90,7 @@ router.put(
           .status(400)
           .send(`The recipe does not exist inside the recipes!`);
       }
+      console.log(req.body);
       // Update the recipe fields
       recipe.name = req.body.name;
       recipe.ingredients = req.body.ingredients;
@@ -98,13 +100,19 @@ router.put(
       recipe.calories = req.body.calories;
       recipe.yield = req.body.yield;
       recipe.directions = req.body.directions;
-      recipe.images = req.file.path;
+      recipe.author = req.body.author;
 
       // save the changes
+      //console.log("the user   is:", user.recipes);
+      const token = user.generateAuthToken();
       await user.save();
       // sends back updated recipe
-      return res.send(user);
+      return res
+        .header("x-auth-token", token)
+        .header("access-control-expose-headers", "x-auth-token")
+        .send(user);
     } catch (error) {
+      console.log(error);
       return res.status(500).send(`Internal Server Error: ${error}`);
     }
   }
@@ -156,14 +164,6 @@ router.put(
           .status(400)
           .send(`User with ObjectId ${req.params.userId} does not exist.`);
 
-      // console.log(user.recipes);
-      // find the recipe ID
-      // const recipe = user.recipes.find((foundRecipe) => {
-      //   console.log(foundRecipe["_id"]);
-      //   console.log(req.params.recipeId);
-      //   console.log(foundRecipe["_id"] == req.params.recipeId);
-      //   foundRecipe["_id"] == req.params.recipeId;
-      // });
       let recipe;
       user.recipes.forEach((foundRecipe) => {
         if (foundRecipe["_id"] == req.params.recipeId) {
@@ -233,6 +233,56 @@ router.patch("/:userId/favoriteRecipes/:recipeId", async (req, res) => {
     // Update the recipe fields
     recipe.favorite = !recipe.favorite;
     // console.log("the favorites is:", recipe.favorite);
+    // save the changes
+    await user.save();
+    // sends back updated recipe
+    return res.send(user);
+  } catch (error) {
+    return res.status(500).send(`Internal Server Error: ${error}`);
+  }
+});
+
+// PATCH REQUESTS to update individual recipe fields.
+
+router.patch("/:userId/updateRecipe/:recipeId", async (req, res) => {
+  try {
+    // validate for the recipe
+    let { error } = validateRecipe(req.body);
+    // if there is no recipe id
+    if (error) {
+      return res.status(400).send(`Recipe body is not valid ${error}`);
+    }
+    //  find a user's id
+    const user = await User.findById(req.params.userId);
+
+    console.log(" the user id is: ", req.params.userId);
+    // check if there is no user id
+    if (!user)
+      return res
+        .status(400)
+        .send(`User with id ${req.params.userId} does not exist!`);
+    // check if recipe exists inside a user's subdocument
+    let recipe = user.recipes.find((el) => el._id == req.params.recipeId);
+
+    console.log(" the recipe id is: ", req.params.recipeId);
+    if (!recipe) {
+      return res
+        .status(400)
+        .send(
+          `The recipe id ${req.params.recipeId} does not exist inside the recipes!`
+        );
+    }
+    // Update the recipes fields,minus photos due to another route.
+    recipe.name = req.body.name;
+    recipe.ingredients = req.body.ingredients;
+    recipe.preparation_time = req.body.preparation_time;
+    recipe.serving_size = req.body.serving_size;
+    recipe.cook_time = req.body.cook_time;
+    recipe.calories = req.body.calories;
+    recipe.yield = req.body.yield;
+    recipe.directions = req.body.directions;
+
+    console.log("the recipe name is  is:", recipe.name);
     // save the changes
     await user.save();
     // sends back updated recipe

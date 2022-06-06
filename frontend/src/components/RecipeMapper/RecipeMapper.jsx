@@ -39,7 +39,7 @@ const RecipeMapper = (props) => {
       setUserRecipes(recipeResponse.data);
       // console.log(recipeResponse);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 

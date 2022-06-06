@@ -13,10 +13,17 @@ const RecipeCard = (props) => {
   const [favoriteRecipe, setFavoriteRecipe] = useState();
 
   // TODO: Figure out a way to re-render the page whenever the favorites is changed.
+  // [props.recipes] removed from UseEffect
 
   useEffect(() => {
     props.makeRecipeGetRequest();
-  }, [props.recipes]);
+  }, []);
+
+  //  a way to count for case sensitivity
+
+  // const searchRecipeLowerCased = props.searchRecipe.toLowerCase();
+
+  console.log(props.searchRecipe);
 
   return (
     <div id="userCard">
@@ -27,20 +34,24 @@ const RecipeCard = (props) => {
             .filter(
               (recipe) =>
                 recipe.name
-                  .toLowerCase()
+                  ?.toLowerCase()
                   .includes(props.searchRecipe.toLowerCase()) ||
+                // .toLowerCase()
                 (recipe.ingredients &&
                   recipe.ingredients
-                    .toLowerCase()
+                    ?.toLowerCase()
                     .includes(props.searchRecipe.toLowerCase())) ||
+                // .toLowerCase()
                 (recipe.cook_time &&
-                  recipe.cook_time
-                    .toLowerCase()
-                    .includes(props.searchRecipe.toLowerCase())) ||
+                  recipe.cook_time?.includes(
+                    props.searchRecipe.toLowerCase()
+                  )) ||
+                // .toLowerCase()
                 (recipe.preparation_time &&
-                  recipe.preparation_time
-                    .toLowerCase()
-                    .includes(props.searchRecipe.toLowerCase())) ||
+                  recipe.preparation_time?.includes(
+                    props.searchRecipe.toLowerCase()
+                  )) ||
+                // .toLowerCase()
                 (recipe.serving_size &&
                   recipe.serving_size === parseInt(props.searchRecipe)) ||
                 (recipe.yield &&

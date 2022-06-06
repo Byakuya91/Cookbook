@@ -7,14 +7,26 @@ import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
   // Recipe Edit state variables
-  const [editName, setEditName] = useState("");
-  const [editIngredients, setEditIngredients] = useState("");
-  const [editCook_Time, setEditCook_Time] = useState("");
-  const [editPreparation_Time, setEditPreparation_Time] = useState("");
-  const [editServing_Size, setEditServing_Size] = useState();
-  const [editRecipe_Yield, setEditRecipe_Yield] = useState();
-  const [editRecipe_Directions, setEditRecipe_Directions] = useState();
-  const [editCalories, setEditCalories] = useState();
+  const [editName, setEditName] = useState(props.editRecipe?.name);
+  const [editIngredients, setEditIngredients] = useState(
+    props.editRecipe?.ingredients
+  );
+  const [editCook_Time, setEditCook_Time] = useState(
+    props.editRecipe?.cook_time
+  );
+  const [editPreparation_Time, setEditPreparation_Time] = useState(
+    props.editRecipe?.preparation_time
+  );
+  const [editServing_Size, setEditServing_Size] = useState(
+    props.editRecipe?.serving_size
+  );
+  const [editRecipe_Yield, setEditRecipe_Yield] = useState(
+    props.editRecipe?.yield
+  );
+  const [editRecipe_Directions, setEditRecipe_Directions] = useState(
+    props.editRecipe?.directions
+  );
+  const [editCalories, setEditCalories] = useState(props.editRecipe?.calories);
 
   //   console log tests for state variables
 
@@ -75,17 +87,23 @@ const EditRecipe = (props) => {
     recipeEditForm.append("yield", editRecipe_Yield);
     recipeEditForm.append("calories", editCalories);
     recipeEditForm.append("image", file);
+    recipeEditForm.append("author", props.editRecipe.author);
+
+    console.log(recipeEditForm.getAll("name"));
 
     //  STEP THREE AXIOS call: PUT request
     try {
       let updatedRecipe;
-
       updatedRecipe = await axios
         .put(
-          `${BASE}/recipes/${user._id}/recipes/${props.recipeID}`,
-          recipeEditForm
+          `${BASE}/recipes/${user._id}/recipes/${props.editRecipe._id}`,
+          recipeEditForm,
+          { headers: { "x-auth-token": localStorage.getItem("token") } }
         )
         .then((res) => {
+          localStorage.setItem("token", res.headers["x-auth-token"]);
+          setUser(jwtDecode(localStorage.getItem("token")));
+          console.log(res.data);
           console.log(res.data);
         });
       // Update the state
@@ -96,8 +114,9 @@ const EditRecipe = (props) => {
       console.log(`Error: ${error.res.data}`);
     }
     // Update the data through an API call
-    alert("Recipe has been updated!");
-    props.handleGetUserRecipes();
+    props.rerender();
+    console.log("Updating");
+    // props.handleGetUserRecipes();   Handle this differently
   };
 
   return (
@@ -106,9 +125,6 @@ const EditRecipe = (props) => {
     <>
       <form onSubmit={(e) => handleRecipeEdit(e)}>
         <div>
-          <button onClick={() => props.handleRecipeSelect(undefined)}>
-            &times;
-          </button>
           <h2>Edit Recipe </h2>
           <span>Recipe Name:</span> <br></br>
           <input
