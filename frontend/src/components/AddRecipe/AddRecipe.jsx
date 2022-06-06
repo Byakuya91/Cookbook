@@ -135,68 +135,96 @@ const AddRecipe = (props) => {
     //   Form template and data that will need to be sent.
     <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
       <div>
-        <label>Add a new Recipe</label>
+        <h1>Add a new Recipe</h1>
         <br></br>
-        <span>Recipe Name:</span> <br></br>
+        <label htmlFor="recipe_name">Recipe Name:</label> <br></br>
         <input
           type="text"
+          id="recipe_name"
+          required
+          placeholder="Enter a Recipe..."
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
         <br></br>
-        <span> Ingredients:</span> <br></br>
+        <label htmlFor="ingredients"> Ingredients:</label> <br></br>
         <input
           type="text"
+          id="ingredients"
+          required
+          placeholder="Enter ingredients..."
           value={ingredients}
           onChange={(event) => setIngredients(event.target.value)}
         />
         <br></br>
-        <span>Cook_Time:</span> <br></br>
+        <label htmlFor="Cook_Time">Cook_Time:</label> <br></br>
         <input
           type="text"
+          id="Cook_Time"
+          required
+          placeholder="Enter cook_time..."
           value={cook_Time}
           onChange={(event) => setCook_Time(event.target.value)}
         />
         <br />
-        <span>Preparation_Time:</span> <br></br>
+        <label htmlFor="Preparation_Time">Preparation_Time:</label> <br></br>
         <input
           type="text"
+          required
+          placeholder="Enter prep_time..."
+          id="Preparation_Time"
           value={preparation_Time}
           onChange={(event) => setPreparation_Time(event.target.value)}
         />
         <br />
-        <span>Directions:</span> <br></br>
+        <label htmlFor="Directions">Directions:</label> <br></br>
         <input
           type="text"
+          required
+          id="Directions"
+          placeholder="Enter Recipe Directions"
           value={recipe_Directions}
           onChange={(event) => setRecipe_Directions(event.target.value)}
         />
         <br />
-        <span>Serving_Size:</span> <br></br>
+        <label htmlFor="serving_size">Serving_Size:</label> <br></br>
         <input
           type="number"
+          required
+          id="serving_size"
+          placeholder="Select a serving size..."
           value={serving_Size}
           onChange={(event) => setServing_Size(event.target.value)}
         />
         <br />
-        <span>Yield:</span> <br></br>
+        <label htmlFor="yield">Yield:</label> <br></br>
         <input
           type="number"
+          required
+          placeholder="Select a calorie count..."
+          min={1}
+          id="yield"
           value={recipe_Yield}
           onChange={(event) => setRecipe_Yield(event.target.value)}
         />
         <br />
-        <span>Calories:</span> <br></br>
+        <label htmlFor="calories">Calories:</label> <br></br>
         <input
           type="number"
+          id="calories"
+          required
+          placeholder="Select calorie count..."
           value={calories}
           min={100}
           onChange={(event) => setCalories(event.target.value)}
         />
-        <label>Photo</label>
+        <br />
+        <label htmlFor="image">Photo</label>
         <br />
         <input
           name="file"
+          required
+          id="image"
           ref={filePickerRef}
           type="file"
           accept=".jpg,.png,.jpeg"

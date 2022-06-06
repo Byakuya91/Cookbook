@@ -130,73 +130,76 @@ const EditRecipe = (props) => {
     <>
       <form onSubmit={(e) => handleRecipeEdit(e)}>
         <div>
-          <h2 htmlfor="name">Edit Recipe </h2>
-          <span>Recipe Name:</span> <br></br>
+          <h1>Edit Recipe </h1>
+          <label htmlFor="recipe">Recipe Name:</label> <br></br>
           <input
             type="text"
+            name="recipe"
             value={editName}
             onChange={(event) => setEditName(event.target.value)}
           />
           <br></br>
-          <span> Ingredients:</span> <br></br>
+          <label htmlFor="recipe_ingredients"> Ingredients:</label> <br></br>
           <input
             type="text"
+            id="recipe_ingredients"
             value={editIngredients}
             onChange={(event) => setEditIngredients(event.target.value)}
           />
           <br></br>
-          <span>Cook_Time:</span> <br></br>
+          <label htmlFor="recipe_cook_time ">Cook_Time:</label> <br></br>
           <input
             type="text"
+            id="recipe_cook_time"
             value={editCook_Time}
             onChange={(event) => setEditCook_Time(event.target.value)}
           />
           <br />
-          <span>Preparation_Time:</span> <br></br>
+          <label htmlFor="recipe_preparation_time">
+            Preparation_Time:
+          </label>{" "}
+          <br></br>
           <input
             type="text"
+            id="recipe_preparation_time"
             value={editPreparation_Time}
             onChange={(event) => setEditPreparation_Time(event.target.value)}
           />
           <br />
-          <span>Directions:</span> <br></br>
+          <label htmlFor="recipe_directions">Directions:</label> <br></br>
           <input
             type="text"
+            id="recipe_directions"
             value={editRecipe_Directions}
             onChange={(event) => setEditRecipe_Directions(event.target.value)}
           />
           <br />
-          <span>Serving_Size:</span> <br></br>
+          <label htmlFor="recipe_serving_size">Serving_Size:</label> <br></br>
           <input
             type="number"
+            id="recipe_serving_size"
             value={editServing_Size}
             onChange={(event) => setEditServing_Size(event.target.value)}
           />
           <br />
-          <span>Yield:</span> <br></br>
+          <label htmlFor="recipe_yield">Yield:</label> <br></br>
           <input
             type="number"
+            id="recipe_yield"
             value={editRecipe_Yield}
             onChange={(event) => setEditRecipe_Yield(event.target.value)}
           />
           <br />
-          <span>Calories:</span> <br></br>
+          <label htmlFor="recipe_calories">Calories:</label> <br></br>
           <input
             type="number"
+            id="recipe_calories"
             min={100}
             value={editCalories}
             onChange={(event) => setEditCalories(event.target.value)}
           />
-          {/* <label>Photo</label>
-        <input
-          type="file"
-          ref={filePickerRef}
-          accept=".jpg,.png,.jpeg"
-          onChange={(event) => setFile(event.target.files[0])}
-        /> */}
         </div>
         <span>
-          {" "}
           <button type="submit"> Edit Recipe</button>
         </span>
       </form>
