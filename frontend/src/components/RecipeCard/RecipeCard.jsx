@@ -37,10 +37,10 @@ const RecipeCard = (props) => {
                   ?.toLowerCase()
                   .includes(props.searchRecipe.toLowerCase()) ||
                 // .toLowerCase()
-                (recipe.ingredients &&
-                  recipe.ingredients
-                    ?.toLowerCase()
-                    .includes(props.searchRecipe.toLowerCase())) ||
+                // (recipe.ingredients &&
+                //   recipe.ingredients
+                //     ?.toLowerCase()
+                //     .includes(props.searchRecipe.toLowerCase())) ||
                 // .toLowerCase()
                 (recipe.cook_time &&
                   recipe.cook_time?.includes(
@@ -75,7 +75,7 @@ const RecipeCard = (props) => {
                   <h2> Author:</h2>
                   <p>{recipe.author}</p>
                   <h2> Ingredients:</h2>
-                  <p>{recipe.ingredients}</p>
+                  {/* <p>{recipe.ingredients}</p> */}
                   <h2> Calories:</h2>
                   <p>{recipe.calories}</p>
                   <h2> Cook_Time:</h2>

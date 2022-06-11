@@ -1,6 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
+import AddIngredient from "./components/AddRecipe/AddIngredient";
 
 import "./App.css";
 

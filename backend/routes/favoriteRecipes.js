@@ -22,6 +22,8 @@ router.post("/:userId/favoriteRecipes/:recipeId", async (req, res) => {
 
     // STEP TWO find the recipe Id for the user
     const favoriteRecipe = user.recipes.id(req.params.recipeId);
+    console.log(favoriteRecipe);
+
     //  checking if there is no user id.
     if (!favoriteRecipe) {
       return res

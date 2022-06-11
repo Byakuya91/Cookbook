@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
+const { ingredientsSchema } = require("./ingredients");
 
 const recipeSchema = new mongoose.Schema({
   name: { type: String, minlength: 2, maxlength: 100 },
   author: { type: mongoose.Types.ObjectId },
-  ingredients: { type: String, minlength: 2, maxlength: 100 },
+  ingredients: [{ type: ingredientsSchema }],
   preparation_time: {
     type: String,
     minlength: 2,
@@ -25,7 +26,7 @@ const recipeSchema = new mongoose.Schema({
 function validateRecipe(post) {
   const schema = Joi.object({
     name: Joi.string().min(2).max(100),
-    ingredients: Joi.string().min(2).max(100),
+    ingredients: Joi.array(),
     directions: Joi.string().min(10).max(100),
     serving_size: Joi.number(),
     preparation_time: Joi.string().min(2).max(50),

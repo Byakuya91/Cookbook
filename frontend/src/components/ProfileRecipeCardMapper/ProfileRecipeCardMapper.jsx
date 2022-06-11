@@ -24,9 +24,9 @@ const ProfileRecipeCardMapper = (props) => {
               profileRecipe.name
                 ?.toLowerCase()
                 .includes(props.searchRecipe.toLowerCase()) ||
-              profileRecipe.ingredients
-                ?.toLowerCase()
-                .includes(props.searchRecipe.toLowerCase()) ||
+              // profileRecipe.ingredients
+              //   ?.toLowerCase()
+              //   .includes(props.searchRecipe.toLowerCase()) ||
               profileRecipe.cook_time
                 ?.toLowerCase()
                 .includes(props.searchRecipe.toLowerCase()) ||

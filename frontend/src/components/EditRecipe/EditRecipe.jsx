@@ -30,7 +30,7 @@ const EditRecipe = (props) => {
 
   //   console log tests for state variables
 
-  // console.log(editName);
+  console.log(editName.name);
 
   // console.log(
   //   "The recipe ID inside Edit Recipe component is: ",

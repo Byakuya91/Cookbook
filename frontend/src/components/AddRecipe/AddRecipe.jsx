@@ -3,6 +3,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import jwtDecode from "jwt-decode";
+import AddIngredient from "./AddIngredient";
 
 // TO DO:
 //   1) Establish a form to submit the data (DONE)
@@ -16,13 +17,19 @@ const AddRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
   // State variables to create a new recipe
   const [name, setName] = useState("");
-  const [ingredients, setIngredients] = useState("");
+  const [ingredients, setIngredients] = useState([{}]);
   const [cook_Time, setCook_Time] = useState("");
   const [preparation_Time, setPreparation_Time] = useState("");
   const [serving_Size, setServing_Size] = useState();
   const [recipe_Yield, setRecipe_Yield] = useState();
   const [recipe_Directions, setRecipe_Directions] = useState();
   const [calories, setCalories] = useState();
+
+  console.log("the selected Ingredients are as follow: ", ingredients);
+
+  // convert the state variable from object to string
+  // let IngredientsJSON = JSON.stringify(ingredients);
+  // console.log(IngredientsJSON);
 
   // State variables for photo upload
   const [previewUrl, setPreviewUrl] = useState();
@@ -98,10 +105,16 @@ const AddRecipe = (props) => {
   const handleRecipePhotoSubmit = async (event) => {
     // prevents page from loading when submit button is clicked.
     event.preventDefault();
+    console.log("the ingredients are", ingredients);
     // new form object created to submit the file
     let form = new FormData();
     form.append("name", name);
-    form.append("ingredients", ingredients);
+    // append ingredient objects to form data
+    ingredients.forEach((item) => {
+      form.append("ingredients[]", JSON.stringify(item));
+    });
+
+    // form.append("ingredients", IngredientsJSON);
     form.append("cook_time", cook_Time);
     form.append("preparation_time", preparation_Time);
     form.append("directions", recipe_Directions);
@@ -110,13 +123,18 @@ const AddRecipe = (props) => {
     form.append("calories", calories);
     form.append("image", file);
 
-    console.log(form.getAll("image"));
+    console.log(
+      "the Ingredients inside for the form is",
+      form.getAll("ingredients[]")
+    );
 
     try {
       console.log(form);
       await axios
         .post(`${BASE}/recipes/${user._id}/recipes`, form, {
-          headers: { "x-auth-token": localStorage.getItem("token") },
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
         })
         .then((res) => {
           localStorage.setItem("token", res.headers["x-auth-token"]);
@@ -125,11 +143,26 @@ const AddRecipe = (props) => {
         });
 
       alert("Recipe was added!");
+      // console.log(form.getAll("ingredients"));
       props.handleGetUserRecipes();
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const ingredientsFields=()=>{
+  //   let inputBoxes = [];
+  //   for(let i = 0; i< numberOfIngredients; i++){
+  //     inputBoxes.push(
+  //       <label>
+
+  //         <input name={'name'} onChange={(e)=> setIngredients(
+  //           [...ingredients, {e.target.name: e.target.value}])}/>
+
+  //       </label>
+  //     )
+  //   }
+  // }
 
   return (
     //   Form template and data that will need to be sent.
@@ -147,7 +180,8 @@ const AddRecipe = (props) => {
           onChange={(event) => setName(event.target.value)}
         />
         <br></br>
-        <label htmlFor="ingredients"> Ingredients:</label> <br></br>
+        <AddIngredient setIngredients={setIngredients} />
+        {/* <label htmlFor="ingredients"> Ingredients:</label> <br></br>
         <input
           type="text"
           id="ingredients"
@@ -155,7 +189,8 @@ const AddRecipe = (props) => {
           placeholder="Enter ingredients..."
           value={ingredients}
           onChange={(event) => setIngredients(event.target.value)}
-        />
+        /> */}
+        <h1>This is a placeholder for Ingredients</h1>
         <br></br>
         <label htmlFor="Cook_Time">Cook_Time:</label> <br></br>
         <input

@@ -5,6 +5,7 @@ const postsRouter = require("./routes/posts");
 const friendsRouter = require("./routes/friends");
 const recipesRouter = require("./routes/recipes");
 const favoriteRecipesRoutter = require("./routes/favoriteRecipes");
+const ingredientsRouter = require("./routes/ingredient");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -21,6 +22,7 @@ app.use(`/api/posts`, postsRouter);
 app.use(`/api/friends`, friendsRouter);
 app.use(`/api/recipes`, recipesRouter);
 app.use(`/api/favoriteRecipes`, favoriteRecipesRoutter);
+app.use(`/api/ingredients`, ingredientsRouter);
 
 // images endpoint to upload them. Allows frontend to statically display images
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
