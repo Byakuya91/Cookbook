@@ -93,7 +93,7 @@ const RecipePhotoUpload = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <button type="submit">Edit Photo button</button>
+        <button type="submit">Add Photo</button>
       </form>
     </div>
   );

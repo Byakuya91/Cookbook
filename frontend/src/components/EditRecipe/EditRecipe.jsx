@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import jwtDecode from "jwt-decode";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
+import AddMoreIngredients from "../AddMoreIngredients/AddMoreIngredients";
 
 const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
@@ -30,12 +31,12 @@ const EditRecipe = (props) => {
 
   //   console log tests for state variables
 
-  console.log(editName.name);
+  // console.log("The ingredient name is: ", props.editRecipe.ingredients.name);
 
-  // console.log(
-  //   "The recipe ID inside Edit Recipe component is: ",
-  //   props.recipeID
-  // );
+  // STEPS FOR ADDING an ingredient
+  // 1) Console logs of Ingredient to see what fields are existing inside an object
+  // 2) Copying the dynamic form from add Ingredient and linking the route to add an Ingredient
+  //   3) Figuring out how to
 
   // State variables for photo upload
   const [previewUrl, setPreviewUrl] = useState();
@@ -44,7 +45,9 @@ const EditRecipe = (props) => {
   // setting a file.
   const [file, setFile] = useState();
 
-  // console.log(file);
+  // state variable for opening Ingredients Edit Component and photos
+  const [isAddIngredient, setIsAddIngredient] = useState(false);
+  const [isEditPhoto, setIsEditPhoto] = useState(false);
 
   // referencing the URL
   const filePickerRef = useRef();
@@ -139,13 +142,21 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditName(event.target.value)}
           />
           <br></br>
-          <label htmlFor="recipe_ingredients"> Ingredients:</label> <br></br>
-          <input
+          {/* <label htmlFor="recipe_ingredients"> Ingredients:</label> <br></br> */}
+          {/* <input
             type="text"
             id="recipe_ingredients"
             value={editIngredients}
             onChange={(event) => setEditIngredients(event.target.value)}
-          />
+          /> */}
+          <br></br>
+          <button onClick={() => setIsAddIngredient(true)}>
+            Ingredient Add
+          </button>
+          <button onClick={() => setIsAddIngredient(false)}>
+            Close Ingredients
+          </button>
+          {isAddIngredient ? <AddMoreIngredients /> : null}
           <br></br>
           <label htmlFor="recipe_cook_time ">Cook_Time:</label> <br></br>
           <input
@@ -203,12 +214,21 @@ const EditRecipe = (props) => {
           <button type="submit"> Edit Recipe</button>
         </span>
       </form>
-      <RecipePhotoUpload
-        recipeID={props.recipeID}
-        handleGetUserRecipes={props.handleGetUserRecipes}
-        profileRecipes={props.newRecipe}
-        recipeImage={props.recipeImage}
-      />
+      <br></br>
+      <span>
+        <button onClick={() => setIsEditPhoto(true)}> Edit Photo</button>
+      </span>
+      <span>
+        <button onClick={() => setIsEditPhoto(false)}> &times;</button>
+      </span>
+      {isEditPhoto ? (
+        <RecipePhotoUpload
+          recipeID={props.recipeID}
+          handleGetUserRecipes={props.handleGetUserRecipes}
+          profileRecipes={props.newRecipe}
+          recipeImage={props.recipeImage}
+        />
+      ) : null}
     </>
   );
 };

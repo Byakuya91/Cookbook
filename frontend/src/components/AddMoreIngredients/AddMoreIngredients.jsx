@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const Testing = (props) => {
+// TODO List:
+
+// Create a form component to hold this form values WORKING ON IT
+// Create a function to make a POST request to add the recipes WORKING ON IT
+// Pull in the necessary pieces of state for the POST request WORKING ON IT
+
+const AddMoreIngredients = (props) => {
   const [formValues, setFormValues] = useState([
     { name: "", amount: 0, unit: "" },
   ]);
+
+  //   define BASE URL
+  const BASE = `http://localhost:5000/api`;
+
+  //   define modified JSON array for Ingredients
+  let ingredients_lst = JSON.stringify(formValues);
+
+  //   console log tests
+  console.log("the Ingredients are as follows: ", ingredients_lst);
+
   //  changes state for formValues above.
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
     setFormValues(newFormValues);
-    props.setIngredients(newFormValues);
+    // props.setIngredients(newFormValues);
   };
   // Add a field to the form
   let addFormFields = () => {
@@ -80,4 +97,4 @@ const Testing = (props) => {
   );
 };
 
-export default Testing;
+export default AddMoreIngredients;

@@ -21,10 +21,10 @@ const FavoriteSection = (props) => {
       <h2> Author:</h2>
       <p>{props.profileRecipe.author}</p>
       <h2> Ingredients:</h2>
-      {console.log(
+      {/* {console.log(
         "The ingredients inside the favorie section is",
         props.profileRecipe.ingredients
-      )}
+      )} */}
       {props.profileRecipe.ingredients.map((ingredient) => {
         return (
           <div>
