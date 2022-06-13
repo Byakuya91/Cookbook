@@ -44,6 +44,7 @@ const ProfileRecipeCardMapper = (props) => {
           .map((profileRecipe, index) => {
             return (
               <FavoriteSection
+                key={index}
                 rerender={props.rerender}
                 profileRecipe={profileRecipe}
                 handleRecipeSelect={props.handleRecipeSelect}

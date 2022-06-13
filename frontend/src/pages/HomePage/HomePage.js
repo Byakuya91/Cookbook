@@ -24,6 +24,8 @@ const HomePage = () => {
   const [friendsPosts, setFriendsPosts] = useState(null);
   // recipes for the profile user logged in.
   const [homeRecipes, setHomeRecipes] = useState([]);
+  // get Ingredients for one user
+  const [homeIngredients, setHomeIngredients] = useState([]);
   // recipe search state for the home page
   const [homeRecipeSearch, setHomeRecipeSearch] = useState("");
   const { user } = useContext(AuthContext);
@@ -32,6 +34,7 @@ const HomePage = () => {
   const [selectedRecipeId, setSelectedRecipeId] = useState();
   // a way to handle rendering pages
   const [rerender, setRerender] = useState(false);
+
   // TODO: Create a modal for addRecipe
 
   // a way to find the selectedRecipeID (WORKING)
@@ -41,7 +44,7 @@ const HomePage = () => {
     (homeRecipe) => homeRecipe._id === selectedRecipeId
   );
 
-  console.log("this is the selected Recipe ID: ", selectedRecipe);
+  // console.log("The homeIngredients are:", homeIngredients);
 
   // checking selected recipe Id(WORKING)
   // console.log(selectedRecipe);
@@ -103,6 +106,14 @@ const HomePage = () => {
       { headers: { "x-auth-token": decodedUser } }
     );
     setHomeRecipes(userRecipeResponse.data.recipes);
+  };
+  // Get User's ingredients inside recipes
+  const handleGetUserIngredients = async () => {
+    let userIngredientResponse = await axios.get(
+      `${BASE}/users/${user._id}/getOneUser`,
+      { headers: { "x-auth-token": decodedUser } }
+    );
+    setHomeRecipes(userIngredientResponse.data.recipes.ingredients);
   };
 
   //   Create a function to submit the recipes

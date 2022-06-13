@@ -83,11 +83,14 @@ const EditRecipe = (props) => {
   const handleRecipeEdit = async (event) => {
     // Step ONE: prevent the page from reloading
     event.preventDefault();
+    console.log("Before Sending", editIngredients);
 
     // STEP TWO: create object to modify the contents
     let recipeEditForm = new FormData();
     recipeEditForm.append("name", editName);
-    recipeEditForm.append("ingredients", editIngredients);
+    editIngredients.forEach((item) => {
+      recipeEditForm.append("ingredients[]", JSON.stringify(item));
+    });
     recipeEditForm.append("cook_time", editCook_Time);
     recipeEditForm.append("preparation_time", editPreparation_Time);
     recipeEditForm.append("directions", editRecipe_Directions);
@@ -102,18 +105,12 @@ const EditRecipe = (props) => {
     //  STEP THREE AXIOS call: PUT request
     try {
       let updatedRecipe;
-      updatedRecipe = await axios
-        .put(
-          `${BASE}/recipes/${user._id}/recipes/${props.editRecipe._id}`,
-          recipeEditForm,
-          { headers: { "x-auth-token": localStorage.getItem("token") } }
-        )
-        .then((res) => {
-          localStorage.setItem("token", res.headers["x-auth-token"]);
-          setUser(jwtDecode(localStorage.getItem("token")));
-          console.log(res.data);
-          console.log(res.data);
-        });
+      updatedRecipe = await axios.put(
+        `${BASE}/recipes/${user._id}/recipes/${props.editRecipe._id}`,
+        recipeEditForm,
+        { headers: { "x-auth-token": localStorage.getItem("token") } }
+      );
+
       // Update the state
       // props.setNewRecipe(...props.newRecipe, updatedRecipe);
     } catch (error) {
@@ -151,6 +148,7 @@ const EditRecipe = (props) => {
           /> */}
           <br></br>
           <AddMoreIngredients
+            ingredients={props.editRecipe.ingredients}
             recipeID={props.editRecipe?._id}
             setEditIngredients={setEditIngredients}
             EditIngredients={editIngredients}

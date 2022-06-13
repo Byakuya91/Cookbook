@@ -103,14 +103,12 @@ router.put(
           .send(`The recipe does not exist inside the recipes!`);
       }
       console.log(req.body);
+      let converted_Ingredients = req.body.ingredients.map(
+        (ingredient) => new Ingredient(JSON.parse(ingredient))
+      );
       // Update the recipe fields
       recipe.name = req.body.name;
-      recipe.ingredients.push({
-        name: req.body.ingredients.name,
-        amount: req.body.ingredients.amount,
-        unit: req.body.ingredients.unit,
-      });
-
+      recipe.ingredients = converted_Ingredients;
       recipe.preparation_time = req.body.preparation_time;
       recipe.serving_size = req.body.serving_size;
       recipe.cook_time = req.body.cook_time;

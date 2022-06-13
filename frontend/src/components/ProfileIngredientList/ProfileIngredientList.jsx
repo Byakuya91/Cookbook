@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 // COPY and PASTE Ingredients display code
 
 const ProfileIngredientList = (props) => {
-  console.log("The Ingredient ID is: ", props.IngredientID);
+  //   console.log("The Ingredient ID is: ", props.IngredientID);
 
   return (
     <div>

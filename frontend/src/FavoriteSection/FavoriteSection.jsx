@@ -4,7 +4,7 @@ import ProfileIngredientList from "../components/ProfileIngredientList/ProfileIn
 
 const FavoriteSection = (props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [Ingredients, setIngredients] = useState([]);
+  // const [Ingredients, setIngredients] = useState([]);
 
   //   console.log("The current recipe ID is: ", props.profileRecipe._id);
 
@@ -27,15 +27,14 @@ const FavoriteSection = (props) => {
         "The ingredients inside the favorie section is",
         props.profileRecipe.ingredients
       )} */}
-      {props.profileRecipe.ingredients.map((ingredient) => {
+      {props.profileRecipe.ingredients.map((ingredient, index) => {
         return (
-          <div>
+          <div key={index}>
             <ProfileIngredientList
               IngredientName={ingredient.name}
               IngredientAmount={ingredient.amount}
               IngredientUnit={ingredient.unit}
               IngredientID={ingredient._id}
-              ProfileIngredients = {}
             />
           </div>
         );
