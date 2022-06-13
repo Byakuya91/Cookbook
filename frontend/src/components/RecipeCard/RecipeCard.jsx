@@ -4,6 +4,7 @@ import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import React, { useState, useEffect } from "react";
 import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
+import IngredientList from "../IngredientList/IngredientList";
 
 const RecipeCard = (props) => {
   //const { user } = useContext(AuthContext);
@@ -75,7 +76,14 @@ const RecipeCard = (props) => {
                   <h2> Author:</h2>
                   <p>{recipe.author}</p>
                   <h2> Ingredients:</h2>
-                  {/* <p>{recipe.ingredients}</p> */}
+                  {recipe.ingredients.map((ingredient, index) => (
+                    <IngredientList
+                      key={ingredient._id}
+                      IngredientAmount={ingredient.amount}
+                      IngredientName={ingredient.name}
+                      IngredientUnit={ingredient.unit}
+                    />
+                  ))}
                   <h2> Calories:</h2>
                   <p>{recipe.calories}</p>
                   <h2> Cook_Time:</h2>

@@ -3,6 +3,7 @@ import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
 import FavoriteRecipeSearch from "../FavoriteRecipeSearch/FavoriteRecipeSearch";
+import FavoriteIngredientsList from "../FavoriteIngredientsList/FavoriteIngredientsList";
 
 const FavoriteRecipeMapper = (props) => {
   // test searchFavoriteRecipe
@@ -45,7 +46,19 @@ const FavoriteRecipeMapper = (props) => {
                   <h2> Author:</h2>
                   <p>{recipe.author}</p>
                   <h2> Ingredients:</h2>
-                  <p>{recipe.ingredients}</p>
+                  {recipe.ingredients.map((ingredient) => (
+                    // <div>
+                    //   <p>
+                    //     {ingredient.amount} {ingredient.unit} of{" "}
+                    //     {ingredient.name}
+                    //   </p>
+                    // </div>
+                    <FavoriteIngredientsList
+                      IngredientName={ingredient.name}
+                      IngredientAmount={ingredient.amount}
+                      IngredientUnit={ingredient.unit}
+                    />
+                  ))}
                   <h2> Calories:</h2>
                   <p>{recipe.calories}</p>
                   <h2> Cook_Time:</h2>
