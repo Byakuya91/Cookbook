@@ -1,8 +1,10 @@
 import { useState } from "react";
 import EditRecipe from "../components/EditRecipe/EditRecipe";
+import ProfileIngredientList from "../components/ProfileIngredientList/ProfileIngredientList";
 
 const FavoriteSection = (props) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [Ingredients, setIngredients] = useState([]);
 
   //   console.log("The current recipe ID is: ", props.profileRecipe._id);
 
@@ -28,9 +30,13 @@ const FavoriteSection = (props) => {
       {props.profileRecipe.ingredients.map((ingredient) => {
         return (
           <div>
-            <p>
-              {ingredient.amount} {ingredient.unit} of {ingredient.name}{" "}
-            </p>
+            <ProfileIngredientList
+              IngredientName={ingredient.name}
+              IngredientAmount={ingredient.amount}
+              IngredientUnit={ingredient.unit}
+              IngredientID={ingredient._id}
+              ProfileIngredients = {}
+            />
           </div>
         );
       })}

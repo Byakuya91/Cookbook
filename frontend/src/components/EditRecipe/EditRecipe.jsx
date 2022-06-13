@@ -9,9 +9,7 @@ const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
   // Recipe Edit state variables
   const [editName, setEditName] = useState(props.editRecipe?.name);
-  const [editIngredients, setEditIngredients] = useState(
-    props.editRecipe?.ingredients
-  );
+  const [editIngredients, setEditIngredients] = useState([]);
   const [editCook_Time, setEditCook_Time] = useState(
     props.editRecipe?.cook_time
   );
@@ -31,7 +29,7 @@ const EditRecipe = (props) => {
 
   //   console log tests for state variables
 
-  // console.log("The ingredient name is: ", props.editRecipe.ingredients.name);
+  console.log("The editRecipe ID  is: ", props.editRecipe?._id);
 
   // STEPS FOR ADDING an ingredient
   // 1) Console logs of Ingredient to see what fields are existing inside an object
@@ -51,6 +49,8 @@ const EditRecipe = (props) => {
 
   // referencing the URL
   const filePickerRef = useRef();
+
+  // console.log("the edit recipe ID is:", props.editRecipe?._id);
 
   // BASE URL for API
   const BASE = "http://localhost:5000/api";
@@ -150,13 +150,11 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditIngredients(event.target.value)}
           /> */}
           <br></br>
-          <button onClick={() => setIsAddIngredient(true)}>
-            Ingredient Add
-          </button>
-          <button onClick={() => setIsAddIngredient(false)}>
-            Close Ingredients
-          </button>
-          {isAddIngredient ? <AddMoreIngredients /> : null}
+          <AddMoreIngredients
+            recipeID={props.editRecipe?._id}
+            setEditIngredients={setEditIngredients}
+            EditIngredients={editIngredients}
+          />
           <br></br>
           <label htmlFor="recipe_cook_time ">Cook_Time:</label> <br></br>
           <input

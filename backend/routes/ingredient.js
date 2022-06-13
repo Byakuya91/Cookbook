@@ -21,6 +21,7 @@ router.post(
     try {
       //  find a user's id
       const user = await User.findById(req.params.userId);
+      // console.log("the user is: ", user);
 
       //   console.log("The user id is: ", user);
       // console.log("the user is", user);
@@ -37,7 +38,7 @@ router.post(
       // find the recipe inside the user
       let recipe = user.recipes.id(req.params.recipeId);
       // if there is no recipe inside the user
-      console.log("The recipe id is: ", recipe);
+      // console.log("The recipe id is: ", recipe);
       if (!recipe) {
         return res
           .status(400)
@@ -45,6 +46,9 @@ router.post(
       }
 
       //   Step THREE: create a a way to add an ingredient
+      // let ingredientsArr = recipe.ingredients;
+
+      // console.log("The Ingredients inside the array are: ", ingredientsArr);
 
       let newIngredient = {
         name: req.body.name,

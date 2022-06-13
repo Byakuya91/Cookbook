@@ -30,7 +30,9 @@ const HomePage = () => {
   const decodedUser = localStorage.getItem("token");
   // a way to hold selectedRecipeId
   const [selectedRecipeId, setSelectedRecipeId] = useState();
+  // a way to handle rendering pages
   const [rerender, setRerender] = useState(false);
+  // TODO: Create a modal for addRecipe
 
   // a way to find the selectedRecipeID (WORKING)
   // console.log("the Search term is: ", homeRecipeSearch);
@@ -61,7 +63,7 @@ const HomePage = () => {
     console.log(" the ids of recipe are:", recipe);
 
     try {
-      //  Step one and step two
+      //  Step one and step two: AXIOS call
       await axios
         .delete(`${BASE}/recipes/${user._id}/recipes/${id}`)
         .then((res) => {
