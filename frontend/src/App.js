@@ -19,6 +19,9 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
+// Material UI
+// import Button from "@babel/core";
+
 function App() {
   //   state variables
   // setting the user's photo

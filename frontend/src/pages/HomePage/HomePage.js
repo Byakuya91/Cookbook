@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import "./HomePage.css";
+// import "./HomePage.css";
 import UserInfoDisplay from "../../components/UserInfoDisplay/UserInfoDisplay";
 import PostForm from "../../components/PostForm/PostForm";
 import PostList from "../../components/PostList/PostList";
 import ProfileRecipeCardMapper from "../../components/ProfileRecipeCardMapper/ProfileRecipeCardMapper";
 import SearchUserRecipes from "../../components/SearchUserRecipes/SearchUserRecipes";
 import AddRecipe from "../../components/AddRecipe/AddRecipe";
+import { Typography } from "@mui/material";
 
 const HomePage = () => {
   // TODOs
@@ -153,14 +154,23 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1 className="container">Home Page for {user.name}!</h1>
+      <Typography
+        variant="h2"
+        className="container"
+        color="primary"
+        align="center"
+        display="block"
+      >
+        Home Page for {user.name}!
+      </Typography>
+
       <UserInfoDisplay user={user} />
 
       <div>
-        <h1>
+        <Typography variant="h2">
           {" "}
           There are {homeRecipes.length} recipes for the {user.name}
-        </h1>
+        </Typography>
         {/* <PostForm setPosts={setPosts} /> */}
         <AddRecipe
           AddNewRecipe={setHomeRecipes}

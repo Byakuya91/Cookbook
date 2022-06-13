@@ -13,7 +13,7 @@ const FavoriteRecipeMapper = (props) => {
   // 2)  Filter through the recipes where favorite is equal to False(We have a toggle button)
   // 3) Map through the filteredArray to include the cards themselves
   // 4) Add the search critera to the mapper in the filter portion.
-
+  // SEARCH BAR complete if you have time
   useEffect(() => {
     props.getFavoriteRecipes();
   }, []);
