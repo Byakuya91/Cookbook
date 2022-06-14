@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 
-const FavoritesButton = (props) => {
+const FavoritesButton = ({ props }) => {
   // BASE URL
   const BASE = "http://localhost:5000/api";
   // Contextfor the user
@@ -16,24 +16,23 @@ const FavoritesButton = (props) => {
 
   // function to add a recipe
 
+  // IF this console log is uncommented then page will go blank!
+  // console.log(
+  //   "The favorite Recipe ID before handleAddFavoriteRecipe is:",
+  //   props.recipeiD
+  // );
+
   const handleAddFavoriteRecipe = async (id) => {
     // Step One: create a field for the recipe
 
-    // let favoriteRecipeValue = {
-    //    "favorite": true
-
-    // };
-
     //   Step two: AXIOS request
-    console.log("the RecipeID is:", props.recipeID);
+    console.log("the RecipeID before the request is:", props.recipeID);
 
     try {
       await axios
         .patch(
           `http://localhost:5000/api/recipes/${user._id}/favoriteRecipes/${id}`,
-          {
-            favorite: true,
-          }
+          {}
         )
         .then((res) => {
           console.log(res);

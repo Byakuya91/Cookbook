@@ -5,6 +5,7 @@ import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import React, { useState, useEffect } from "react";
 import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
 import IngredientList from "../IngredientList/IngredientList";
+import "../RecipeCard/RecipeCard.css";
 import {
   Typography,
   Button,
@@ -15,6 +16,9 @@ import {
   Container,
 } from "@mui/material";
 import { grid } from "@mui/system";
+import { experimentalStyled as styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/material";
 
 const RecipeCard = (props) => {
   //const { user } = useContext(AuthContext);
@@ -22,6 +26,7 @@ const RecipeCard = (props) => {
   const baseUrl = "http://localhost:5000/api/";
 
   const [favoriteRecipe, setFavoriteRecipe] = useState();
+  //  styles from Material UI
 
   // TODO: Figure out a way to re-render the page whenever the favorites is changed.
   // [props.recipes] removed from UseEffect
@@ -36,9 +41,24 @@ const RecipeCard = (props) => {
 
   console.log(props.searchRecipe);
 
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
-    <div>
-      <Grid container id="userCard">
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="center"
+        direction="row"
+        spacing={2}
+        id="userCard"
+      >
         {/* STEP ONE: map over recipes array */}
         {props.recipes &&
           props.recipes.map((element, index) =>
@@ -76,7 +96,7 @@ const RecipeCard = (props) => {
               .map((recipe, index) => {
                 return (
                   // Abstract this in a new component: UserRecipeCard/ change this to AllRecipesMapper.
-                  <Grid spacing={8} item key={recipe._id}>
+                  <Grid spacing={3} item key={recipe._id}>
                     <Paper variant="elevation" elevation={8}>
                       <h2> Name:</h2>
                       <p>{recipe.name}</p>
@@ -84,6 +104,7 @@ const RecipeCard = (props) => {
                         {recipe.image !== undefined && (
                           <img
                             src={`http://localhost:5000/${recipe.image}`}
+                            className="recipe-card-img"
                           ></img>
                         )}
                       </div>
@@ -106,17 +127,20 @@ const RecipeCard = (props) => {
                       <p>{recipe.directions}</p>
                       <h2> Preparation_Time:</h2>
                       <p>{recipe.preparation_time}</p>
+                      <h2>Recipe ID</h2>
+                      <p>{recipe._id}</p>
                       <h2> Serving_Size:</h2>
                       <p>{recipe.serving_size}</p>
                       <h2> Yield:</h2>
                       <p>{recipe.yield}</p>
                       <span>
-                        {" "}
-                        {recipe.favorite ? (
+                        <FavoritesButton recipeID={recipe._id} />
+                        <RemoveFavoriteRecipeButton recipeID={recipe._id} />
+                        {/* {recipe.favorite ? (
                           <RemoveFavoriteRecipeButton recipeID={recipe._id} />
                         ) : (
                           <FavoritesButton recipeID={recipe._id} />
-                        )}
+                        )} */}
                       </span>
                     </Paper>
                   </Grid>
@@ -124,7 +148,7 @@ const RecipeCard = (props) => {
               })
           )}
       </Grid>
-    </div>
+    </Box>
   );
 };
 
