@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { Typography, Button, ButtonGroup, Container } from "@mui/material";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const RecipePhotoUpload = (props) => {
   const BASE = `http://localhost:5000/api`;
@@ -84,7 +86,7 @@ const RecipePhotoUpload = (props) => {
   };
 
   return (
-    <div id="imageUploadComponent">
+    <Container id="imageUploadComponent">
       <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
         <h2>Edit Photo</h2>
         <input
@@ -93,9 +95,17 @@ const RecipePhotoUpload = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <button type="submit">Add Photo</button>
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          size="medium"
+          endIcon={<AddAPhotoIcon />}
+        >
+          Add Photo
+        </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 

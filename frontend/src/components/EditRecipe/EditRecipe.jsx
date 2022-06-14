@@ -4,6 +4,7 @@ import AuthContext from "../../context/AuthContext";
 import jwtDecode from "jwt-decode";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import AddMoreIngredients from "../AddMoreIngredients/AddMoreIngredients";
+import { Typography, Button, ButtonGroup, Container } from "@mui/material";
 
 const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
@@ -139,20 +140,28 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditName(event.target.value)}
           />
           <br></br>
-          {/* <label htmlFor="recipe_ingredients"> Ingredients:</label> <br></br> */}
-          {/* <input
-            type="text"
-            id="recipe_ingredients"
-            value={editIngredients}
-            onChange={(event) => setEditIngredients(event.target.value)}
-          /> */}
-          <br></br>
-          <AddMoreIngredients
+          {/* <AddMoreIngredients
             ingredients={props.editRecipe.ingredients}
             recipeID={props.editRecipe?._id}
             setEditIngredients={setEditIngredients}
             EditIngredients={editIngredients}
-          />
+          /> */}
+          <ButtonGroup color="primary" variant="contained" size="small">
+            <Button onClick={() => setIsAddIngredient(true)}>
+              {" "}
+              Edit Ingredient
+            </Button>
+
+            <Button onClick={() => setIsAddIngredient(false)}> Close</Button>
+          </ButtonGroup>
+          {isAddIngredient ? (
+            <AddMoreIngredients
+              ingredients={props.editRecipe.ingredients}
+              recipeID={props.editRecipe?._id}
+              setEditIngredients={setEditIngredients}
+              EditIngredients={editIngredients}
+            />
+          ) : null}
           <br></br>
           <label htmlFor="recipe_cook_time ">Cook_Time:</label> <br></br>
           <input
@@ -207,16 +216,24 @@ const EditRecipe = (props) => {
           />
         </div>
         <span>
-          <button type="submit"> Edit Recipe</button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="success"
+            disableElevation
+          >
+            Update Recipe
+          </Button>
         </span>
       </form>
       <br></br>
-      <span>
-        <button onClick={() => setIsEditPhoto(true)}> Edit Photo</button>
-      </span>
-      <span>
-        <button onClick={() => setIsEditPhoto(false)}> &times;</button>
-      </span>
+
+      <ButtonGroup color="primary" variant="contained">
+        <Button onClick={() => setIsEditPhoto(true)}> Edit Photo</Button>
+
+        <Button onClick={() => setIsEditPhoto(false)}> Close</Button>
+      </ButtonGroup>
+
       {isEditPhoto ? (
         <RecipePhotoUpload
           recipeID={props.recipeID}

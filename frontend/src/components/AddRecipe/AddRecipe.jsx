@@ -4,8 +4,10 @@ import AuthContext from "../../context/AuthContext";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import jwtDecode from "jwt-decode";
 import AddIngredient from "./AddIngredient";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Container } from "@mui/material";
 import "../AddRecipe/AddRecipe.css";
+
+import SendIcon from "@mui/icons-material/Send";
 
 // TO DO:
 //   1) Establish a form to submit the data (DONE)
@@ -265,11 +267,16 @@ const AddRecipe = (props) => {
           onChange={(event) => setFile(event.target.files[0])}
         />
       </div>
-      <span>
-        <Button variant="contained" disableElevation type="submit">
-          Submit Recipe
+      <div>
+        <Button
+          variant="contained"
+          disableElevation
+          type="submit"
+          endIcon={<SendIcon />}
+        >
+          Add Recipe
         </Button>
-      </span>
+      </div>
     </form>
   );
 };

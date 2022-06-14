@@ -49,10 +49,17 @@ const AddMoreIngredients = (props) => {
 
   return (
     <Container>
+      <Typography variant="h3" component="h2" gutterBottom={true}>
+        Edit Ingredients
+      </Typography>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
-          <h1>Ingredients</h1>
-          <label htmlFor="ingredient_name">Name</label>
+          <Typography variant="h4" component="h4" gutterBottom={true}>
+            Ingredient
+          </Typography>
+          <Typography variant="label" component="h2" htmlFor="ingredient_name">
+            Name
+          </Typography>
           <input
             type="text"
             id="ingredient_name"
@@ -60,7 +67,13 @@ const AddMoreIngredients = (props) => {
             value={element.name || ""}
             onChange={(e) => handleChange(index, e)}
           />
-          <label htmlFor="ingredient_amount">Amount</label>
+          <Typography
+            variant="label"
+            component="h2"
+            htmlFor="ingredient_amount"
+          >
+            Amount
+          </Typography>
           <input
             type="number"
             id="ingredient_amount"
@@ -68,7 +81,9 @@ const AddMoreIngredients = (props) => {
             value={element.amount || ""}
             onChange={(e) => handleChange(index, e)}
           />
-          <label htmlFor="ingredient_unit">Unit of Measure</label>
+          <Typography variant="label" component="h2" htmlFor="ingredient_unit">
+            Unit of Measure
+          </Typography>
           <input
             type="text"
             id="ingredient_unit"
