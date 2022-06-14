@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import AuthContext from "../../context/AuthContext";
+import { Typography, Button, ButtonGroup, Container } from "@mui/material";
 
 // TODO List:
 
@@ -22,11 +23,6 @@ const AddMoreIngredients = (props) => {
 
   let newIngredients = [...formValues];
   let unspreadNewIngredients = [formValues];
-  // console.log("The new Ingredients are:", newIngredients);
-  // console.log("The new Ingredients unspread are:", unspreadNewIngredients);
-
-  //   console log tests
-  //   console.log("the Ingredients are as follows: ", ingredients_lst);
 
   //  changes state for formValues above.
   let handleChange = (i, e) => {
@@ -51,75 +47,8 @@ const AddMoreIngredients = (props) => {
     props.setEditIngredients(newFormValues);
   };
 
-  // STEPS
-  // 1) Figure out a way to take each individual object inside formValues and do an Axios call
-
-  // 2) Incorporate headers
-  // 3) Give us some response going forward.
-
-  //   ingredients_lst.map((ingredient) => ingredientForm.append("Ingredients[]", ingredient))
-
-  console.log("Outside the function before the AXIOS call", newIngredients);
-
-  // async function handleIngredientsSubmit(e) {
-  //   // prevents the page from defaulting
-  //   e.preventDefault();
-  //   console.log("Executing Handle Ingredient Submit ");
-
-  //   // Step One: create an object to send in the POST request
-  //   let IngredientForm = new FormData();
-
-  //   //  Step Two: put each Ingredient object inside the FormData object
-  //   // localStorage.setItem("token", res.headers["x-auth-token"]);
-  //   setUser(jwtDecode(localStorage.getItem("token")));
-
-  //   newIngredients.forEach((newIngredient) => {
-  //     IngredientForm.append("ingredients[]", newIngredient);
-  //   });
-
-  //   // Step Three: AXIOS request
-
-  //   console.log(
-  //     "the Ingredients inside for the form is",
-  //     IngredientForm.getAll("ingredients[]")
-  //   );
-
-  //   try {
-  //     console.log("Inside function/before axios call: ", IngredientForm);
-
-  //     await axios
-  //       .post(
-  //         `${BASE}/ingredients/${user._id}/recipes/${props.recipeID}/ingredients/`,
-  //         IngredientForm,
-  //         {
-  //           headers: {
-  //             "x-auth-token": localStorage.getItem("token"),
-  //           },
-  //         }
-  //         // console.log(
-  //         //   "The ingredients before the AXIO call are:",
-  //         //   IngredientForm
-  //         // ),
-  //         // console.log("The user information  before the  AXIOS call are:", user)
-  //       )
-
-  //       .then((res) => {
-  //         console.log("Promise Fulfilled:", res.data);
-  //       });
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-
-  //   console.log("After the request of the setState call:", user);
-  //   // console.log(res.data);
-  // }
-
-  // let resultOfData = handleIngredientSubmit();
-
-  // console.log("The data inside handleIngredientSubmit is:", resultOfData);
-
   return (
-    <div>
+    <Container>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
           <h1>Ingredients</h1>
@@ -148,25 +77,29 @@ const AddMoreIngredients = (props) => {
             onChange={(e) => handleChange(index, e)}
           />
 
-          <button
+          <Button
             type="button"
             className="button remove"
+            variant="contained"
+            color="success"
             onClick={() => removeFormFields(index)}
           >
             Remove
-          </button>
+          </Button>
         </div>
       ))}
       <div className="button-section">
-        <button
+        <Button
           className="button add"
+          variant="contained"
+          color="primary"
           type="button"
           onClick={() => addFormFields()}
         >
           Add
-        </button>
+        </Button>
       </div>
-    </div>
+    </Container>
   );
 };
 

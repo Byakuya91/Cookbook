@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Typography, Button, ButtonGroup, Icon } from "@mui/material";
 
 const Testing = (props) => {
   const [formValues, setFormValues] = useState([
@@ -57,24 +58,27 @@ const Testing = (props) => {
             onChange={(e) => handleChange(index, e)}
           />
           {index ? (
-            <button
+            <Button
               type="button"
+              variant="contained"
+              color="success"
               className="button remove"
               onClick={() => removeFormFields(index)}
             >
               Remove
-            </button>
+            </Button>
           ) : null}
         </div>
       ))}
       <div className="button-section">
-        <button
+        <Button
           className="button add"
+          variant="contained"
           type="button"
           onClick={() => addFormFields()}
         >
           Add
-        </button>
+        </Button>
       </div>
     </div>
   );

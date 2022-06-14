@@ -157,7 +157,7 @@ const HomePage = () => {
       <Typography
         variant="h2"
         className="container"
-        color="primary"
+        color=" green"
         align="center"
         display="block"
       >
@@ -167,8 +167,14 @@ const HomePage = () => {
       <UserInfoDisplay user={user} />
 
       <div>
-        <Typography variant="h2">
-          {" "}
+        <Typography
+          variant="h2"
+          component="h3"
+          className="container"
+          color="green"
+          align="center"
+          display="inline"
+        >
           There are {homeRecipes.length} recipes for the {user.name}
         </Typography>
         {/* <PostForm setPosts={setPosts} /> */}

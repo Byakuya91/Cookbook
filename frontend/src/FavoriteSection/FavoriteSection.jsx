@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditRecipe from "../components/EditRecipe/EditRecipe";
 import ProfileIngredientList from "../components/ProfileIngredientList/ProfileIngredientList";
+import { Typography, Button, ButtonGroup, Container } from "@mui/material";
 
 const FavoriteSection = (props) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -11,15 +12,15 @@ const FavoriteSection = (props) => {
   //   console.log("the profile recipe Id currently is: ", props.recipeID);
 
   return (
-    <div key={props.profileRecipe._id}>
+    <Container key={props.profileRecipe._id}>
       <h2> Name:</h2>
       <p>{props.profileRecipe.name}</p>
       <h2> Image:</h2>
-      <div>
+      <Container>
         {props.profileRecipe.image !== undefined && (
           <img src={`http://localhost:5000/${props.profileRecipe.image}`}></img>
         )}
-      </div>
+      </Container>
       <h2> Author:</h2>
       <p>{props.profileRecipe.author}</p>
       <h2> Ingredients:</h2>
@@ -51,12 +52,19 @@ const FavoriteSection = (props) => {
       <p>{props.profileRecipe.yield}</p>
       <h2> Calories:</h2>
       <p>{props.profileRecipe.calories}</p>
-      <button onClick={() => props.recipeDelete(props.profileRecipe._id)}>
-        Delete
-      </button>
-
-      <button onClick={() => setIsEdit(true)}>Edit</button>
-      <button onClick={() => setIsEdit(false)}>&times;</button>
+      <Button
+        variant="contained"
+        color="success"
+        disableRipple
+        size="medium"
+        onClick={() => props.recipeDelete(props.profileRecipe._id)}
+      >
+        Delete Recipe
+      </Button>
+      <ButtonGroup variant="contained" color="secondary" orientation="vertical">
+        <Button onClick={() => setIsEdit(true)}>Edit</Button>
+        <Button onClick={() => setIsEdit(false)}>Close</Button>
+      </ButtonGroup>
       {isEdit ? (
         <EditRecipe
           editRecipe={props.profileRecipe}
@@ -71,7 +79,7 @@ const FavoriteSection = (props) => {
           recipeImage={props.profileRecipe.image}
         />
       ) : null}
-    </div>
+    </Container>
   );
 };
 

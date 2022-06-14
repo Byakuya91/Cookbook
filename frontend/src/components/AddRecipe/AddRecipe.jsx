@@ -4,6 +4,8 @@ import AuthContext from "../../context/AuthContext";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import jwtDecode from "jwt-decode";
 import AddIngredient from "./AddIngredient";
+import { Typography, Button } from "@mui/material";
+import "../AddRecipe/AddRecipe.css";
 
 // TO DO:
 //   1) Establish a form to submit the data (DONE)
@@ -167,9 +169,16 @@ const AddRecipe = (props) => {
   return (
     //   Form template and data that will need to be sent.
     <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
-      <div>
-        <h1>Add a new Recipe</h1>
-        <br></br>
+      <div classname="form-field-container">
+        <Typography
+          variant="h4"
+          component="h2"
+          gutterBottom={true}
+          color="black"
+          className="container"
+        >
+          Add a new Recipe
+        </Typography>
         <label htmlFor="recipe_name">Recipe Name:</label> <br></br>
         <input
           type="text"
@@ -181,16 +190,6 @@ const AddRecipe = (props) => {
         />
         <br></br>
         <AddIngredient setIngredients={setIngredients} />
-        {/* <label htmlFor="ingredients"> Ingredients:</label> <br></br>
-        <input
-          type="text"
-          id="ingredients"
-          required
-          placeholder="Enter ingredients..."
-          value={ingredients}
-          onChange={(event) => setIngredients(event.target.value)}
-        /> */}
-        <h1>This is a placeholder for Ingredients</h1>
         <br></br>
         <label htmlFor="Cook_Time">Cook_Time:</label> <br></br>
         <input
@@ -267,16 +266,10 @@ const AddRecipe = (props) => {
         />
       </div>
       <span>
-        {" "}
-        <button type="submit"> Submit Recipe</button>
+        <Button variant="contained" disableElevation type="submit">
+          Submit Recipe
+        </Button>
       </span>
-      {/* <RecipePhotoUpload RecipeImage={props.homeRecipes} /> */}
-      {/* Combine the photo upload with the recipe Component. */}
-      {/* <div id="imageUploadComponent">
-        <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
-          <button type="submit">Submit button</button>
-        </form>
-      </div> */}
     </form>
   );
 };
