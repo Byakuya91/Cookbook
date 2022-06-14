@@ -54,18 +54,18 @@ const FriendsPage = () => {
   };
 
   return (
-    <div id="friendsContainer">
-      <div className="friendsCardContainer">
-        <h2>People you may know</h2>
-        <UserMapper allUsers={allUsers} setFriendReqSent={setFriendReqSent} />
+    <div>
+      <div>
+        {/* <h2>People you may know</h2> */}
+        {/* <UserMapper allUsers={allUsers} setFriendReqSent={setFriendReqSent} /> */}
       </div>
 
-      <div className="friendsCardContainer">
-        <h2>Friends</h2>
-        <FriendMapper friends={friends} setFriends={setFriends} />
+      <div>
+        {/* <h2>Friends</h2> */}
+        {/* <FriendMapper friends={friends} setFriends={setFriends} /> */}
       </div>
 
-      <div className="friendsCardContainer">
+      {/* <div className="friendsCardContainer">
         <h2>Friend Requests Received</h2>
         <FriendReqRecMapper
           friendReqReceived={friendReqReceived}
@@ -73,11 +73,11 @@ const FriendsPage = () => {
           setFriends={setFriends}
           setAllUsers
         />
-      </div>
+      </div> */}
 
-      <div className="friendsCardContainer">
-        <h2>Friend Requests Sent</h2>
-        <FriendReqSentMapper friendReqSent={friendReqSent} />
+      <div>
+        {/* <h2>Friend Requests Sent</h2>
+        <FriendReqSentMapper friendReqSent={friendReqSent} /> */}
         {/* <RecipeCard /> */}
         <RecipeMapper />
       </div>
