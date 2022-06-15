@@ -9,16 +9,20 @@ import PostList from "../../components/PostList/PostList";
 import ProfileRecipeCardMapper from "../../components/ProfileRecipeCardMapper/ProfileRecipeCardMapper";
 import SearchUserRecipes from "../../components/SearchUserRecipes/SearchUserRecipes";
 import AddRecipe from "../../components/AddRecipe/AddRecipe";
-import { Typography } from "@mui/material";
+// Material UI imports
+import { Typography, Grid, Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 
 const HomePage = () => {
-  // TODOs
-  // 1) Strip away all the friends code here (IN PROGRESS)
-  // 2) repurpose the  the UseEffects and requests for the following:
-  // 3)  grab the single user's information(DONE)
-  // 4)  map that user's recipes in a table/ component(referencing work you've done before) (DONE)
-  // 5) Add your ability to submit a recipe to the user.(DONE)
-  // 6) Edit and delete a recipe functionality needs to be implemented in this area.(IN PROGRESS)
+  //  Material UI styles
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
 
   //  state variables for comments
   const [posts, setPosts] = useState(null);
@@ -153,43 +157,57 @@ const HomePage = () => {
   // }, [homeRecipes]);
 
   return (
-    <div>
-      <Typography
-        variant="h2"
-        className="container"
-        color=" green"
-        align="center"
-        display="block"
-      >
-        Home Page for {user.name}!
-      </Typography>
-
-      <UserInfoDisplay user={user} />
-
-      <div>
-        <Typography
-          variant="h2"
-          component="h3"
-          className="container"
-          color="green"
-          align="center"
-          display="inline"
-        >
-          There are {homeRecipes.length} recipes for the {user.name}
-        </Typography>
-        {/* <PostForm setPosts={setPosts} /> */}
-        <AddRecipe
-          AddNewRecipe={setHomeRecipes}
-          homeRecipes={homeRecipes}
-          handleGetUserRecipes={handleGetUserRecipes}
-        />
-        <SearchUserRecipes
-          RecipeSearch={homeRecipeSearch}
-          SetRecipeSearch={setHomeRecipeSearch}
-        />
-        <div className="flex-row">
-          <div className="width50">
-            {/* <PostList posts={friendsPosts} friendsList={true} /> */}
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} columns={16}>
+        <Grid item xs={8}>
+          <Item>
+            <UserInfoDisplay user={user} />
+          </Item>
+        </Grid>
+        <Grid item xs={8}>
+          <Item>
+            <div>
+              <Typography
+                variant="h2"
+                className="container"
+                color=" green"
+                align="center"
+                display="block"
+              >
+                Home Page for {user.name}!
+              </Typography>
+            </div>
+          </Item>
+          <Grid item xs={8}>
+            <Item>
+              <Typography
+                variant="h2"
+                component="h3"
+                className="container"
+                color="green"
+                align="center"
+                display="block"
+                gutterBottom={true}
+                style={{
+                  display: "flex",
+                  alignItems: "stretch",
+                  justifyContent: "center",
+                  margin: "1rem",
+                }}
+              >
+                There are {homeRecipes.length} recipes for the {user.name}
+              </Typography>
+            </Item>
+          </Grid>
+        </Grid>
+        <Grid item xs={8}>
+          <Item>
+            <SearchUserRecipes
+              RecipeSearch={homeRecipeSearch}
+              SetRecipeSearch={setHomeRecipeSearch}
+            />
+          </Item>
+          <Item>
             <ProfileRecipeCardMapper
               rerender={rerenderFunction}
               profileRecipes={homeRecipes}
@@ -202,13 +220,19 @@ const HomePage = () => {
               selectedRecipeId={selectedRecipeId}
               selectedRecipe={selectedRecipe}
             />
-          </div>
-          <div className="width50">
-            {/* <PostList posts={posts} friendsList={false} /> */}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Item>
+        </Grid>
+        <Grid item xs={8}>
+          <Item>
+            <AddRecipe
+              AddNewRecipe={setHomeRecipes}
+              homeRecipes={homeRecipes}
+              handleGetUserRecipes={handleGetUserRecipes}
+            />
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

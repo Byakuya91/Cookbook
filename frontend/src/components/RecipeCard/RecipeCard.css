@@ -2,9 +2,9 @@
 /* Images for all the recipe cards in this component  */
 .recipe-card-img{
     
-    width: 100%;
-    object-fit: contain;
-    max-height:300,
+     width: 100%;
+     object-fit: contain; 
+     max-height:300, 
     
 
 

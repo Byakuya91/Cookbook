@@ -25,7 +25,7 @@ const Navbar = () => {
             to="/friends"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <b>Friends</b>
+            <b> Recipes</b>
           </Link>
         </li>
         <li>

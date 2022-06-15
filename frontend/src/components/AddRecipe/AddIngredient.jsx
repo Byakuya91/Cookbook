@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Typography, Button, ButtonGroup, Icon } from "@mui/material";
+import {
+  Typography,
+  Button,
+  ButtonGroup,
+  Icon,
+  Container,
+} from "@mui/material";
 
 const Testing = (props) => {
   const [formValues, setFormValues] = useState([
@@ -29,7 +35,7 @@ const Testing = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
           <h1>Ingredients</h1>
@@ -80,7 +86,7 @@ const Testing = (props) => {
           Add
         </Button>
       </div>
-    </div>
+    </Container>
   );
 };
 

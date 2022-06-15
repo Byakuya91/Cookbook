@@ -3,6 +3,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import SearchRecipe from "../SearchRecipe/SearchRecipe";
+import {
+  Typography,
+  Button,
+  ButtonGroup,
+  Icon,
+  Paper,
+  Grid,
+  Container,
+  makeStyles,
+  Box,
+  Collapse,
+  CardContent,
+} from "@mui/material";
 
 // pass in the the user Data from props
 // function handleRecipeRetrieval({
@@ -45,21 +58,30 @@ const RecipeMapper = (props) => {
 
   // TODO: figure out a way to map out each recipe element
   return (
-    <>
-      <h2>Recipe List</h2>
-      <SearchRecipe
-        setSearchRecipe={setSearchRecipe}
-        searchRecipe={searchRecipe}
-      />
-      <RecipeCard
-        recipes={userRecipes}
-        searchRecipe={searchRecipe}
-        favoriteRecipes={favoriteRecipes}
-        setFavoriteRecipes={setFavoriteRecipes}
-        setRecipes={setUserRecipes}
-        makeRecipeGetRequest={makeRecipeGetRequest}
-      />
-    </>
+    <Grid container spacing={3} alignItems="stretch" display={"flex"}>
+      <Container>
+        <h2>Recipe List</h2>
+        <Grid item xs={4}>
+          <Container>
+            <SearchRecipe
+              setSearchRecipe={setSearchRecipe}
+              searchRecipe={searchRecipe}
+            />
+          </Container>
+        </Grid>
+
+        <Grid item xs={4}>
+          <RecipeCard
+            recipes={userRecipes}
+            searchRecipe={searchRecipe}
+            favoriteRecipes={favoriteRecipes}
+            setFavoriteRecipes={setFavoriteRecipes}
+            setRecipes={setUserRecipes}
+            makeRecipeGetRequest={makeRecipeGetRequest}
+          />
+        </Grid>
+      </Container>
+    </Grid>
   );
 };
 
