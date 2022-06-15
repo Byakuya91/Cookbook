@@ -37,8 +37,6 @@ router.post(
         (ingredient) => new Ingredient(JSON.parse(ingredient))
       );
 
-      console.log(converted_Ingredients);
-
       let recipe = new Recipe({
         // recipe fields
         author: user,
@@ -75,7 +73,7 @@ router.post(
 
 // PUT request to update the recipe inside of a user(COMPLETE)
 // http://localhost:5000/api/recipes/:userId/recipes/:recipeId
-router.put(
+router.patch(
   "/:userId/recipes/:recipeId",
   [auth, fileUpload.single("image")],
   async (req, res) => {
@@ -88,7 +86,7 @@ router.put(
       }
       //  find a user's id
       const user = await User.findById(req.params.userId);
-      console.log("the user ID is: ", user);
+      // console.log("the user ID is: ", user);
       // check if there is no user id
       if (!user)
         return res
@@ -96,16 +94,26 @@ router.put(
           .send(`User with id ${req.params.userId} does not exist!`);
       // check if recipe exists inside a user's subdocument
       const recipe = user.recipes.id(req.params.recipeId);
-      console.log("The recipe ID is: ", recipe);
+      // console.log("The recipe ID is: ", recipe);
       if (!recipe) {
         return res
           .status(400)
           .send(`The recipe does not exist inside the recipes!`);
       }
       console.log(req.body);
+
       let converted_Ingredients = req.body.ingredients.map(
         (ingredient) => new Ingredient(JSON.parse(ingredient))
       );
+      // let converted_Ingredients = req.body.ingredients.forEach(
+      //   (ingredient) => new Ingredient(JSON.parse(ingredient))
+      // );
+      console.log(converted_Ingredients);
+      // a way to update the recipe fields
+      // let converted_recipe = req.body.recipes.map(
+      //   (recipe) => new Recipe(JSON.parse(recipe))
+      // );
+
       // Update the recipe fields
       recipe.name = req.body.name;
       recipe.ingredients = converted_Ingredients;
@@ -116,6 +124,8 @@ router.put(
       recipe.yield = req.body.yield;
       recipe.directions = req.body.directions;
       recipe.author = req.body.author;
+
+      // console.log("The converted_ingredients are:", converted_Ingredients);
 
       // save the changes
       //console.log("the user   is:", user.recipes);

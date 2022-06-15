@@ -3,6 +3,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import AuthContext from "../../context/AuthContext";
 import { Typography, Button, ButtonGroup, Container } from "@mui/material";
+import DeleteRecipe from "../DeleteRecipe/DeleteRecipe";
 
 // TODO List:
 
@@ -98,6 +99,7 @@ const AddMoreIngredients = (props) => {
             variant="contained"
             color="success"
             onClick={() => removeFormFields(index)}
+            required
           >
             Remove
           </Button>
@@ -110,10 +112,16 @@ const AddMoreIngredients = (props) => {
           color="primary"
           type="button"
           onClick={() => addFormFields()}
+          required
         >
           Add
         </Button>
       </div>
+      <DeleteRecipe
+        ingredients={props.ingredients}
+        recipeID={props.recipeID}
+        setEditIngredients={props.setEditIngredients}
+      />
     </Container>
   );
 };

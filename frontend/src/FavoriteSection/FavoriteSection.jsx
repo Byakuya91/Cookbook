@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import EditRecipe from "../components/EditRecipe/EditRecipe";
 import ProfileIngredientList from "../components/ProfileIngredientList/ProfileIngredientList";
+import "../FavoriteSection/FavoriteSection.css";
+
 import {
   Typography,
   Button,
@@ -38,7 +40,7 @@ const FavoriteSection = (props) => {
           titleTypographyProps={{ variant: "h4" }}
         />
 
-        <CardMedia classname="recipe-card-img">
+        <CardMedia>
           {props.profileRecipe.image !== undefined && (
             <img
               src={`http://localhost:5000/${props.profileRecipe.image}`}

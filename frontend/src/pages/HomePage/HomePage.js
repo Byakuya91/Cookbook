@@ -10,7 +10,7 @@ import ProfileRecipeCardMapper from "../../components/ProfileRecipeCardMapper/Pr
 import SearchUserRecipes from "../../components/SearchUserRecipes/SearchUserRecipes";
 import AddRecipe from "../../components/AddRecipe/AddRecipe";
 // Material UI imports
-import { Typography, Grid, Box } from "@mui/material";
+import { Typography, Grid, Box, Button, Modal } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
@@ -41,28 +41,30 @@ const HomePage = () => {
   const [rerender, setRerender] = useState(false);
 
   // TODO: Create a modal for addRecipe
+  // State variables
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  // a way to find the selectedRecipeID (WORKING)
-  // console.log("the Search term is: ", homeRecipeSearch);
+  // Styles for the Modal
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   const selectedRecipe = homeRecipes.find(
     (homeRecipe) => homeRecipe._id === selectedRecipeId
   );
 
-  // console.log("The homeIngredients are:", homeIngredients);
-
-  // checking selected recipe Id(WORKING)
-  // console.log(selectedRecipe);
-
-  // console.log("The search term is:", homeRecipeSearch);
-
-  // console.log("the user's recipe ids are:", homeRecipes);
-
   // establish base URL
   const BASE = "http://localhost:5000/api";
-
-  // Function take in a recipeID as a parameter
-  //   When you map and create button OnClick to take in function
 
   //  COMPLETE
   const handleHomeRecipeDelete = async (id) => {

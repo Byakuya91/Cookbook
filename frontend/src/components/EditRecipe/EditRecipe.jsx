@@ -29,8 +29,9 @@ const EditRecipe = (props) => {
   const [editCalories, setEditCalories] = useState(props.editRecipe?.calories);
 
   //   console log tests for state variables
+  console.log("The ingredient inside EditIngredients are:", editIngredients);
 
-  console.log("The editRecipe ID  is: ", props.editRecipe?._id);
+  // console.log("The editRecipe ID  is: ", props.editRecipe?._id);
 
   // STEPS FOR ADDING an ingredient
   // 1) Console logs of Ingredient to see what fields are existing inside an object
@@ -52,6 +53,11 @@ const EditRecipe = (props) => {
   const filePickerRef = useRef();
 
   // console.log("the edit recipe ID is:", props.editRecipe?._id);
+  console.log("The name of the current recipe selected is:", editName);
+  console.log(
+    "The name of the current recipe selected is:",
+    JSON.stringify(editName)
+  );
 
   // BASE URL for API
   const BASE = "http://localhost:5000/api";
@@ -84,7 +90,7 @@ const EditRecipe = (props) => {
   const handleRecipeEdit = async (event) => {
     // Step ONE: prevent the page from reloading
     event.preventDefault();
-    console.log("Before Sending", editIngredients);
+    console.log("Before Sending", editName);
 
     // STEP TWO: create object to modify the contents
     let recipeEditForm = new FormData();
@@ -101,6 +107,11 @@ const EditRecipe = (props) => {
     recipeEditForm.append("image", file);
     recipeEditForm.append("author", props.editRecipe.author);
 
+    console.log(
+      "The name inside the RecipeEditForm",
+      recipeEditForm.getAll("name")
+    );
+    console.log(recipeEditForm.getAll("ingredients[]"));
     console.log(recipeEditForm.getAll("name"));
 
     //  STEP THREE AXIOS call: PUT request

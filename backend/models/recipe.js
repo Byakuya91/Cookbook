@@ -3,7 +3,7 @@ const Joi = require("joi");
 const { ingredientsSchema } = require("./ingredients");
 
 const recipeSchema = new mongoose.Schema({
-  name: { type: String, minlength: 2, maxlength: 100 },
+  name: { type: String },
   author: { type: mongoose.Types.ObjectId },
   ingredients: [{ type: ingredientsSchema }],
   preparation_time: {
@@ -12,7 +12,7 @@ const recipeSchema = new mongoose.Schema({
     maxlength: 50,
   },
   serving_size: { type: Number },
-  cook_time: { type: String, minlength: 2, maxlength: 100 },
+  cook_time: { type: String },
   yield: { type: Number },
   calories: { type: Number },
   directions: { type: String },
@@ -27,7 +27,7 @@ function validateRecipe(post) {
   const schema = Joi.object({
     name: Joi.string().min(2).max(100),
     ingredients: Joi.array(),
-    directions: Joi.string().min(10).max(100),
+    directions: Joi.string(),
     serving_size: Joi.number(),
     preparation_time: Joi.string().min(2).max(50),
     cook_time: Joi.string().min(2).max(100),

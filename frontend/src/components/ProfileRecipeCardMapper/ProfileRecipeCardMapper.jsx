@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FavoriteSection from "../../FavoriteSection/FavoriteSection";
-import EditRecipe from "../EditRecipe/EditRecipe";
+// import EditRecipe from "../EditRecipe/EditRecipe";
 
 const ProfileRecipeCardMapper = (props) => {
   // use effect triggered whenever the recipe changes

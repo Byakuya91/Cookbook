@@ -9,13 +9,19 @@ import FriendReqRecMapper from "../../components/FriendReqRecMapper/FriendReqRec
 import FriendReqSentMapper from "../../components/FriendReqSentMapper/FriendReqSentMapper";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipeMapper from "../../components/RecipeMapper/RecipeMapper";
+// Material UI imports
+import { Grid } from "@mui/material";
+import { ListItem } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
 const FriendsPage = () => {
   const { user } = useContext(AuthContext);
   const [allUsers, setAllUsers] = useState([]);
-  const [friends, setFriends] = useState(null);
-  const [friendReqReceived, setFriendReqReceived] = useState(null);
-  const [friendReqSent, setFriendReqSent] = useState(null);
+  // const [friends, setFriends] = useState(null);
+  // const [friendReqReceived, setFriendReqReceived] = useState(null);
+  // const [friendReqSent, setFriendReqSent] = useState(null);
   const decodedUser = localStorage.getItem("token");
   const baseUrl = "http://localhost:5000/api/";
 
@@ -30,58 +36,42 @@ const FriendsPage = () => {
       { headers: { "x-auth-token": decodedUser } }
     );
 
-    setAllUsers(allUsers.data);
+    // setAllUsers(allUsers.data);
 
-    let friends = await axios.get(`${baseUrl}friends/${user._id}/allFriends/`, {
-      headers: { "x-auth-token": decodedUser },
-    });
+    // let friends = await axios.get(`${baseUrl}friends/${user._id}/allFriends/`, {
+    //   headers: { "x-auth-token": decodedUser },
+    // });
 
-    setFriends(friends.data);
+    // setFriends(friends.data);
 
-    let friendRequestsReceived = await axios.get(
-      `${baseUrl}friends/${user._id}/allFriendRequestsReceived/`,
-      { headers: { "x-auth-token": decodedUser } }
-    );
+    // let friendRequestsReceived = await axios.get(
+    //   `${baseUrl}friends/${user._id}/allFriendRequestsReceived/`,
+    //   { headers: { "x-auth-token": decodedUser } }
+    // );
 
-    setFriendReqReceived(friendRequestsReceived.data);
+    // setFriendReqReceived(friendRequestsReceived.data);
 
     let friendRequestsSent = await axios.get(
       `${baseUrl}friends/${user._id}/allFriendRequestsSent/`,
       { headers: { "x-auth-token": decodedUser } }
     );
 
-    setFriendReqSent(friendRequestsSent.data);
+    // setFriendReqSent(friendRequestsSent.data);
   };
 
   return (
-    <div>
-      <div>
-        {/* <h2>People you may know</h2> */}
-        {/* <UserMapper allUsers={allUsers} setFriendReqSent={setFriendReqSent} /> */}
-      </div>
-
-      <div>
-        {/* <h2>Friends</h2> */}
-        {/* <FriendMapper friends={friends} setFriends={setFriends} /> */}
-      </div>
-
-      {/* <div className="friendsCardContainer">
-        <h2>Friend Requests Received</h2>
-        <FriendReqRecMapper
-          friendReqReceived={friendReqReceived}
-          setFriendReqReceived={setFriendReqReceived}
-          setFriends={setFriends}
-          setAllUsers
-        />
-      </div> */}
-
-      <div>
-        {/* <h2>Friend Requests Sent</h2>
-        <FriendReqSentMapper friendReqSent={friendReqSent} /> */}
-        {/* <RecipeCard /> */}
-        <RecipeMapper />
-      </div>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} columns={16} justifyContent="center">
+        <Grid item xs={8}>
+          <ListItem></ListItem>
+        </Grid>
+        <Grid item xs={8}>
+          <ListItem>
+            <RecipeMapper />
+          </ListItem>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

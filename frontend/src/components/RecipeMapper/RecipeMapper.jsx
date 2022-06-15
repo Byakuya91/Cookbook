@@ -58,30 +58,33 @@ const RecipeMapper = (props) => {
 
   // TODO: figure out a way to map out each recipe element
   return (
-    <Grid container spacing={3} alignItems="stretch" display={"flex"}>
-      <Container>
-        <h2>Recipe List</h2>
-        <Grid item xs={4}>
-          <Container>
-            <SearchRecipe
-              setSearchRecipe={setSearchRecipe}
-              searchRecipe={searchRecipe}
-            />
-          </Container>
-        </Grid>
+    <Box sx={{ flexGrow: 1 }}>
+      <h2>Recipe List</h2>
+      <br></br>
+      <Grid container spacing={2} columns={16}>
+        <Grid item xs={8}>
+          <Grid item xs={8}>
+            <div>
+              <SearchRecipe
+                setSearchRecipe={setSearchRecipe}
+                searchRecipe={searchRecipe}
+              />
+            </div>
+          </Grid>
 
-        <Grid item xs={4}>
-          <RecipeCard
-            recipes={userRecipes}
-            searchRecipe={searchRecipe}
-            favoriteRecipes={favoriteRecipes}
-            setFavoriteRecipes={setFavoriteRecipes}
-            setRecipes={setUserRecipes}
-            makeRecipeGetRequest={makeRecipeGetRequest}
-          />
+          <Grid item xs={8}>
+            <RecipeCard
+              recipes={userRecipes}
+              searchRecipe={searchRecipe}
+              favoriteRecipes={favoriteRecipes}
+              setFavoriteRecipes={setFavoriteRecipes}
+              setRecipes={setUserRecipes}
+              makeRecipeGetRequest={makeRecipeGetRequest}
+            />
+          </Grid>
         </Grid>
-      </Container>
-    </Grid>
+      </Grid>
+    </Box>
   );
 };
 
