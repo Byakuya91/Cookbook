@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 
-const FavoritesButton = ({ props }) => {
+const FavoritesButton = (props) => {
   // BASE URL
   const BASE = "http://localhost:5000/api";
   // Contextfor the user
@@ -32,7 +32,12 @@ const FavoritesButton = ({ props }) => {
       await axios
         .patch(
           `http://localhost:5000/api/recipes/${user._id}/favoriteRecipes/${id}`,
-          {}
+          {},
+          {
+            headers: {
+              "x-auth-token": localStorage.getItem("token"),
+            },
+          }
         )
         .then((res) => {
           console.log(res);

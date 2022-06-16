@@ -36,8 +36,11 @@ const RemoveFavoriteRecipeButton = (props) => {
       await axios
         .patch(
           `http://localhost:5000/api/recipes/${user._id}/favoriteRecipes/${id}`,
+          {},
           {
-            favorite: true,
+            headers: {
+              "x-auth-token": localStorage.getItem("token"),
+            },
           }
         )
         .then((res) => {

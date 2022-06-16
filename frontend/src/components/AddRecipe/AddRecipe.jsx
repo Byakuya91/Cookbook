@@ -4,10 +4,15 @@ import AuthContext from "../../context/AuthContext";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import jwtDecode from "jwt-decode";
 import AddIngredient from "./AddIngredient";
-import { Typography, Button, Container } from "@mui/material";
 import "../AddRecipe/AddRecipe.css";
-import { TextField } from "@mui/material";
-import { makeStyles } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Container,
+  TextField,
+  makeStyles,
+  TextareaAutosize,
+} from "@mui/material";
 
 import SendIcon from "@mui/icons-material/Send";
 
@@ -179,8 +184,9 @@ const AddRecipe = (props) => {
           htmlFor="recipe_name"
           gutterBottom={true}
           color="secondary"
+          className="add-recipe-label"
         >
-          Recipe Name:
+          Recipe name:
         </Typography>
         <br></br>
         <input
@@ -194,7 +200,12 @@ const AddRecipe = (props) => {
         <br></br>
         <AddIngredient setIngredients={setIngredients} />
         <br></br>
-        <Typography variant="h5" component="label" htmlFor="Cook_Time">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="Cook_Time"
+          className="add-recipe-label"
+        >
           Cook_Time:
         </Typography>
         <br></br>
@@ -207,7 +218,12 @@ const AddRecipe = (props) => {
           onChange={(event) => setCook_Time(event.target.value)}
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="Preparation_Time">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="Preparation_Time"
+          className="add-recipe-label"
+        >
           Preparation_Time:
         </Typography>{" "}
         <br></br>
@@ -220,17 +236,25 @@ const AddRecipe = (props) => {
           onChange={(event) => setPreparation_Time(event.target.value)}
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="Directions">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="Directions"
+          className="add-recipe-label"
+        >
           Directions:
         </Typography>
         <br></br>
         <TextField
           type="text"
-          required
           id="Directions"
           variant="outlined"
+          fullWidth
+          multiline
+          rows={8}
           sx={{
-            width: 500,
+            width: 600,
+            fontSize: 10,
           }}
           placeholder="Enter Recipe Directions"
           value={recipe_Directions}

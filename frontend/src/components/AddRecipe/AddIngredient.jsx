@@ -66,6 +66,9 @@ const Testing = (props) => {
             name="amount"
             value={element.amount || ""}
             onChange={(e) => handleChange(index, e)}
+            styles={{
+              width: 50,
+            }}
           />
           <Typography variant="h5" component="label" htmlFor="ingredient_unit">
             Unit of Measure

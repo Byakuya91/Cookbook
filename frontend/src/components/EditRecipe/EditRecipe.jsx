@@ -11,7 +11,9 @@ const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
   // Recipe Edit state variables
   const [editName, setEditName] = useState(props.editRecipe?.name);
-  const [editIngredients, setEditIngredients] = useState([]);
+  const [editIngredients, setEditIngredients] = useState(
+    props.editRecipe?.ingredients
+  );
   const [editCook_Time, setEditCook_Time] = useState(
     props.editRecipe?.cook_time
   );
@@ -202,7 +204,11 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditRecipe_Directions(event.target.value)}
             sx={{
               width: 500,
+              fontSize: 10,
             }}
+            fullWidth
+            multiline
+            rows={8}
           />
           <br />
           <label htmlFor="recipe_serving_size">Serving_Size:</label> <br></br>
