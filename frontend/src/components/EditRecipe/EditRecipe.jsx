@@ -5,6 +5,7 @@ import jwtDecode from "jwt-decode";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import AddMoreIngredients from "../AddMoreIngredients/AddMoreIngredients";
 import { Typography, Button, ButtonGroup, Container } from "@mui/material";
+import { TextField } from "@mui/material";
 
 const EditRecipe = (props) => {
   const { user, setUser } = useContext(AuthContext);
@@ -194,11 +195,14 @@ const EditRecipe = (props) => {
           />
           <br />
           <label htmlFor="recipe_directions">Directions:</label> <br></br>
-          <input
+          <TextField
             type="text"
             id="recipe_directions"
             value={editRecipe_Directions}
             onChange={(event) => setEditRecipe_Directions(event.target.value)}
+            sx={{
+              width: 500,
+            }}
           />
           <br />
           <label htmlFor="recipe_serving_size">Serving_Size:</label> <br></br>

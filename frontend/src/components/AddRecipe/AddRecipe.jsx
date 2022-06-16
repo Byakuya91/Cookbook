@@ -6,6 +6,8 @@ import jwtDecode from "jwt-decode";
 import AddIngredient from "./AddIngredient";
 import { Typography, Button, Container } from "@mui/material";
 import "../AddRecipe/AddRecipe.css";
+import { TextField } from "@mui/material";
+import { makeStyles } from "@mui/material";
 
 import SendIcon from "@mui/icons-material/Send";
 
@@ -28,8 +30,6 @@ const AddRecipe = (props) => {
   const [recipe_Yield, setRecipe_Yield] = useState();
   const [recipe_Directions, setRecipe_Directions] = useState();
   const [calories, setCalories] = useState();
-
-  console.log("the selected Ingredients are as follow: ", ingredients);
 
   // convert the state variable from object to string
   // let IngredientsJSON = JSON.stringify(ingredients);
@@ -154,34 +154,35 @@ const AddRecipe = (props) => {
     }
   };
 
-  // const ingredientsFields=()=>{
-  //   let inputBoxes = [];
-  //   for(let i = 0; i< numberOfIngredients; i++){
-  //     inputBoxes.push(
-  //       <label>
-
-  //         <input name={'name'} onChange={(e)=> setIngredients(
-  //           [...ingredients, {e.target.name: e.target.value}])}/>
-
-  //       </label>
-  //     )
-  //   }
-  // }
-
   return (
     //   Form template and data that will need to be sent.
     <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
-      <div classname="form-field-container">
+      <Container
+        sx={{
+          display: "block",
+        }}
+        classname="form-field-container"
+      >
         <Typography
           variant="h4"
-          component="h2"
+          component="h4"
           gutterBottom={true}
-          color="black"
           className="container"
+          color="primary"
+          align="center"
         >
           Add a new Recipe
         </Typography>
-        <label htmlFor="recipe_name">Recipe Name:</label> <br></br>
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="recipe_name"
+          gutterBottom={true}
+          color="secondary"
+        >
+          Recipe Name:
+        </Typography>
+        <br></br>
         <input
           type="text"
           id="recipe_name"
@@ -193,7 +194,10 @@ const AddRecipe = (props) => {
         <br></br>
         <AddIngredient setIngredients={setIngredients} />
         <br></br>
-        <label htmlFor="Cook_Time">Cook_Time:</label> <br></br>
+        <Typography variant="h5" component="label" htmlFor="Cook_Time">
+          Cook_Time:
+        </Typography>
+        <br></br>
         <input
           type="text"
           id="Cook_Time"
@@ -203,7 +207,10 @@ const AddRecipe = (props) => {
           onChange={(event) => setCook_Time(event.target.value)}
         />
         <br />
-        <label htmlFor="Preparation_Time">Preparation_Time:</label> <br></br>
+        <Typography variant="h5" component="label" htmlFor="Preparation_Time">
+          Preparation_Time:
+        </Typography>{" "}
+        <br></br>
         <input
           type="text"
           required
@@ -213,17 +220,27 @@ const AddRecipe = (props) => {
           onChange={(event) => setPreparation_Time(event.target.value)}
         />
         <br />
-        <label htmlFor="Directions">Directions:</label> <br></br>
-        <input
+        <Typography variant="h5" component="label" htmlFor="Directions">
+          Directions:
+        </Typography>
+        <br></br>
+        <TextField
           type="text"
           required
           id="Directions"
+          variant="outlined"
+          sx={{
+            width: 500,
+          }}
           placeholder="Enter Recipe Directions"
           value={recipe_Directions}
           onChange={(event) => setRecipe_Directions(event.target.value)}
         />
         <br />
-        <label htmlFor="serving_size">Serving_Size:</label> <br></br>
+        <Typography variant="h5" component="label" htmlFor="serving_size">
+          Serving_Size:
+        </Typography>{" "}
+        <br></br>
         <input
           type="number"
           required
@@ -233,18 +250,24 @@ const AddRecipe = (props) => {
           onChange={(event) => setServing_Size(event.target.value)}
         />
         <br />
-        <label htmlFor="yield">Yield:</label> <br></br>
+        <Typography variant="h5" component="label" htmlFor="yield">
+          Yield:
+        </Typography>{" "}
+        <br></br>
         <input
           type="number"
           required
-          placeholder="Select a calorie count..."
+          placeholder="Select a yield count..."
           min={1}
           id="yield"
           value={recipe_Yield}
           onChange={(event) => setRecipe_Yield(event.target.value)}
         />
         <br />
-        <label htmlFor="calories">Calories:</label> <br></br>
+        <Typography variant="h5" component="label" htmlFor="calories">
+          Calories:
+        </Typography>{" "}
+        <br></br>
         <input
           type="number"
           id="calories"
@@ -255,7 +278,9 @@ const AddRecipe = (props) => {
           onChange={(event) => setCalories(event.target.value)}
         />
         <br />
-        <label htmlFor="image">Photo</label>
+        <Typography variant="h5" component="label" htmlFor="image">
+          Photo
+        </Typography>
         <br />
         <input
           name="file"
@@ -266,13 +291,17 @@ const AddRecipe = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => setFile(event.target.files[0])}
         />
-      </div>
+      </Container>
       <div>
         <Button
           variant="contained"
           disableElevation
           type="submit"
           endIcon={<SendIcon />}
+          gutterBottom={true}
+          sx={{
+            margin: 2.5,
+          }}
         >
           Add Recipe
         </Button>

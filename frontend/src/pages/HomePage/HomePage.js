@@ -175,12 +175,27 @@ const HomePage = () => {
                 color=" green"
                 align="center"
                 display="block"
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "1rem",
+                  display: "inline",
+                }}
               >
                 Home Page for {user.name}!
               </Typography>
             </div>
           </Item>
-          <Grid item xs={8}>
+          <Grid
+            item
+            xs={8}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "1rem",
+              display: "inline",
+            }}
+          >
             <Item>
               <Typography
                 variant="h2"
@@ -190,11 +205,11 @@ const HomePage = () => {
                 align="center"
                 display="block"
                 gutterBottom={true}
-                style={{
+                sx={{
                   display: "flex",
-                  alignItems: "stretch",
                   justifyContent: "center",
                   margin: "1rem",
+                  display: "inline",
                 }}
               >
                 There are {homeRecipes.length} recipes for the {user.name}
@@ -203,7 +218,14 @@ const HomePage = () => {
           </Grid>
         </Grid>
         <Grid item xs={8}>
-          <Item>
+          <Item
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "1rem",
+              display: "inline",
+            }}
+          >
             <SearchUserRecipes
               RecipeSearch={homeRecipeSearch}
               SetRecipeSearch={setHomeRecipeSearch}
@@ -225,7 +247,14 @@ const HomePage = () => {
           </Item>
         </Grid>
         <Grid item xs={8}>
-          <Item>
+          <Item
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "1rem",
+              display: "inline",
+            }}
+          >
             <AddRecipe
               AddNewRecipe={setHomeRecipes}
               homeRecipes={homeRecipes}

@@ -73,7 +73,7 @@ router.post(
 
 // PUT request to update the recipe inside of a user(COMPLETE)
 // http://localhost:5000/api/recipes/:userId/recipes/:recipeId
-router.patch(
+router.put(
   "/:userId/recipes/:recipeId",
   [auth, fileUpload.single("image")],
   async (req, res) => {
@@ -126,6 +126,9 @@ router.patch(
       recipe.author = req.body.author;
 
       // console.log("The converted_ingredients are:", converted_Ingredients);
+
+      // TODO: conditional logic to check if the recipe.ingredients contains an array.
+      // if so, set the recipes.Ingredients equal to the current req.body other wise map.
 
       // save the changes
       //console.log("the user   is:", user.recipes);
@@ -225,7 +228,7 @@ router.put(
 );
 // PATCH request, toggle between favorites being "true" or "false"
 // http://localhost:5000/api/recipes/:userId/recipes/:recipeId
-router.patch("/:userId/favoriteRecipes/:recipeId", async (req, res) => {
+router.patch("/:userId/favoriteRecipes/:recipeId", [auth], async (req, res) => {
   try {
     // validate for the recipe
     let { error } = validateRecipe(req.body);
@@ -311,7 +314,10 @@ router.patch("/:userId/updateRecipe/:recipeId", async (req, res) => {
     // save the changes
     await user.save();
     // sends back updated recipe
-    return res.send(user);
+    return res
+      .header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .send(user);
   } catch (error) {
     return res.status(500).send(`Internal Server Error: ${error}`);
   }

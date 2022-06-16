@@ -5,7 +5,9 @@ import {
   ButtonGroup,
   Icon,
   Container,
+  Grid,
 } from "@mui/material";
+import { TextField } from "@mui/material";
 
 const Testing = (props) => {
   const [formValues, setFormValues] = useState([
@@ -37,9 +39,13 @@ const Testing = (props) => {
   return (
     <Container>
       {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          <h1>Ingredients</h1>
-          <label htmlFor="ingredient_name">Name</label>
+        <Grid container key={index} direction="column">
+          <Typography variant="h5" component="label" color="secondary">
+            Ingredients:
+          </Typography>
+          <Typography variant="h5" component="label" htmlFor="ingredient_name">
+            Name
+          </Typography>
           <input
             type="text"
             id="ingredient_name"
@@ -47,7 +53,13 @@ const Testing = (props) => {
             value={element.name || ""}
             onChange={(e) => handleChange(index, e)}
           />
-          <label htmlFor="ingredient_amount">Amount</label>
+          <Typography
+            variant="h5"
+            component="label"
+            htmlFor="ingredient_amount"
+          >
+            Amount
+          </Typography>
           <input
             type="number"
             id="ingredient_amount"
@@ -55,7 +67,9 @@ const Testing = (props) => {
             value={element.amount || ""}
             onChange={(e) => handleChange(index, e)}
           />
-          <label htmlFor="ingredient_unit">Unit of Measure</label>
+          <Typography variant="h5" component="label" htmlFor="ingredient_unit">
+            Unit of Measure
+          </Typography>
           <input
             type="text"
             id="ingredient_unit"
@@ -70,11 +84,14 @@ const Testing = (props) => {
               color="success"
               className="button remove"
               onClick={() => removeFormFields(index)}
+              sx={{
+                margin: 2.5,
+              }}
             >
               Remove
             </Button>
           ) : null}
-        </div>
+        </Grid>
       ))}
       <div className="button-section">
         <Button
@@ -82,6 +99,9 @@ const Testing = (props) => {
           variant="contained"
           type="button"
           onClick={() => addFormFields()}
+          sx={{
+            margin: 2.5,
+          }}
         >
           Add
         </Button>
