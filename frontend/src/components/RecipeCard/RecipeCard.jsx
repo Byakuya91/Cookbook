@@ -168,10 +168,10 @@ const RecipeCard = (props) => {
                           <FavoritesButton recipeID={recipe._id} />
                           <RemoveFavoriteRecipeButton recipeID={recipe._id} />
                           {/* {recipe.favorite ? (
-                          <RemoveFavoriteRecipeButton recipeID={recipe._id} />
-                        ) : (
-                          <FavoritesButton recipeID={recipe._id} />
-                        )} */}
+                            <RemoveFavoriteRecipeButton recipeID={recipe._id} />
+                          ) : (
+                            <FavoritesButton recipeID={recipe._id} />
+                          )} */}
                         </span>
                       </Card>
                     </Paper>

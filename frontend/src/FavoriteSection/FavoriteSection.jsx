@@ -40,7 +40,7 @@ const FavoriteSection = (props) => {
           titleTypographyProps={{ variant: "h4" }}
         />
 
-        <CardMedia sx={{ width: "200px" }}>
+        <CardMedia sx={{ width: "500px" }}>
           {props.profileRecipe.image !== undefined && (
             <img
               src={`http://localhost:5000/${props.profileRecipe.image}`}
