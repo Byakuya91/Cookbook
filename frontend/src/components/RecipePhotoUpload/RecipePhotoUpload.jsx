@@ -88,7 +88,16 @@ const RecipePhotoUpload = (props) => {
   return (
     <Container id="imageUploadComponent">
       <form onSubmit={(event) => handleRecipePhotoSubmit(event)}>
-        <h2>Edit Photo</h2>
+        <Typography
+          variant="h4"
+          component="h4"
+          gutterBottom={true}
+          className="container"
+          color="primary"
+          align="center"
+        >
+          Edit Photo
+        </Typography>
         <input
           ref={filePickerRef}
           type="file"

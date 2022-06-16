@@ -4,7 +4,13 @@ import AuthContext from "../../context/AuthContext";
 import jwtDecode from "jwt-decode";
 import RecipePhotoUpload from "../RecipePhotoUpload/RecipePhotoUpload";
 import AddMoreIngredients from "../AddMoreIngredients/AddMoreIngredients";
-import { Typography, Button, ButtonGroup, Container } from "@mui/material";
+import {
+  Typography,
+  Button,
+  ButtonGroup,
+  Container,
+  Grid,
+} from "@mui/material";
 import { TextField } from "@mui/material";
 
 const EditRecipe = (props) => {
@@ -142,16 +148,40 @@ const EditRecipe = (props) => {
   return (
     //   Form template and data that will need to be sent.
 
-    <>
+    <Grid container direction="column">
       <form onSubmit={(e) => handleRecipeEdit(e)}>
-        <div>
-          <h1>Edit Recipe </h1>
-          <label htmlFor="recipe">Recipe Name:</label> <br></br>
+        <Container
+          sx={{
+            display: "block",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="h4"
+            gutterBottom={true}
+            className="container"
+            color="primary"
+            align="center"
+          >
+            Edit Recipe
+          </Typography>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            className="add-recipe-label"
+            htmlFor="recipe_name_edit"
+          >
+            Recipe Name:
+          </Typography>
+          <br></br>
           <input
             type="text"
             name="recipe"
             value={editName}
             onChange={(event) => setEditName(event.target.value)}
+            id="recipe_name_edit"
           />
           <br></br>
           {/* <AddMoreIngredients
@@ -177,17 +207,32 @@ const EditRecipe = (props) => {
             />
           ) : null}
           <br></br>
-          <label htmlFor="recipe_cook_time ">Cook_Time:</label> <br></br>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="editCook_Time "
+          >
+            Cook_Time:
+          </Typography>
+          <br></br>
           <input
             type="text"
-            id="recipe_cook_time"
+            id="editCook_Time"
             value={editCook_Time}
             onChange={(event) => setEditCook_Time(event.target.value)}
           />
           <br />
-          <label htmlFor="recipe_preparation_time">
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="recipe_preparation_time"
+          >
             Preparation_Time:
-          </label>{" "}
+          </Typography>{" "}
           <br></br>
           <input
             type="text"
@@ -196,7 +241,16 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditPreparation_Time(event.target.value)}
           />
           <br />
-          <label htmlFor="recipe_directions">Directions:</label> <br></br>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="recipe_directions"
+          >
+            Directions:
+          </Typography>{" "}
+          <br></br>
           <TextField
             type="text"
             id="recipe_directions"
@@ -211,7 +265,16 @@ const EditRecipe = (props) => {
             rows={8}
           />
           <br />
-          <label htmlFor="recipe_serving_size">Serving_Size:</label> <br></br>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="recipe_serving_size"
+          >
+            Serving_Size:
+          </Typography>
+          <br></br>
           <input
             type="number"
             id="recipe_serving_size"
@@ -219,7 +282,16 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditServing_Size(event.target.value)}
           />
           <br />
-          <label htmlFor="recipe_yield">Yield:</label> <br></br>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="recipe_yield"
+          >
+            Yield:
+          </Typography>
+          <br></br>
           <input
             type="number"
             id="recipe_yield"
@@ -227,7 +299,16 @@ const EditRecipe = (props) => {
             onChange={(event) => setEditRecipe_Yield(event.target.value)}
           />
           <br />
-          <label htmlFor="recipe_calories">Calories:</label> <br></br>
+          <Typography
+            variant="h5"
+            component="label"
+            gutterBottom={true}
+            color="secondary"
+            htmlFor="recipe_calories"
+          >
+            Calories:
+          </Typography>{" "}
+          <br></br>
           <input
             type="number"
             id="recipe_calories"
@@ -235,7 +316,7 @@ const EditRecipe = (props) => {
             value={editCalories}
             onChange={(event) => setEditCalories(event.target.value)}
           />
-        </div>
+        </Container>
         <span>
           <Button
             type="submit"
@@ -263,7 +344,7 @@ const EditRecipe = (props) => {
           recipeImage={props.recipeImage}
         />
       ) : null}
-    </>
+    </Grid>
   );
 };
 

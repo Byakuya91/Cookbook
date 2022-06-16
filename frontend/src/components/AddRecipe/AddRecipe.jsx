@@ -57,30 +57,6 @@ const AddRecipe = (props) => {
 
   //  TODO: Hook up all variable names(DONE)
 
-  // TODO: Create a submit function to take in the recipe object and submit the data
-  async function handleNewRecipeSubmit(event) {
-    // STEP ONE prevent the page from re-rendering
-    event.preventDefault();
-
-    // STEP TWO:  Create an obj to be passed into the new Recipe.
-    let newRecipe = {
-      name: name,
-      ingredients: ingredients,
-      cook_time: cook_Time,
-      preparation_time: preparation_Time,
-      directions: recipe_Directions,
-      serving_size: serving_Size,
-      yield: recipe_Yield,
-      calories: calories,
-    };
-
-    // STEP THREE: Axios request
-    await axios
-      .post(`${BASE}/recipes/${user._id}/recipes`, newRecipe)
-      .then((res) => props.AddNewRecipe(res.data));
-    alert("Recipe Added");
-  }
-
   // UseEffect for photos
 
   useEffect(() => {
@@ -111,7 +87,7 @@ const AddRecipe = (props) => {
 
   //   submitting the recipe photo function.
 
-  const handleRecipePhotoSubmit = async (event) => {
+  const handleRecipeSubmit = async (event) => {
     // prevents page from loading when submit button is clicked.
     event.preventDefault();
     console.log("the ingredients are", ingredients);
@@ -161,7 +137,7 @@ const AddRecipe = (props) => {
 
   return (
     //   Form template and data that will need to be sent.
-    <form onSubmit={(e) => handleRecipePhotoSubmit(e)}>
+    <form onSubmit={(e) => handleRecipeSubmit(e)}>
       <Container
         sx={{
           display: "block",
@@ -181,9 +157,9 @@ const AddRecipe = (props) => {
         <Typography
           variant="h5"
           component="label"
-          htmlFor="recipe_name"
           gutterBottom={true}
           color="secondary"
+          htmlFor="recipe_name"
           className="add-recipe-label"
         >
           Recipe name:

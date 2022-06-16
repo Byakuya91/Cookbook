@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
+import { Button } from "@mui/material";
 
 const RemoveFavoriteRecipeButton = (props) => {
   // BASE URL
@@ -64,10 +65,13 @@ const RemoveFavoriteRecipeButton = (props) => {
 
   return (
     <div>
-      <button onClick={() => handleRemoveFavoriteRecipe(props.recipeID)}>
-        {" "}
+      <Button
+        variant="contained"
+        color="error"
+        onClick={() => handleRemoveFavoriteRecipe(props.recipeID)}
+      >
         Remove from Favorites
-      </button>
+      </Button>
     </div>
   );
 };

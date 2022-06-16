@@ -2,7 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import AuthContext from "../../context/AuthContext";
-import { Typography, Button, ButtonGroup, Container } from "@mui/material";
+import {
+  Typography,
+  Button,
+  ButtonGroup,
+  Container,
+  Grid,
+} from "@mui/material";
 
 // TODO List:
 
@@ -49,15 +55,30 @@ const AddMoreIngredients = (props) => {
 
   return (
     <Container>
-      <Typography variant="h3" component="h2" gutterBottom={true}>
+      <Typography
+        variant="h4"
+        component="h3"
+        color="secondary"
+        gutterBottom={true}
+      >
         Edit Ingredients
       </Typography>
       {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          <Typography variant="h4" component="h4" gutterBottom={true}>
+        <Grid container direction="column" className="form-inline" key={index}>
+          <Typography
+            variant="h5"
+            component="h4"
+            gutterBottom={true}
+            color="error"
+          >
             Ingredient
           </Typography>
-          <Typography variant="label" component="h2" htmlFor="ingredient_name">
+          <Typography
+            variant="h5"
+            component="label"
+            color="primary"
+            htmlFor="ingredient_name"
+          >
             Name
           </Typography>
           <input
@@ -68,8 +89,9 @@ const AddMoreIngredients = (props) => {
             onChange={(e) => handleChange(index, e)}
           />
           <Typography
-            variant="label"
-            component="h2"
+            variant="h5"
+            component="label"
+            color="primary"
             htmlFor="ingredient_amount"
           >
             Amount
@@ -79,9 +101,15 @@ const AddMoreIngredients = (props) => {
             id="ingredient_amount"
             name="amount"
             value={element.amount || ""}
+            color="primary"
             onChange={(e) => handleChange(index, e)}
           />
-          <Typography variant="label" component="h2" htmlFor="ingredient_unit">
+          <Typography
+            variant="h5"
+            component="label"
+            color="primary"
+            htmlFor="ingredient_unit"
+          >
             Unit of Measure
           </Typography>
           <input
@@ -98,11 +126,10 @@ const AddMoreIngredients = (props) => {
             variant="contained"
             color="success"
             onClick={() => removeFormFields(index)}
-            required
           >
             Remove
           </Button>
-        </div>
+        </Grid>
       ))}
       <div className="button-section">
         <Button
@@ -110,8 +137,10 @@ const AddMoreIngredients = (props) => {
           variant="contained"
           color="primary"
           type="button"
+          sx={{
+            margin: 2.5,
+          }}
           onClick={() => addFormFields()}
-          required
         >
           Add
         </Button>
