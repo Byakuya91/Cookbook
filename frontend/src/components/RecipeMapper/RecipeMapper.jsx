@@ -15,7 +15,10 @@ import {
   Box,
   Collapse,
   CardContent,
+  ListItem,
 } from "@mui/material";
+import { BoxProps } from "@mui/material/Box";
+import PropTypes from "prop-types";
 
 // pass in the the user Data from props
 // function handleRecipeRetrieval({
@@ -58,33 +61,36 @@ const RecipeMapper = (props) => {
 
   // TODO: figure out a way to map out each recipe element
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <h2>Recipe List</h2>
-      <br></br>
-      <Grid container spacing={2} columns={16}>
-        <Grid item xs={8}>
-          <Grid item xs={8}>
-            <div>
-              <SearchRecipe
-                setSearchRecipe={setSearchRecipe}
-                searchRecipe={searchRecipe}
-              />
-            </div>
-          </Grid>
-
-          <Grid item xs={8}>
-            <RecipeCard
-              recipes={userRecipes}
+    <Container
+      style={{
+        display: "flex",
+        justifyContent: "Center",
+        width: "100%",
+        height: 220,
+      }}
+    >
+      <div>
+        <Grid Item direction="column">
+          {" "}
+          <div>
+            <SearchRecipe
+              setSearchRecipe={setSearchRecipe}
               searchRecipe={searchRecipe}
-              favoriteRecipes={favoriteRecipes}
-              setFavoriteRecipes={setFavoriteRecipes}
-              setRecipes={setUserRecipes}
-              makeRecipeGetRequest={makeRecipeGetRequest}
             />
-          </Grid>
+          </div>
         </Grid>
-      </Grid>
-    </Box>
+        <Grid Item xs={10}>
+          <RecipeCard
+            recipes={userRecipes}
+            searchRecipe={searchRecipe}
+            favoriteRecipes={favoriteRecipes}
+            setFavoriteRecipes={setFavoriteRecipes}
+            setRecipes={setUserRecipes}
+            makeRecipeGetRequest={makeRecipeGetRequest}
+          />
+        </Grid>
+      </div>
+    </Container>
   );
 };
 

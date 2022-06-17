@@ -118,65 +118,74 @@ const RecipeCard = (props) => {
             .map((recipe, index) => {
               return (
                 // Abstract this in a new component: UserRecipeCard/ change this to AllRecipesMapper.
-                <Box>
-                  <Grid spacing={2} key={recipe._id}>
-                    <Paper variant="elevation" elevation={10}>
-                      <Card elevation={3}>
-                        <h2>Name:</h2>
-                        <CardHeader title={recipe.name} />
-                        <h2>Author:</h2>
-                        <CardHeader
-                          className="author-text"
-                          subheader={user.name}
-                        />
-                        {/* <h2> Name:</h2>
-                        <p>{recipe.name}</p> */}
-                        <CardMedia alt="recipe Image">
-                          <div>
-                            {recipe.image !== undefined && (
-                              <img
-                                src={`http://localhost:5000/${recipe.image}`}
-                                className="recipe-card-img"
-                              ></img>
-                            )}
-                          </div>
-                        </CardMedia>
-                        <h2> Ingredients:</h2>
-                        {recipe.ingredients.map((ingredient, index) => (
-                          <IngredientList
-                            key={ingredient._id}
-                            IngredientAmount={ingredient.amount}
-                            IngredientName={ingredient.name}
-                            IngredientUnit={ingredient.unit}
+                <Grid
+                  container
+                  direction="column-reverse"
+                  justifyContent="center"
+                  alignItems="center"
+                  rowGap={4}
+                  key={recipe._id}
+                >
+                  <Grid item xs={6} md={6}>
+                    <Item>
+                      <Paper variant="elevation" elevation={10}>
+                        <Card elevation={3}>
+                          <h2>Name:</h2>
+                          <CardHeader title={recipe.name} />
+                          <h2>Author:</h2>
+                          <CardHeader
+                            className="author-text"
+                            subheader={user.name}
                           />
-                        ))}
-                        <h2> Calories:</h2>
-                        <p>{recipe.calories}</p>
-                        <h2> Cook_Time:</h2>
-                        <p>{recipe.cook_time}</p>
-                        <h2> Directions:</h2>
-                        <p>{recipe.directions}</p>
-                        <h2> Preparation_Time:</h2>
-                        <p>{recipe.preparation_time}</p>
-                        <h2>Recipe ID</h2>
-                        <p>{recipe._id}</p>
-                        <h2> Serving_Size:</h2>
-                        <p>{recipe.serving_size}</p>
-                        <h2> Yield:</h2>
-                        <p>{recipe.yield}</p>
-                        <span>
-                          <FavoritesButton recipeID={recipe._id} />
-                          <RemoveFavoriteRecipeButton recipeID={recipe._id} />
-                          {/* {recipe.favorite ? (
+                          {/* <h2> Name:</h2>
+                        <p>{recipe.name}</p> */}
+                          <CardMedia alt="recipe Image">
+                            <div>
+                              {recipe.image !== undefined && (
+                                <img
+                                  src={`http://localhost:5000/${recipe.image}`}
+                                  className="recipe-card-img"
+                                ></img>
+                              )}
+                            </div>
+                          </CardMedia>
+                          <h2> Ingredients:</h2>
+                          {recipe.ingredients.map((ingredient, index) => (
+                            <IngredientList
+                              key={ingredient._id}
+                              IngredientAmount={ingredient.amount}
+                              IngredientName={ingredient.name}
+                              IngredientUnit={ingredient.unit}
+                            />
+                          ))}
+                          <h2> Calories:</h2>
+                          <p>{recipe.calories}</p>
+                          <h2> Cook_Time:</h2>
+                          <p>{recipe.cook_time}</p>
+                          <h2> Directions:</h2>
+                          <p>{recipe.directions}</p>
+                          <h2> Preparation_Time:</h2>
+                          <p>{recipe.preparation_time}</p>
+                          <h2>Recipe ID</h2>
+                          <p>{recipe._id}</p>
+                          <h2> Serving_Size:</h2>
+                          <p>{recipe.serving_size}</p>
+                          <h2> Yield:</h2>
+                          <p>{recipe.yield}</p>
+                          <span>
+                            <FavoritesButton recipeID={recipe._id} />
                             <RemoveFavoriteRecipeButton recipeID={recipe._id} />
+                            {/* {recipe.favorite ? (
+                          <RemoveFavoriteRecipeButton recipeID={recipe._id} />
                           ) : (
                             <FavoritesButton recipeID={recipe._id} />
                           )} */}
-                        </span>
-                      </Card>
-                    </Paper>
+                          </span>
+                        </Card>
+                      </Paper>
+                    </Item>
                   </Grid>
-                </Box>
+                </Grid>
               );
             })
         )}

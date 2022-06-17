@@ -45,7 +45,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/favoriteRecipes" element={<FavoriteRecipesPage />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

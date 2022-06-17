@@ -10,7 +10,7 @@ import FriendReqSentMapper from "../../components/FriendReqSentMapper/FriendReqS
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipeMapper from "../../components/RecipeMapper/RecipeMapper";
 // Material UI imports
-import { Grid } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -60,18 +60,16 @@ const FriendsPage = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} columns={16} justifyContent="center">
-        <Grid item xs={8}>
-          <ListItem></ListItem>
-        </Grid>
-        <Grid item xs={8}>
-          <ListItem>
-            <RecipeMapper />
-          </ListItem>
-        </Grid>
-      </Grid>
-    </Box>
+    <Container
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        height: 220,
+      }}
+    >
+      <RecipeMapper />
+    </Container>
   );
 };
 

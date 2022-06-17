@@ -9,13 +9,13 @@ li {
 }
 
 .navBar {
-    background: steelblue;
+    background: green;
     box-shadow: 4px 2px 5px gray;
     color: white;
     margin-bottom: 2rem;
     padding: 1.5rem 2rem;
-    /*position: fixed;
-    width: 100vw;*/
+    /* position: fixed;
+    width: 100vw; */
 }
 
 .navBar button {
