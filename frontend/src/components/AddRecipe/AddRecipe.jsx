@@ -161,6 +161,9 @@ const AddRecipe = (props) => {
           color="secondary"
           htmlFor="recipe_name"
           className="add-recipe-label"
+          sx={{
+            marginBottom: "2rem",
+          }}
         >
           Recipe name:
         </Typography>
@@ -181,6 +184,7 @@ const AddRecipe = (props) => {
           component="label"
           htmlFor="Cook_Time"
           className="add-recipe-label"
+          color="secondary"
         >
           Cook_Time:
         </Typography>
@@ -199,6 +203,7 @@ const AddRecipe = (props) => {
           component="label"
           htmlFor="Preparation_Time"
           className="add-recipe-label"
+          color="secondary"
         >
           Preparation_Time:
         </Typography>{" "}
@@ -217,6 +222,7 @@ const AddRecipe = (props) => {
           component="label"
           htmlFor="Directions"
           className="add-recipe-label"
+          color="secondary"
         >
           Directions:
         </Typography>
@@ -237,7 +243,12 @@ const AddRecipe = (props) => {
           onChange={(event) => setRecipe_Directions(event.target.value)}
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="serving_size">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="serving_size"
+          color="secondary"
+        >
           Serving_Size:
         </Typography>{" "}
         <br></br>
@@ -248,11 +259,17 @@ const AddRecipe = (props) => {
           placeholder="Select a serving size..."
           value={serving_Size}
           onChange={(event) => setServing_Size(event.target.value)}
+          color="secondary"
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="yield">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="yield"
+          color="secondary"
+        >
           Yield:
-        </Typography>{" "}
+        </Typography>
         <br></br>
         <input
           type="number"
@@ -264,9 +281,14 @@ const AddRecipe = (props) => {
           onChange={(event) => setRecipe_Yield(event.target.value)}
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="calories">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="calories"
+          color="secondary"
+        >
           Calories:
-        </Typography>{" "}
+        </Typography>
         <br></br>
         <input
           type="number"
@@ -276,9 +298,15 @@ const AddRecipe = (props) => {
           value={calories}
           min={100}
           onChange={(event) => setCalories(event.target.value)}
+          color="secondary"
         />
         <br />
-        <Typography variant="h5" component="label" htmlFor="image">
+        <Typography
+          variant="h5"
+          component="label"
+          htmlFor="image"
+          color="secondary"
+        >
           Photo
         </Typography>
         <br />

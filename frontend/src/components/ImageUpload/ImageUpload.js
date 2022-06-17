@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import "./ImageUpload.css";
+import { Button } from "@mui/material";
 
 // TODOs
 // 1) finish coding the form and being able to take a photo and a name of the photo
@@ -84,7 +85,9 @@ const ImageUpload = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <button type="submit">Submit button</button>
+        <Button variant="contained" type="submit">
+          Submit button
+        </Button>
       </form>
     </div>
   );

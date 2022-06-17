@@ -40,10 +40,27 @@ const Testing = (props) => {
     <Container>
       {formValues.map((element, index) => (
         <Grid container key={index} direction="column">
-          <Typography variant="h5" component="label" color="secondary">
-            Ingredients:
+          <Typography
+            variant="h4"
+            component="h3"
+            color="primary"
+            gutterBottom={true}
+            sx={{
+              marginTop: "2rem",
+            }}
+          >
+            Add Ingredients
           </Typography>
-          <Typography variant="h5" component="label" htmlFor="ingredient_name">
+
+          <Typography variant="h5" component="label" color="error">
+            Ingredient
+          </Typography>
+          <Typography
+            variant="h5"
+            component="label"
+            htmlFor="ingredient_name"
+            color="primary"
+          >
             Name
           </Typography>
           <input
@@ -57,6 +74,7 @@ const Testing = (props) => {
             variant="h5"
             component="label"
             htmlFor="ingredient_amount"
+            color="primary"
           >
             Amount
           </Typography>
@@ -70,7 +88,12 @@ const Testing = (props) => {
               width: 50,
             }}
           />
-          <Typography variant="h5" component="label" htmlFor="ingredient_unit">
+          <Typography
+            variant="h5"
+            component="label"
+            htmlFor="ingredient_unit"
+            color="primary"
+          >
             Unit of Measure
           </Typography>
           <input

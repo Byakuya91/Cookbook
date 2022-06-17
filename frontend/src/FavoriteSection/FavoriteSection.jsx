@@ -32,7 +32,7 @@ const FavoriteSection = (props) => {
   return (
     <Container key={props.profileRecipe._id}>
       <Card elevation={11}>
-        <Typography variant="h3" component="label">
+        <Typography variant="h3" component="h2">
           Name:
         </Typography>
         <CardHeader
@@ -40,7 +40,14 @@ const FavoriteSection = (props) => {
           titleTypographyProps={{ variant: "h4" }}
         />
 
-        <CardMedia sx={{ width: "500px" }}>
+        <CardMedia
+          sx={{
+            width: "500px",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
           {props.profileRecipe.image !== undefined && (
             <img
               src={`http://localhost:5000/${props.profileRecipe.image}`}

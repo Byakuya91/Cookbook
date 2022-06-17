@@ -166,13 +166,15 @@ const RecipeCard = (props) => {
                           <p>{recipe.directions}</p>
                           <h2> Preparation_Time:</h2>
                           <p>{recipe.preparation_time}</p>
-                          <h2>Recipe ID</h2>
-                          <p>{recipe._id}</p>
                           <h2> Serving_Size:</h2>
                           <p>{recipe.serving_size}</p>
                           <h2> Yield:</h2>
                           <p>{recipe.yield}</p>
-                          <span>
+                          <ButtonGroup
+                            sx={{
+                              padding: "1rem",
+                            }}
+                          >
                             <FavoritesButton recipeID={recipe._id} />
                             <RemoveFavoriteRecipeButton recipeID={recipe._id} />
                             {/* {recipe.favorite ? (
@@ -180,7 +182,7 @@ const RecipeCard = (props) => {
                           ) : (
                             <FavoritesButton recipeID={recipe._id} />
                           )} */}
-                          </span>
+                          </ButtonGroup>
                         </Card>
                       </Paper>
                     </Item>

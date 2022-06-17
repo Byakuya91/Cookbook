@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditPhoto from "../EditPhotoDisplay/EditPhotoDisplay";
+import { Button } from "@mui/material";
 import "./UserInfoDisplay.css";
 
 const UserInfoDisplay = (props) => {
@@ -19,7 +20,7 @@ const UserInfoDisplay = (props) => {
         <h2>
           admin: <br></br> {props.user.isadmin ? "Yes" : "No"}
         </h2>
-        <button> Edit information</button>
+        <Button variant="contained"> Edit information</Button>
         <EditPhoto />
       </div>
     </div>

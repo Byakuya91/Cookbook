@@ -10,12 +10,6 @@ import {
   Grid,
 } from "@mui/material";
 
-// TODO List:
-
-// Create a form component to hold this form values WORKING ON IT
-// Create a function to make a POST request to add the recipes WORKING ON IT
-// Pull in the necessary pieces of state for the POST request WORKING ON IT
-
 const AddMoreIngredients = (props) => {
   const { user, setUser } = useContext(AuthContext);
   const [formValues, setFormValues] = useState(props.ingredients);

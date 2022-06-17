@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import FavoritesButton from "../FavoritesButton/FavoritesButton";
 import RemoveFavoriteRecipeButton from "../RemoveFavoriteRecipeButton/RemoveFavoriteRecipeButton";
 import FavoriteRecipeSearch from "../FavoriteRecipeSearch/FavoriteRecipeSearch";
 import FavoriteIngredientsList from "../FavoriteIngredientsList/FavoriteIngredientsList";
+import CardMedia from "@mui/material/CardMedia";
+import AuthContext from "../../context/AuthContext";
+import { Paper } from "@mui/material";
 
 const FavoriteRecipeMapper = (props) => {
   // test searchFavoriteRecipe
@@ -18,70 +21,78 @@ const FavoriteRecipeMapper = (props) => {
     props.getFavoriteRecipes();
   }, []);
 
+  const { user } = useContext(AuthContext);
+
   // console.log(" the favorite recipes are:", props.favoriteRecipes);
 
   return (
-    <div>
-      {props.favoriteRecipes &&
-        props.favoriteRecipes.map((element, index) => {
-          return element.recipes
-            .filter(
-              (recipe) =>
-                // console.log(recipe.favorite);
-                recipe.favorite === true || console.log(recipe.ingredients)
-            )
+    <Paper elevation={20}>
+      <div>
+        {props.favoriteRecipes &&
+          props.favoriteRecipes.map((element, index) => {
+            return element.recipes
+              .filter(
+                (recipe) =>
+                  // console.log(recipe.favorite);
+                  recipe.favorite === true || console.log(recipe.ingredients)
+              )
 
-            .map((recipe, index) => {
-              // console.log(recipe.name);
-              return (
-                <div key={index}>
-                  <h2> Name:</h2>
-                  <p>{recipe.name && recipe.name}</p>
-                  <h2> Image:</h2>
-                  <div>
-                    {recipe.image !== undefined && (
-                      <img src={`http://localhost:5000/${recipe.image}`}></img>
-                    )}
-                  </div>
-                  <h2> Author:</h2>
-                  <p>{recipe.author}</p>
-                  <h2> Ingredients:</h2>
-                  {recipe.ingredients.map((ingredient) => (
-                    // <div>
-                    //   <p>
-                    //     {ingredient.amount} {ingredient.unit} of{" "}
-                    //     {ingredient.name}
-                    //   </p>
-                    // </div>
-                    <FavoriteIngredientsList
-                      IngredientName={ingredient.name}
-                      IngredientAmount={ingredient.amount}
-                      IngredientUnit={ingredient.unit}
+              .map((recipe, index) => {
+                // console.log(recipe.name);
+                return (
+                  <div key={index}>
+                    <h2> Name:</h2>
+                    <p>{recipe.name && recipe.name}</p>
+                    <h2> Image:</h2>
+                    <CardMedia
+                      sx={{
+                        width: "500px",
+                        display: "inline-block",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginTop: "1rem",
+                      }}
+                    >
+                      {recipe.image !== undefined && (
+                        <img
+                          src={`http://localhost:5000/${recipe.image}`}
+                        ></img>
+                      )}
+                    </CardMedia>
+                    <h2> Author:</h2>
+                    <p>{user.name}</p>
+                    <h2> Ingredients:</h2>
+                    {recipe.ingredients.map((ingredient) => (
+                      <FavoriteIngredientsList
+                        IngredientName={ingredient.name}
+                        IngredientAmount={ingredient.amount}
+                        IngredientUnit={ingredient.unit}
+                      />
+                    ))}
+                    <h2> Calories:</h2>
+                    <p>{recipe.calories}</p>
+                    <h2> Cook_Time:</h2>
+                    <p>{recipe.cook_time}</p>
+                    <h2> Directions:</h2>
+                    <p>{recipe.directions}</p>
+                    <h2> Preparation_Time:</h2>
+                    <p>{recipe.preparation_time}</p>
+                    <h2> Serving_Size:</h2>
+                    <p>{recipe.serving_size}</p>
+                    <h2> Yield:</h2>
+                    <p>{recipe.yield}</p>
+                    <h2> favorite:</h2>
+                    <p>{recipe.favorite ? "True" : "False"}</p>
+                    <RemoveFavoriteRecipeButton
+                      recipeID={recipe._id}
+                      getFavoriteRecipes={props.getFavoriteRecipes}
                     />
-                  ))}
-                  <h2> Calories:</h2>
-                  <p>{recipe.calories}</p>
-                  <h2> Cook_Time:</h2>
-                  <p>{recipe.cook_time}</p>
-                  <h2> Directions:</h2>
-                  <p>{recipe.directions}</p>
-                  <h2> Preparation_Time:</h2>
-                  <p>{recipe.preparation_time}</p>
-                  <h2> Serving_Size:</h2>
-                  <p>{recipe.serving_size}</p>
-                  <h2> Yield:</h2>
-                  <p>{recipe.yield}</p>
-                  <h2> favorite:</h2>
-                  <p>{recipe.favorite ? "True" : "False"}</p>
-                  <RemoveFavoriteRecipeButton
-                    recipeID={recipe._id}
-                    getFavoriteRecipes={props.getFavoriteRecipes}
-                  />
-                </div>
-              );
-            });
-        })}
-    </div>
+                  </div>
+                );
+              });
+          })}
+      </div>
+    </Paper>
   );
 };
 
