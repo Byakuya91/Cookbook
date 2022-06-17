@@ -9,9 +9,9 @@ const ingredientsSchema = new mongoose.Schema({
 
 function validateIngredient(post) {
   const schema = Joi.object({
-    name: Joi.string().min(2).max(100),
+    name: Joi.string().min(5).max(100),
     amount: Joi.number(),
-    unit: Joi.string().min(2).max(100),
+    unit: Joi.string().min(5).max(100),
   });
   return schema.validate(post);
 }

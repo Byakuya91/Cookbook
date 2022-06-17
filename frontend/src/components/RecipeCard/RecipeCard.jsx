@@ -131,14 +131,12 @@ const RecipeCard = (props) => {
                       <Paper variant="elevation" elevation={10}>
                         <Card elevation={3}>
                           <h2>Name:</h2>
-                          <CardHeader title={recipe.name} />
-                          <h2>Author:</h2>
                           <CardHeader
-                            className="author-text"
-                            subheader={user.name}
+                            title={recipe.name}
+                            subheader={recipe.user}
                           />
-                          {/* <h2> Name:</h2>
-                        <p>{recipe.name}</p> */}
+                          <h2> Name:</h2>
+                          <p>{recipe.name}</p>
                           <CardMedia alt="recipe Image">
                             <div>
                               {recipe.image !== undefined && (
