@@ -329,6 +329,9 @@ const AddRecipe = (props) => {
           gutterBottom={true}
           sx={{
             margin: 2.5,
+            backgroundImage:
+              "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
+            boxShadow: "0px 3px 8px hsl(181deg 80% 20% / 30%)",
           }}
         >
           Add Recipe

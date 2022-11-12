@@ -31,20 +31,22 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/friends" element={<FriendsPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/favoriteRecipes" element={<FavoriteRecipesPage />} />
-      </Routes>
+      <div style={{ marginTop: "120px" }}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/favoriteRecipes" element={<FavoriteRecipesPage />} />
+        </Routes>
+      </div>
       {/* <Footer /> */}
     </div>
   );

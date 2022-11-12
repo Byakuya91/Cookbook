@@ -30,7 +30,7 @@ const FavoriteSection = (props) => {
   //   console.log("the profile recipe Id currently is: ", props.recipeID);
 
   return (
-    <Container key={props.profileRecipe._id}>
+    <Container key={props.profileRecipe._id} sx={{ margin: "2rem auto" }}>
       <Card elevation={11}>
         <Typography variant="h3" component="h2">
           Name:
@@ -83,18 +83,50 @@ const FavoriteSection = (props) => {
           <p>{props.profileRecipe.directions}</p>
         </CardContent>
         <CardActions>
-          <ButtonGroup variant="contained" color="secondary" fullWidth>
+          <ButtonGroup
+            variant="contained"
+            color="secondary"
+            fullWidth
+            sx={{
+              justifyContent: "space-evenly",
+              boxShadow: "none",
+            }}
+          >
             <Button
               variant="contained"
               color="success"
               disableRipple
               size="medium"
               onClick={() => props.recipeDelete(props.profileRecipe._id)}
+              sx={{
+                backgroundImage:
+                  "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
+                borderColor: "none",
+              }}
             >
               Delete Recipe
             </Button>
-            <Button onClick={() => setIsEdit(true)}>Edit</Button>
-            <Button onClick={() => setIsEdit(false)}>Close</Button>
+            <Button
+              onClick={() => setIsEdit(true)}
+              sx={{
+                backgroundImage:
+                  "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
+                borderColor: "none",
+              }}
+            >
+              Edit
+            </Button>
+
+            <Button
+              onClick={() => setIsEdit(false)}
+              sx={{
+                backgroundImage:
+                  "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
+                borderColor: "none",
+              }}
+            >
+              Close
+            </Button>
           </ButtonGroup>
         </CardActions>
         {isEdit ? (

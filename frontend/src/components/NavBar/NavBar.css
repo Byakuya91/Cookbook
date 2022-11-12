@@ -9,18 +9,23 @@ li {
 }
 
 .navBar {
-    background: green;
-    box-shadow: 4px 2px 5px gray;
+    background-image: linear-gradient(to bottom,
+            hsl(150deg, 80%, 40%),
+            hsl(181deg, 80%, 20%));
+    box-shadow: 0px 3px 8px hsl(181deg 80% 20% / 30%);
+    /* slash denotes alpha */
     color: white;
     margin-bottom: 2rem;
     padding: 1.5rem 2rem;
-    /* position: fixed;
-    width: 100vw; */
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+    top: 0;
 }
 
 .navBar button {
     background: transparent;
-    border: 2px solid white;
+    border: 2px solid #ffffff;
     color: white;
     padding: 0.4rem 0.5rem;
 }
