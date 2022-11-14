@@ -112,6 +112,8 @@ const Testing = (props) => {
               onClick={() => removeFormFields(index)}
               sx={{
                 margin: 2.5,
+                backgroundImage:
+                  "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
               }}
             >
               Remove

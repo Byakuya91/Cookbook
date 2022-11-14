@@ -120,6 +120,11 @@ const AddMoreIngredients = (props) => {
             variant="contained"
             color="success"
             onClick={() => removeFormFields(index)}
+            sx={{
+              backgroundImage:
+                "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
+              borderColor: "none",
+            }}
           >
             Remove
           </Button>
@@ -133,6 +138,8 @@ const AddMoreIngredients = (props) => {
           type="button"
           sx={{
             margin: 2.5,
+            backgroundImage:
+              "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
           }}
           onClick={() => addFormFields()}
         >

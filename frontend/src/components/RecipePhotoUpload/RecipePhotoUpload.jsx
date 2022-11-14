@@ -110,6 +110,10 @@ const RecipePhotoUpload = (props) => {
           variant="contained"
           size="medium"
           endIcon={<AddAPhotoIcon />}
+          sx={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
+          }}
         >
           Add Photo
         </Button>

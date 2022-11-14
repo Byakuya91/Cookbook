@@ -190,13 +190,38 @@ const EditRecipe = (props) => {
             setEditIngredients={setEditIngredients}
             EditIngredients={editIngredients}
           /> */}
-          <ButtonGroup color="primary" variant="contained" size="small">
-            <Button onClick={() => setIsAddIngredient(true)}>
+          <ButtonGroup
+            color="primary"
+            variant="contained"
+            size="small"
+            fullWidth
+            sx={{
+              justifyContent: "space-evenly",
+              boxShadow: "none",
+            }}
+          >
+            <Button
+              onClick={() => setIsAddIngredient(true)}
+              sx={{
+                backgroundImage:
+                  "linear-gradient(to right, hsl(105deg 71% 40%),hsl(112deg 70% 20%))",
+                boxShadow: "0px 3px 8px hsl(181deg 80% 20% / 30%)",
+                marginTop: "8px",
+              }}
+            >
               {" "}
               Edit Ingredient
             </Button>
 
-            <Button onClick={() => setIsAddIngredient(false)}> Close</Button>
+            <Button
+              onClick={() => setIsAddIngredient(false)}
+              sx={{
+                backgroundImage:
+                  "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
+              }}
+            >
+              Close
+            </Button>
           </ButtonGroup>
           {isAddIngredient ? (
             <AddMoreIngredients
@@ -323,6 +348,11 @@ const EditRecipe = (props) => {
             variant="contained"
             color="success"
             disableElevation
+            sx={{
+              backgroundImage:
+                "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
+              marginTop: "8px",
+            }}
           >
             Update Recipe
           </Button>
@@ -330,10 +360,39 @@ const EditRecipe = (props) => {
       </form>
       <br></br>
 
-      <ButtonGroup color="primary" variant="contained">
-        <Button onClick={() => setIsEditPhoto(true)}> Edit Photo</Button>
+      <ButtonGroup
+        color="primary"
+        variant="contained"
+        sx={{
+          justifyContent: "space-evenly",
+          boxShadow: "none",
+        }}
+      >
+        <Button
+          onClick={() => setIsEditPhoto(true)}
+          sx={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(105deg 71% 40%),hsl(112deg 70% 20%))",
+            boxShadow: "0px 3px 8px hsl(181deg 80% 20% / 30%)",
+            marginTop: "8px",
+            borderColor: "none",
+          }}
+        >
+          {" "}
+          Edit Photo
+        </Button>
 
-        <Button onClick={() => setIsEditPhoto(false)}> Close</Button>
+        <Button
+          onClick={() => setIsEditPhoto(false)}
+          sx={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
+            borderColor: "none",
+          }}
+        >
+          {" "}
+          Close
+        </Button>
       </ButtonGroup>
 
       {isEditPhoto ? (
