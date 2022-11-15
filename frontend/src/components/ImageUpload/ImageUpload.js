@@ -4,6 +4,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import "./ImageUpload.css";
 import { Button } from "@mui/material";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 // TODOs
 // 1) finish coding the form and being able to take a photo and a name of the photo
@@ -85,8 +86,16 @@ const ImageUpload = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => pickedHandler(event)}
         />
-        <Button variant="contained" type="submit">
-          Submit button
+        <Button
+          variant="contained"
+          type="submit"
+          endIcon={<AddAPhotoIcon />}
+          sx={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
+          }}
+        >
+          Upload photo
         </Button>
       </form>
     </div>
