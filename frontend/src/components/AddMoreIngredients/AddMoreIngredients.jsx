@@ -8,6 +8,7 @@ import {
   ButtonGroup,
   Container,
   Grid,
+  TextField,
 } from "@mui/material";
 
 const AddMoreIngredients = (props) => {
@@ -75,9 +76,11 @@ const AddMoreIngredients = (props) => {
           >
             Name
           </Typography>
-          <input
+          <TextField
             type="text"
             id="ingredient_name"
+            variant="outlined"
+            size="small"
             name="name"
             value={element.name || ""}
             onChange={(e) => handleChange(index, e)}
@@ -90,9 +93,10 @@ const AddMoreIngredients = (props) => {
           >
             Amount
           </Typography>
-          <input
+          <TextField
             type="number"
             id="ingredient_amount"
+            size="small"
             name="amount"
             value={element.amount || ""}
             color="primary"

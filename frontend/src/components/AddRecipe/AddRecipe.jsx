@@ -168,12 +168,17 @@ const AddRecipe = (props) => {
           Recipe name:
         </Typography>
         <br></br>
-        <input
+        <TextField
           type="text"
           id="recipe_name"
+          variant="outlined"
+          size="small"
           required
           placeholder="Enter a Recipe..."
           value={name}
+          // sx = {{
+
+          // }}
           onChange={(event) => setName(event.target.value)}
         />
         <br></br>
@@ -189,9 +194,11 @@ const AddRecipe = (props) => {
           Cook_Time:
         </Typography>
         <br></br>
-        <input
+        <TextField
           type="text"
           id="Cook_Time"
+          variant="outlined"
+          size="small"
           required
           placeholder="Enter cook_time..."
           value={cook_Time}
@@ -208,10 +215,11 @@ const AddRecipe = (props) => {
           Preparation_Time:
         </Typography>{" "}
         <br></br>
-        <input
+        <TextField
           type="text"
           required
           placeholder="Enter prep_time..."
+          size="small"
           id="Preparation_Time"
           value={preparation_Time}
           onChange={(event) => setPreparation_Time(event.target.value)}
@@ -328,10 +336,10 @@ const AddRecipe = (props) => {
           endIcon={<SendIcon />}
           gutterBottom={true}
           sx={{
-            margin: 2.5,
             backgroundImage:
-              "linear-gradient(to right, hsl(150deg, 80%, 40%), hsl(181deg, 80%, 20%))",
-            boxShadow: "0px 3px 8px hsl(181deg 80% 20% / 30%)",
+              "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
+            margin: 2.5,
+            borderColor: "none",
           }}
         >
           Add Recipe

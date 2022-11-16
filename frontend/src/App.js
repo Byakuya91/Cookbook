@@ -18,6 +18,7 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import { Button } from "@mui/material";
 
 // Material UI
 // import Button from "@babel/core";
@@ -32,6 +33,16 @@ function App() {
     <div>
       <Navbar />
       <div style={{ marginTop: "120px" }}>
+        {/* <Button
+          sx={[
+            {
+              "&:hover": {
+                color: "red",
+                backgroundColor: "white",
+              },
+            },
+          ]}
+        /> */}
         <Routes>
           <Route
             path="/"

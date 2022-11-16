@@ -120,9 +120,11 @@ const FavoriteSection = (props) => {
             <Button
               onClick={() => setIsEdit(false)}
               sx={{
-                backgroundImage:
-                  "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
-                borderColor: "none",
+                background: "none",
+                color: "hsl(162deg 7% 48%)",
+                borderColor: "#fefefe",
+                border: "solid",
+                fontSize: "14px",
               }}
             >
               Close

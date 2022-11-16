@@ -215,10 +215,21 @@ const EditRecipe = (props) => {
 
             <Button
               onClick={() => setIsAddIngredient(false)}
-              sx={{
-                backgroundImage:
-                  "linear-gradient(to right, hsl(28deg 82% 48%), hsl(20deg 96% 28%))",
-              }}
+              sx={[
+                {
+                  background: "none",
+                  color: "hsl(162deg 7% 48%)",
+                  borderColor: "#fefefe",
+                  border: "solid",
+                  fontSize: "14px",
+                },
+                {
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: "hsl(162deg 7% 48%)",
+                  },
+                },
+              ]}
             >
               Close
             </Button>

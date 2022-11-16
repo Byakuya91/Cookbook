@@ -23,22 +23,22 @@ const ProfileRecipeCardMapper = (props) => {
             (profileRecipe) =>
               profileRecipe.name
                 ?.toLowerCase()
-                .includes(props.searchRecipe.toLowerCase()) ||
-              // profileRecipe.ingredients
-              //   ?.toLowerCase()
-              //   .includes(props.searchRecipe.toLowerCase()) ||
-              profileRecipe.cook_time
-                ?.toLowerCase()
-                .includes(props.searchRecipe.toLowerCase()) ||
-              profileRecipe.preparation_time
-                ?.toLowerCase()
-                .includes(props.searchRecipe.toLowerCase()) ||
-              (profileRecipe.serving_size &&
-                profileRecipe.serving_size === parseInt(props.searchRecipe)) ||
-              (profileRecipe.yield &&
-                profileRecipe.yield === parseInt(props.searchRecipe)) ||
-              (profileRecipe.calories &&
-                profileRecipe.calories === parseInt(props.searchRecipe))
+                .includes(props.searchRecipe.toLowerCase())
+            // profileRecipe.ingredients
+            //   ?.toLowerCase()
+            //   .includes(props.searchRecipe.toLowerCase()) ||
+            // profileRecipe.cook_time
+            //   ?.toLowerCase()
+            //   .includes(props.searchRecipe.toLowerCase()) ||
+            // profileRecipe.preparation_time
+            //   ?.toLowerCase()
+            //   .includes(props.searchRecipe.toLowerCase()) ||
+            // (profileRecipe.serving_size &&
+            //   profileRecipe.serving_size === parseInt(props.searchRecipe)) ||
+            // (profileRecipe.yield &&
+            //   profileRecipe.yield === parseInt(props.searchRecipe)) ||
+            // (profileRecipe.calories &&
+            //   profileRecipe.calories === parseInt(props.searchRecipe))
           )
           // Map for RecipeCard and properties.
           .map((profileRecipe, index) => {

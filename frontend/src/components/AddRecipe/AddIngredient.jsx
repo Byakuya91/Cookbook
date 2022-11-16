@@ -63,10 +63,13 @@ const Testing = (props) => {
           >
             Name
           </Typography>
-          <input
+          <TextField
             type="text"
             id="ingredient_name"
+            size="small"
+            variant="outlined"
             name="name"
+            placeholder="Enter ingredient name"
             value={element.name || ""}
             onChange={(e) => handleChange(index, e)}
           />
