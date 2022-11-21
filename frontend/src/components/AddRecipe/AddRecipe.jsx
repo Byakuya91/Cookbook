@@ -137,13 +137,13 @@ const AddRecipe = (props) => {
 
   return (
     //   Form template and data that will need to be sent.
-    <form onSubmit={(e) => handleRecipeSubmit(e)}>
-      <Container
-        sx={{
-          display: "block",
-        }}
-        classname="form-field-container"
-      >
+    <Container
+      sx={{
+        display: "block",
+      }}
+      classname="form-field-container"
+    >
+      <form onSubmit={(e) => handleRecipeSubmit(e)}>
         <Typography
           variant="h4"
           component="h4"
@@ -327,25 +327,25 @@ const AddRecipe = (props) => {
           accept=".jpg,.png,.jpeg"
           onChange={(event) => setFile(event.target.files[0])}
         />
-      </Container>
-      <div>
-        <Button
-          variant="contained"
-          disableElevation
-          type="submit"
-          endIcon={<SendIcon />}
-          gutterBottom={true}
-          sx={{
-            backgroundImage:
-              "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
-            margin: 2.5,
-            borderColor: "none",
-          }}
-        >
-          Add Recipe
-        </Button>
-      </div>
-    </form>
+        <div>
+          <Button
+            variant="contained"
+            disableElevation
+            type="submit"
+            endIcon={<SendIcon />}
+            gutterBottom={true}
+            sx={{
+              backgroundImage:
+                "linear-gradient(to right, hsl(105deg 71% 40%), hsl(112deg 70% 20%))",
+              margin: 2.5,
+              borderColor: "none",
+            }}
+          >
+            Add Recipe
+          </Button>
+        </div>
+      </form>
+    </Container>
   );
 };
 
