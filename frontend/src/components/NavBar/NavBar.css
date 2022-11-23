@@ -9,7 +9,7 @@ li {
 }
 
 .navBar {
-    background-image: linear-gradient(to bottom,
+    background-image: linear-gradient(to right,
             hsl(150deg, 80%, 40%),
             hsl(181deg, 80%, 20%));
     box-shadow: 0px 3px 8px hsl(181deg 80% 20% / 30%);

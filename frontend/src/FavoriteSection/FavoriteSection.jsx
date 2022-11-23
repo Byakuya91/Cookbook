@@ -119,13 +119,21 @@ const FavoriteSection = (props) => {
 
             <Button
               onClick={() => setIsEdit(false)}
-              sx={{
-                background: "none",
-                color: "hsl(162deg 7% 48%)",
-                borderColor: "#fefefe",
-                border: "solid",
-                fontSize: "14px",
-              }}
+              sx={[
+                {
+                  background: "none",
+                  color: "hsl(162deg 7% 48%)",
+                  borderColor: "#fefefe",
+                  border: "solid",
+                  fontSize: "14px",
+                },
+                {
+                  "&:hover": {
+                    color: "white",
+                    backgroundColor: "hsl(162deg 7% 48%)",
+                  },
+                },
+              ]}
             >
               Close
             </Button>
