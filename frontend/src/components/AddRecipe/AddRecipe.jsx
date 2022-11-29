@@ -158,6 +158,10 @@ const AddRecipe = (props) => {
             className="container"
             color="primary"
             align="center"
+            sx={{
+              display: "flex",
+              paddingBottom: "20px",
+            }}
           >
             Add a new Recipe
           </Typography>
@@ -170,47 +174,70 @@ const AddRecipe = (props) => {
             className="add-recipe-label"
             sx={{
               marginBottom: "2rem",
+              display: "flex",
             }}
           >
             Recipe name:
           </Typography>
           <br></br>
-          <TextField
-            type="text"
-            id="recipe_name"
-            variant="outlined"
-            size="small"
-            required
-            placeholder="Enter a Recipe..."
-            value={name}
-            // sx = {{
-
-            // }}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <br></br>
-          <AddIngredient setIngredients={setIngredients} />
-          <br></br>
+          <span
+            style={{
+              display: "flex",
+              marginTop: "--42px",
+            }}
+          >
+            <TextField
+              type="text"
+              id="recipe_name"
+              variant="outlined"
+              size="small"
+              required
+              placeholder="Enter a Recipe..."
+              value={name}
+              sx={{
+                direction: "flex",
+              }}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </span>
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <AddIngredient setIngredients={setIngredients} />
+          </span>
           <Typography
             variant="h5"
             component="label"
             htmlFor="Cook_Time"
             className="add-recipe-label"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Cook_Time:
           </Typography>
           <br></br>
-          <TextField
-            type="text"
-            id="Cook_Time"
-            variant="outlined"
-            size="small"
-            required
-            placeholder="Enter cook_time..."
-            value={cook_Time}
-            onChange={(event) => setCook_Time(event.target.value)}
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <TextField
+              type="text"
+              id="Cook_Time"
+              variant="outlined"
+              size="small"
+              required
+              placeholder="Enter cook_time..."
+              value={cook_Time}
+              onChange={(event) => setCook_Time(event.target.value)}
+            />
+          </span>
           <br />
           <Typography
             variant="h5"
@@ -218,19 +245,29 @@ const AddRecipe = (props) => {
             htmlFor="Preparation_Time"
             className="add-recipe-label"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Preparation_Time:
           </Typography>{" "}
           <br></br>
-          <TextField
-            type="text"
-            required
-            placeholder="Enter prep_time..."
-            size="small"
-            id="Preparation_Time"
-            value={preparation_Time}
-            onChange={(event) => setPreparation_Time(event.target.value)}
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <TextField
+              type="text"
+              required
+              placeholder="Enter prep_time..."
+              size="small"
+              id="Preparation_Time"
+              value={preparation_Time}
+              onChange={(event) => setPreparation_Time(event.target.value)}
+            />
+          </span>
           <br />
           <Typography
             variant="h5"
@@ -238,6 +275,9 @@ const AddRecipe = (props) => {
             htmlFor="Directions"
             className="add-recipe-label"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Directions:
           </Typography>
@@ -263,77 +303,117 @@ const AddRecipe = (props) => {
             component="label"
             htmlFor="serving_size"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Serving_Size:
           </Typography>{" "}
           <br></br>
-          <input
-            type="number"
-            required
-            id="serving_size"
-            placeholder="Select a serving size..."
-            value={serving_Size}
-            onChange={(event) => setServing_Size(event.target.value)}
-            color="secondary"
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <input
+              type="number"
+              required
+              id="serving_size"
+              placeholder="Select a serving size..."
+              value={serving_Size}
+              onChange={(event) => setServing_Size(event.target.value)}
+              color="secondary"
+            />
+          </span>
           <br />
           <Typography
             variant="h5"
             component="label"
             htmlFor="yield"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Yield:
           </Typography>
           <br></br>
-          <input
-            type="number"
-            required
-            placeholder="Select a yield count..."
-            min={1}
-            id="yield"
-            value={recipe_Yield}
-            onChange={(event) => setRecipe_Yield(event.target.value)}
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <input
+              type="number"
+              required
+              placeholder="Select a yield count..."
+              min={1}
+              id="yield"
+              value={recipe_Yield}
+              onChange={(event) => setRecipe_Yield(event.target.value)}
+            />
+          </span>
           <br />
           <Typography
             variant="h5"
             component="label"
             htmlFor="calories"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Calories:
           </Typography>
           <br></br>
-          <input
-            type="number"
-            id="calories"
-            required
-            placeholder="Select calorie count..."
-            value={calories}
-            min={100}
-            onChange={(event) => setCalories(event.target.value)}
-            color="secondary"
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <input
+              type="number"
+              id="calories"
+              required
+              placeholder="Select calorie count..."
+              value={calories}
+              min={100}
+              onChange={(event) => setCalories(event.target.value)}
+              color="secondary"
+            />
+          </span>
           <br />
           <Typography
             variant="h5"
             component="label"
             htmlFor="image"
             color="secondary"
+            sx={{
+              display: "flex",
+            }}
           >
             Photo
           </Typography>
           <br />
-          <input
-            name="file"
-            required
-            id="image"
-            ref={filePickerRef}
-            type="file"
-            accept=".jpg,.png,.jpeg"
-            onChange={(event) => setFile(event.target.files[0])}
-          />
+          <span
+            style={{
+              display: "flex",
+              marginTop: "-10px",
+            }}
+          >
+            <input
+              name="file"
+              required
+              id="image"
+              ref={filePickerRef}
+              type="file"
+              accept=".jpg,.png,.jpeg"
+              onChange={(event) => setFile(event.target.files[0])}
+            />
+          </span>
           <div>
             <Button
               variant="contained"
@@ -346,6 +426,7 @@ const AddRecipe = (props) => {
                   "linear-gradient(to right, hsl(150deg 80% 40%), hsl(180deg 80% 20%))",
                 margin: 2.5,
                 borderColor: "none",
+                display: "flex",
               }}
             >
               Add Recipe
