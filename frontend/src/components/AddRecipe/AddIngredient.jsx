@@ -40,26 +40,54 @@ const Testing = (props) => {
     <Container>
       {formValues.map((element, index) => (
         <Grid container key={index} direction="column">
-          <Typography
-            variant="h4"
-            component="h3"
-            color="primary"
-            gutterBottom={true}
-            sx={{
-              marginTop: "2rem",
+          <span
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              marginBottom: "25px",
             }}
           >
-            Add Ingredients
-          </Typography>
-
-          <Typography variant="h5" component="label" color="error">
-            Ingredient
-          </Typography>
+            <Typography
+              variant="h4"
+              component="h3"
+              color="primary"
+              gutterBottom={true}
+              sx={{
+                marginTop: "2rem",
+                // display: "flex",
+                // flexDirection: "row",
+                // justifyContent: "flex-start",
+                // marginBottom: "25px",
+              }}
+            >
+              Add Ingredients
+            </Typography>
+          </span>
+          <div
+            style={{
+              display: "inline-flex",
+              marginBottom: "36px",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+              flexDirection: "row",
+            }}
+          >
+            <Typography variant="h4" component="label" color="error">
+              Ingredient
+            </Typography>
+          </div>
           <Typography
             variant="h5"
             component="label"
             htmlFor="ingredient_name"
             color="primary"
+            sx={{
+              display: "inline-flex",
+              justifyContent: " flex-start",
+              flexWrap: "wrap",
+              marginBottom: "8px",
+            }}
           >
             Name
           </Typography>
@@ -78,6 +106,13 @@ const Testing = (props) => {
             component="label"
             htmlFor="ingredient_amount"
             color="primary"
+            sx={{
+              display: "inline-flex",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+              marginBottom: "8px",
+              marginTop: "20px",
+            }}
           >
             Amount
           </Typography>
@@ -96,6 +131,13 @@ const Testing = (props) => {
             component="label"
             htmlFor="ingredient_unit"
             color="primary"
+            sx={{
+              display: "inline-flex",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+              marginBottom: "8px",
+              marginTop: "20px",
+            }}
           >
             Unit of Measure
           </Typography>
