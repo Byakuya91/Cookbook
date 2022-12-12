@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 const SearchRecipe = (props) => {
   console.log("The value for SearchRecipe is:", props.searchRecipe);
 
@@ -6,7 +7,7 @@ const SearchRecipe = (props) => {
 
     // test the search and see if it is capturing the value
     <div>
-      <input
+      <TextField
         type="search"
         value={props.searchRecipe}
         placeholder="Search a recipe,ingredients,pre_time...."

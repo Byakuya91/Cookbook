@@ -8,7 +8,7 @@ const SearchUserRecipes = (props) => {
   );
   return (
     <div>
-      <TextField
+      <input
         type="search"
         // placeholder="Search a recipe..."
         label="Search a Recipe"
