@@ -17,10 +17,10 @@ const RemoveFavoriteRecipeButton = (props) => {
 
   // function to add a recipe
 
-  console.log(
-    "The recipe ID before the handleRFR function is:",
-    props.recipeID
-  );
+  // console.log(
+  //   "The recipe ID before the handleRFR function is:",
+  //   props.recipeID
+  // );
 
   const handleRemoveFavoriteRecipe = async (id) => {
     // Step One: create a field for the recipe

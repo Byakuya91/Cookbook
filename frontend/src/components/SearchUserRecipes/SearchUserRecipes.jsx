@@ -2,6 +2,10 @@ import { TextField } from "@mui/material";
 import React, { useState } from "react";
 
 const SearchUserRecipes = (props) => {
+  console.log(
+    "the value being captured by recipe search is:",
+    props.RecipeSearch
+  );
   return (
     <div>
       <TextField

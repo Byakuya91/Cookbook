@@ -14,7 +14,7 @@ const ProfileRecipeCardMapper = (props) => {
   return (
     // Container for the Map
     <div className="profile-Recipe-Card">
-      {console.log("The recipe names are as follows: ", props.profileRecipes)}
+      {/* {console.log("The recipe names are as follows: ", props.profileRecipes)} */}
 
       {/* Filtering properties for the recipe Card itself */}
       {props.profileRecipes &&
