@@ -97,7 +97,7 @@ const Testing = (props) => {
             size="small"
             variant="outlined"
             name="name"
-            placeholder="Enter ingredient name"
+            placeholder="Enter an ingredient name"
             value={element.name || ""}
             onChange={(e) => handleChange(index, e)}
           />
@@ -121,6 +121,7 @@ const Testing = (props) => {
             id="ingredient_amount"
             size="small"
             variant="outlined"
+            placeholder="Enter an amount"
             name="amount"
             value={element.amount || ""}
             onChange={(e) => handleChange(index, e)}
@@ -147,6 +148,7 @@ const Testing = (props) => {
             type="text"
             id="ingredient_unit"
             size="small"
+            placeholder="Enter a unit of measurement"
             variant="outlined"
             name="unit"
             value={element.unit || ""}

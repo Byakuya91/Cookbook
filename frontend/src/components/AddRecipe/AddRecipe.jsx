@@ -192,6 +192,7 @@ const AddRecipe = (props) => {
               variant="outlined"
               size="small"
               required
+              fullWidth
               placeholder="Enter a Recipe..."
               value={name}
               sx={{
