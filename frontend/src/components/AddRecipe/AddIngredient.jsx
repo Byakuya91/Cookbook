@@ -116,9 +116,11 @@ const Testing = (props) => {
           >
             Amount
           </Typography>
-          <input
+          <TextField
             type="number"
             id="ingredient_amount"
+            size="small"
+            variant="outlined"
             name="amount"
             value={element.amount || ""}
             onChange={(e) => handleChange(index, e)}
@@ -141,9 +143,11 @@ const Testing = (props) => {
           >
             Unit of Measure
           </Typography>
-          <input
+          <TextField
             type="text"
             id="ingredient_unit"
+            size="small"
+            variant="outlined"
             name="unit"
             value={element.unit || ""}
             onChange={(e) => handleChange(index, e)}

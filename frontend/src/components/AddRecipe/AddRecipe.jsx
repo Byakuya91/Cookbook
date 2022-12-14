@@ -196,6 +196,7 @@ const AddRecipe = (props) => {
               value={name}
               sx={{
                 direction: "flex",
+                marginTop: "-33px",
               }}
               onChange={(event) => setName(event.target.value)}
             />
@@ -277,6 +278,7 @@ const AddRecipe = (props) => {
             color="secondary"
             sx={{
               display: "flex",
+              marginTop: "17px",
             }}
           >
             Directions:
@@ -292,6 +294,7 @@ const AddRecipe = (props) => {
             sx={{
               width: 600,
               fontSize: 10,
+              marginTop: "-6px",
             }}
             placeholder="Enter Recipe Directions"
             value={recipe_Directions}
@@ -316,10 +319,12 @@ const AddRecipe = (props) => {
               marginTop: "-10px",
             }}
           >
-            <input
+            <TextField
               type="number"
               required
               id="serving_size"
+              variant="outlined"
+              size="small"
               placeholder="Select a serving size..."
               value={serving_Size}
               onChange={(event) => setServing_Size(event.target.value)}
@@ -345,10 +350,12 @@ const AddRecipe = (props) => {
               marginTop: "-10px",
             }}
           >
-            <input
+            <TextField
               type="number"
               required
               placeholder="Select a yield count..."
+              variant="outlined"
+              size="small"
               min={1}
               id="yield"
               value={recipe_Yield}
@@ -374,10 +381,12 @@ const AddRecipe = (props) => {
               marginTop: "-10px",
             }}
           >
-            <input
+            <TextField
               type="number"
               id="calories"
               required
+              variant="outlined"
+              size="small"
               placeholder="Select calorie count..."
               value={calories}
               min={100}
